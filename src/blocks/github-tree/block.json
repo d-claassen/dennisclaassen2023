@@ -16,7 +16,7 @@
 		"queryContext",
 		"templateSlug",
 		"previewPostType",
-		
+
 		"textColor",
 		"customTextColor",
 		"backgroundColor",
@@ -24,7 +24,7 @@
 		"fontSize",
 		"customFontSize",
 		"style"
-	 ],
+	],
 	"attributes": {},
 	"supports": {
 		"html": false
