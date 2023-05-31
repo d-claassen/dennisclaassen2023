@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "dc23/github-tree",
+	"version": "0.1.0",
+	"title": "Dennis Claassen 2023 GitHub Blocks",
+	"category": "text",
+	"icon": "flag",
+	"description": "A set of Gutenberg blocks inspired by GitHub! This block enables you to create a browsing experience like GitHubs tree browser.",
+	"usesContext": [
+		"postId",
+		"postType",
+		"queryId",
+		"query",
+		"displayLayout",
+		"queryContext",
+		"templateSlug",
+		"previewPostType",
+		
+		"textColor",
+		"customTextColor",
+		"backgroundColor",
+		"customBackgroundColor",
+		"fontSize",
+		"customFontSize",
+		"style"
+	 ],
+	"attributes": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "dennisclaassen2023",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}
