@@ -22,6 +22,7 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @param {Object}   props               Properties passed to the function.
  * @param {Object}   props.attributes    Available block attributes.
  * @param {Function} props.setAttributes Function that updates individual attributes.
+ * @param {Object}   props.context       Available block context.
  *
  * @return {WPElement} Element to render.
  */
