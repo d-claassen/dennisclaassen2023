@@ -207,7 +207,7 @@ if ( ! function_exists( 'dc23_setup' ) ) :
  */
 function dc23_setup(): void {
     // echo 'after setup theme';
-    register_block_type(__DIR__ . '/build/blocks/github-tree', [ 'render_callback' => 'render_block_dc23_github_tree' ] );
+    register_block_type(__DIR__ . '/build/assets/github-tree', [ 'render_callback' => 'render_block_dc23_github_tree' ] );
 }
 endif; // myfirsttheme_setup
 add_action( 'init', 'dc23_setup' );
