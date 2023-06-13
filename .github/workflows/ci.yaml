@@ -28,6 +28,9 @@ jobs:
           
       - name: 'NPM install'
         run: npm install
+        
+      - name: 'Check engines'
+        run: 'npm run-script check-engines'
       
       - name: 'Lint JS'
         run: 'npm run-script lint:js'
