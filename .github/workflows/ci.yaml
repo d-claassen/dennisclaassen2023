@@ -35,6 +35,9 @@ jobs:
       - name: 'Check licenses'
         run: 'npm run-script check-licenses'
       
+      - name: 'Lint package.json'
+        run: 'npm run-script lint:pkg-json'
+        
       - name: 'Lint JS'
         run: 'npm run-script lint:js'
         
