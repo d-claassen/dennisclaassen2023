@@ -46,4 +46,10 @@ jobs:
         
       - name: 'Lint CSS'
         run: 'npm run-script lint:css'
+        
+      - name: 'Test units'
+        run: 'npm run-script test:unit'
+        
+      - name: 'Test e2e'
+        run: 'npm run-script test:e2e'
       
