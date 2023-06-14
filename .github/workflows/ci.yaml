@@ -31,6 +31,9 @@ jobs:
         
       - name: 'Check engines'
         run: 'npm run-script check-engines'
+        
+      - name: 'Check licenses'
+        run: 'npm run-script check-licenses'
       
       - name: 'Lint JS'
         run: 'npm run-script lint:js'
