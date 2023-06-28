@@ -4,47 +4,50 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
- .Box {
+.Box {
 	border-color: #d0d7de;
 	border-radius: 6px;
 	border-style: solid;
 	border-width: 1px;
-  }
-  .Box-row {
+}
+
+.Box-row {
 	border-top: 1px solid #d8dee4;
 	list-style-type: none;
 	margin-top: -1px;
 	padding: 8px 16px;
-  
+
 	display: flex;
 	gap: 0.5rem;
-  }
-  .Box-icon {
-	  width: 16px;
-	  margin-right: 1rem;
-	  flex-shrink: 0;
-  
-	  svg {
-		  display: inline-block;
-		  overflow: visible !important;
-		  vertical-align: text-bottom;
-		  fill: currentColor;
-	  }
-  }
-  .Box-link {
-	  color: currentColor;
-	text-decoration: none;
-  
-	&:hover {
-	  color: #0969da;
-	  text-decoration: underline;
+}
+
+.Box-icon {
+	width: 16px;
+	margin-right: 1rem;
+	flex-shrink: 0;
+
+	svg {
+		display: inline-block;
+		overflow: visible !important;
+		vertical-align: text-bottom;
+		fill: currentcolor;
 	}
-  }
-  
-  .Box-primary {
-	  color: #1f2328;
-  }
-  
-  .Box-secondary {
-	  color: #656d76;
-  }
+}
+
+.Box-link {
+	color: currentcolor;
+	text-decoration: none;
+
+	&:hover {
+		color: #0969da;
+		text-decoration: underline;
+	}
+}
+
+.Box-primary {
+	color: #1f2328;
+}
+
+.Box-secondary {
+	color: #656d76;
+}
