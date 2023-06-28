@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 2,
-	"name": "dc23/github-tree",
+	"name": "dc23/github-breadcrumbs",
 	"version": "0.1.0",
-	"title": "Dennis Claassen 2023 GitHub Navigation",
+	"title": "Dennis Claassen 2023 GitHub Breadcrumb",
 	"category": "text",
 	"icon": "flag",
-	"description": "A Gutenberg block inspired by GitHub! This block enables you to create a browsing experience like GitHubs tree browser.",
+	"description": "A Gutenberg block inspired by GitHub! This block enables you to create a browsing experience like GitHubs breadcrumbs.",
 	"usesContext": [
 		"postId",
 		"postType",

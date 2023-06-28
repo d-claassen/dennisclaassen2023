@@ -1,0 +1,17 @@
+{
+    "name": "d-claassen/dennisclaassen2023",
+    "description": "The 2023 WordPress theme for Dennis Claassen.nl.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Dennis Claassen",
+            "email": "declaassen@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "DC23\\": "src/"
+        }
+    },
+    "require": {}
+}

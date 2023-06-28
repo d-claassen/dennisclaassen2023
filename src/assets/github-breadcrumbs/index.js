@@ -34,7 +34,7 @@ registerBlockType( metadata.name, {
 	 */
 	example: {
 		attributes: {
-			message: 'Dennisclaassen2023 Gh Blocks',
+			message: 'Dennisclaassen2023 Gh Breadcrumbs Blocks',
 		},
 	},
 	/**
