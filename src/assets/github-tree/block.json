@@ -27,7 +27,10 @@
 	 ],
 	"attributes": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"spacing": {
+			"margin": true
+		}
 	},
 	"textdomain": "dennisclaassen2023",
 	"editorScript": "file:./index.js",

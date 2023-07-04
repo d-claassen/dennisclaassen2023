@@ -71,9 +71,19 @@
 					"name": "tw-1"	
 				},
 				{
+					"size": "-8px",
+					"slug": "n1",
+					"name": "tw--1"	
+				},
+				{
 					"size": "12px",
 					"slug": "2",
 					"name": "tw-2"	
+				},
+				{
+					"size": "-12px",
+					"slug": "n2",
+					"name": "tw--2"	
 				},
 				{
 					"size": "16px",
@@ -81,9 +91,19 @@
 					"name": "tw-3"	
 				},
 				{
+					"size": "-16px",
+					"slug": "n3",
+					"name": "tw--3"	
+				},
+				{
 					"size": "24px",
 					"slug": "4",
 					"name": "tw-4"	
+				},
+				{
+					"size": "-24px",
+					"slug": "n4",
+					"name": "tw--4"	
 				},
 				{
 					"size": "32px",
@@ -512,6 +532,15 @@
 					"fontWeight": "normal",
 					"lineHeight": "1.4"
 				}
+			},
+			"dc23/github-breadcrumbs": {
+			},
+			"dc23/github-tree": {
+				"spacing": {
+					"margin": {
+						"top": "var(--wp--preset--spacing--n-2)"
+					}
+				}
 			}
 		},
 		"color": {
@@ -620,7 +649,7 @@
 			}
 		},
 		"spacing": {
-			"blockGap": "1.5rem"
+			"blockGap": "1rem"
 		},
 		"typography": {
 			"fontFamily": "var(--wp--preset--font-family--system-font)",

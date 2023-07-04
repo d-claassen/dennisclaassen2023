@@ -16,7 +16,6 @@
 		"queryContext",
 		"templateSlug",
 		"previewPostType",
-		
 		"textColor",
 		"customTextColor",
 		"backgroundColor",
@@ -25,9 +24,19 @@
 		"customFontSize",
 		"style"
 	 ],
-	"attributes": {},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		}
+	},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true,
+		"multiple": false,
+		"spacing": {
+			"margin": true
+		}
 	},
 	"textdomain": "dennisclaassen2023",
 	"editorScript": "file:./index.js",

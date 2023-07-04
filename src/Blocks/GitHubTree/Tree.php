@@ -36,8 +36,10 @@ function render_block_dc23_github_tree( $attributes, $content, $block ) {
         $root_ids = array_column( $root_categories, 'term_id' );
         $child_categories = implode( '', array_map( $this->get_category_as_row(...), $root_ids ) );
         
+        $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'Box' ] );
+
         return <<<HTML
-            <div class="Box">
+            <div {$wrapper_attributes}>
                 {$child_categories}
             </div>
         HTML;    
@@ -64,8 +66,10 @@ function render_block_dc23_github_tree( $attributes, $content, $block ) {
     $child_posts = $this->get_posts_as_row( $category->term_id );
 
     if (  $parent_row || $child_categories || $child_posts ) {
+        $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'Box' ] );
+
         return <<<HTML
-            <div class="Box">
+            <div {$wrapper_attributes}>
                 {$parent_row}
                 {$child_categories}
                 {$child_posts}
