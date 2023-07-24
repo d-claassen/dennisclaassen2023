@@ -48,7 +48,7 @@ jobs:
         run: 'npm run-script lint:css'
         
       - name: 'Test units'
-        run: 'npm run-script test:unit'
+        run: 'npm run-script test:unit --coverage'
         
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
