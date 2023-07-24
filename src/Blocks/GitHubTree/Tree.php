@@ -131,7 +131,7 @@ function get_category_as_row( int $category_id ) {
     $category_link = get_category_link( $category );
     $latest_post = $this->get_latest_post_for_category( $category_id );
     $latest_post_link = get_permalink( $latest_post->ID );
-    $latest_post_date = get_the_modified_date( '', $latest_post );
+    $latest_post_date = get_the_date( '', $latest_post );
     // return var_Export( $latest_post, true );
     return <<<HTML
     <div class="Box-row">
@@ -200,7 +200,7 @@ function get_posts_as_row( int $category_id ) {
 function get_post_as_row(WP_Post $post):string {
     $latest_post_title = $post->post_title;
     $latest_post_link = get_permalink( $post->ID );
-    $latest_post_date = get_the_modified_date( '', $post );
+    $latest_post_date = get_the_date( '', $post );
     return <<<HTML
         <div class="Box-row">
             <div class="Box-icon" style="color: #656d76">
