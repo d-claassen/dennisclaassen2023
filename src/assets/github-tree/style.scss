@@ -51,3 +51,9 @@
 .Box-secondary {
 	color: #656d76;
 }
+
+.Box-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

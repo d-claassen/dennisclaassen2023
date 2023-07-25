@@ -148,7 +148,7 @@ function get_category_as_row( int $category_id ) {
             </a>
         </div>
 
-        <div class="Box-secondary text-truncate" style="width: 40%;">
+        <div class="Box-secondary Box-truncate" style="width: 40%;">
             <a href="{$latest_post_link}" class="Box-link">
                 {$latest_post->post_title}
             </a>
