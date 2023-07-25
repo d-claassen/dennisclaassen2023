@@ -6,8 +6,8 @@ const config = {
 		'src/**',
 	],
 	coveragePathIgnorePatterns: [
-		'**/specs/**/*.[jt]s?(x)',
-		'**/?(*.)spec.[jt]s?(x)',
+		'(/specs/)',
+		'(\.spec\.[jt]s?$)',
 	],
 };
 
