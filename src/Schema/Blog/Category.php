@@ -10,13 +10,13 @@ final class Category {
         \add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema(...), 11, 2 );
     }
 
-    private function should_add_resume_data(): bool {
+    private function should_add_blog_data(): bool {
         return is_category();
     }
 
     private function make_blog_main_entity($webpageData, $context) {
         
-        if( ! $this->should_add_resume_data() ) {
+        if( ! $this->should_add_blog_data() ) {
             return $webpageData;
         }
         
@@ -25,7 +25,6 @@ final class Category {
 
         $webpageData['mainEntity'] = [
             '@id' => $context->site_url . '#/schema/Blog/' . $category->term_id,
-//            '@id'=> '',// YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
         ];
 
         return $webpageData;
@@ -57,7 +56,7 @@ final class Category {
 
     private function add_blog_to_schema( $pieces, $context) {
         
-        if( ! $this->should_add_resume_data() ) {
+        if( ! $this->should_add_blog_data() ) {
             return $pieces;
         }
         
