@@ -1,5 +1,7 @@
+const wpJestConfig = require( '@wordpress/scripts/config/jest-unit.config.js' );
+
 const config = {
-	preset: '@wordpress/jest-preset-default',
+	...wpJestConfig,
 	collectCoverageFrom: [
 		'src/**',
 	],
