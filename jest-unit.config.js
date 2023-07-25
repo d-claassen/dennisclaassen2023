@@ -5,6 +5,10 @@ const config = {
 	collectCoverageFrom: [
 		'src/**',
 	],
+	coveragePathIgnorePatterns: [
+		'**/specs/**/*.[jt]s?(x)',
+		'**/?(*.)spec.[jt]s?(x)',
+	],
 };
 
 module.exports = config;
