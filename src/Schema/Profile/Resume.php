@@ -7,11 +7,27 @@ final class Resume {
     
         \add_filter( 'wpseo_schema_person', $this->enhance_person_with_resume(...), 11, 2 );
         
+        \add_filter( 'wpseo_schema_webpage', $this->make_person_main_entity(...), 11, 2 );
+        
         \add_filter( 'wpseo_schema_graph_pieces', $this->add_resume_to_schema(...), 11, 2 );
     }
 
     private function should_add_resume_data(): bool {
         return is_front_page();
+    }
+
+    private function make_person_main_entity($webpageData, $context) {
+        
+        if( ! $this->should_add_resume_data() ) {
+            return $webpageData;
+        }
+
+        $webpageData['mainEntity'] = [
+            '@id'=>  YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
+        ];
+
+        return $webpageData;
+
     }
 
     private function enhance_person_with_resume($personData, $context) {
