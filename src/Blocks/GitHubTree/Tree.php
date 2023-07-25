@@ -30,7 +30,7 @@ class Tree {
  * @return string Returns the filtered post title for the current post wrapped inside "h1" tags.
  */
 function render_block_dc23_github_tree( $attributes, $content, $block ) {
-    $is_home = is_home();
+    $is_home = is_front_page();
     if ( $is_home ) {
         $root_categories = get_categories( [ 'parent' => 0 ] );
         $root_ids = array_column( $root_categories, 'term_id' );

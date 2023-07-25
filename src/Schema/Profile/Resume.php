@@ -11,7 +11,7 @@ final class Resume {
     }
 
     private function should_add_resume_data(): bool {
-        return is_home();
+        return is_front_page();
     }
 
     private function enhance_person_with_resume($personData, $context) {
