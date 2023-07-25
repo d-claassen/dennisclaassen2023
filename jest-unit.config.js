@@ -1,6 +1,8 @@
 const config = {
-  "preset": "@wordpress/jest-preset-default",
-  "collectCoverageFrom": ["src/**"]
+	preset: '@wordpress/jest-preset-default',
+	collectCoverageFrom: [
+		'src/**',
+	]
 };
 
 module.exports = config;
