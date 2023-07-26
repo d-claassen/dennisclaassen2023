@@ -41,7 +41,7 @@ jobs:
           git config --global user.name 'Dennis Claassen'
           git config --global user.email 'd-claassen@users.noreply.github.com'
           git commit -am "Automated Composer update"
-          git push
+          git push origin HEAD:update-composer
         
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
