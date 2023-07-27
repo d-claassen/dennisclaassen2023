@@ -61,8 +61,11 @@ jobs:
       - name: 'Lint PHP source files'
         run: 'php -l src'
     
-      - name: 'Test units'
+      - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
+        
+      - name: 'Test PHP units'
+        run: 'php vendor/bin/phpunit'
         
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
