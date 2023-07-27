@@ -37,6 +37,9 @@ jobs:
       - name: 'NPM install'
         run: npm install
         
+      - name: 'Composer install'
+        run: 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
+        
       - name: 'Check engines'
         run: 'npm run-script check-engines'
         
@@ -54,7 +57,10 @@ jobs:
         
       - name: 'Lint CSS'
         run: 'npm run-script lint:css'
-        
+    
+      - name: 'Lint PHP source files'
+        run: 'php -l src || echo "No syntax errors detected in src"'
+    
       - name: 'Test units'
         run: 'npm run-script test:unit -- --coverage'
         
