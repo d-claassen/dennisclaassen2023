@@ -59,7 +59,7 @@ jobs:
         run: 'npm run-script lint:css'
     
       - name: 'Lint PHP source files'
-        run: 'php -l src || echo "No syntax errors detected in src"'
+        run: 'php -l src'
     
       - name: 'Test units'
         run: 'npm run-script test:unit -- --coverage'
