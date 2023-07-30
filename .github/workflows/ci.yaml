@@ -64,6 +64,9 @@ jobs:
       - name: 'Lint PHP test files'
         run: 'php -l tests'
     
+      - name: 'Lint PHP'
+        run: 'composer lint'
+        
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
         
