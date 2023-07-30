@@ -44,7 +44,7 @@
                         </property>
                 </properties>
 
-                <exclude name="WordPress.Whitespace.ControlStructureSpacing"/>
+                <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
         </rule>
 
 </ruleset>
