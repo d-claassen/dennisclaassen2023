@@ -31,13 +31,9 @@ final class Resume {
     }
 
     private function enhance_person_with_resume($personData, $context) {
-        
-        if( ! $this->should_add_resume_data() ) {
-            return $personData;
-        }
 
         assert($context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context);
-
+        
         $user_data = \get_userdata( $context->site_user_id );
         // $user_meta = get_user_meta( $context->site_user_id );
         $first_name = get_user_meta( $context->site_user_id, 'first_name', true );
@@ -49,6 +45,7 @@ final class Resume {
 
         $personData["jobTitle"] = "Lead developer";
         $personData["gender"] = "http://schema.org/Male";
+
         $personData["nationality"] = [
             "@type"=> "Country",
             "name"=> "Netherlands",
@@ -70,6 +67,11 @@ final class Resume {
                 "sameAs"=>"https://en.wikipedia.org/wiki/English_language"
             ]
         ];
+
+        // Full resume, or leave with just the basics?
+        if( ! $this->should_add_resume_data() ) {
+            return $personData;
+        }
 
         $personData["worksFor"] = [
             [
