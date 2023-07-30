@@ -65,7 +65,7 @@ jobs:
         run: 'npm run-script test:unit -- --coverage'
         
       - name: 'Test PHP units'
-        run: 'php vendor/bin/phpunit'
+        run: 'composer test'
         
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
