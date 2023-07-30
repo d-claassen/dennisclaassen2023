@@ -43,6 +43,8 @@
                                 <element value="DC23"/>
                         </property>
                 </properties>
+
+                <exclude name="WordPress.Whitespace.ControlStructureSpacing"/>
         </rule>
 
 </ruleset>
