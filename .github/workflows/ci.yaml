@@ -60,6 +60,9 @@ jobs:
     
       - name: 'Lint PHP source files'
         run: 'php -l src'
+        
+      - name: 'Lint PHP test files'
+        run: 'php -l tests'
     
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
