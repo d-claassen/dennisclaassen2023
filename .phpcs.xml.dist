@@ -39,7 +39,9 @@
 	<rule ref="Yoast">
                 <properties>
 			<!-- Provide the plugin specific prefixes for all naming related sniffs. -->
-			<property name="prefixes" type="array"></property>
+			<property name="prefixes" type="array">
+                                <element value="DC23"/>
+                        </property>
                 </properties>
         </rule>
 
