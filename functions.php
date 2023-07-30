@@ -16,6 +16,7 @@ function dc23_setup(): void {
     (new \DC23\Schema\Language\SiteLanguage())->register();
     (new \DC23\Schema\Profile\Resume())->register();
     (new \DC23\Schema\Blog\Category())->register();
+    (new \DC23\Schema\Blog\Post())->register();
 }
 endif; // myfirsttheme_setup
 add_action( 'init', 'dc23_setup' );
