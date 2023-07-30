@@ -45,6 +45,8 @@
                 </properties>
 
                 <exclude name="WordPress.WhiteSpace.ControlStructureSpacing"/>
+                <exclude name="Yoast.Files.FileName"/>
+                <exclude name="Yoast.NamingConventions.NamespaceName"/>
         </rule>
 
 </ruleset>
