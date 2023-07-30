@@ -61,6 +61,9 @@ jobs:
       - name: 'Lint PHP'
         run: 'composer lint'
         
+      - name: 'PHP code style'
+        run: 'composer cs'
+        
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
         
