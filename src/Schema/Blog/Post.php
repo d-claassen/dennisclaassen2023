@@ -5,22 +5,22 @@ declare( strict_types=1 );
 namespace DC23\Schema\Blog;
 
 final class Post {
+	
 	public function register():void {
 		\add_filter( 'wpseo_schema_article', $this->make_article_blog_posting( ... ), 11, 2 );
-        \add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema( ... ), 11, 2 );
-    }
+		\add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema( ... ), 11, 2 );
+	}
 
 	private function should_add_post_data(): bool {
 		return is_single() && get_post_type() === 'post';
 	}
 
-    private function make_article_blog_posting( $article_data, $context ) {
-        
+	private function make_article_blog_posting( $article_data, $context ) {
 		return $article_data;
 
-        if ( ! $this->should_add_post_data() ) {
-            return $article_data;
-        }
+		if ( ! $this->should_add_post_data() ) {
+			return $article_data;
+		}
         
 		$post = get_post();
 		assert( $post instanceof \WP_Post );
@@ -33,7 +33,7 @@ final class Post {
 	}
     
 	private function add_blog_to_schema( $pieces, $context ) {
-        if ( ! $this->should_add_post_data() ) {
+		if ( ! $this->should_add_post_data() ) {
 			return $pieces;
 		}
 
@@ -51,16 +51,16 @@ final class Post {
 		$blog = new Pregenerated_Piece( [
 			'@id' => $context->site_url . '#/schema/Blog/' . $category->term_id,
 			'@type'=> 'Blog',
-            'name' => $category->name,
-            'description' => \wp_trim_excerpt( $category->description ),
-            'publisher' => [
-				'@id' => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),        
-            ],
-            'inLanguage' => [
-                '@id' => $canonical . '#/language/' . get_bloginfo( 'language' ),
-            ],
-            'blogPost' => [ $post_id ],
-        ] );
+			'name' => $category->name,
+			'description' => \wp_trim_excerpt( $category->description ),
+			'publisher' => [
+				'@id' => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
+			],
+			'inLanguage' => [
+				'@id' => $canonical . '#/language/' . get_bloginfo( 'language' ),
+			],
+			'blogPost' => [ $post_id ],
+		] );
 
 		\array_push(
 			$pieces,
@@ -68,7 +68,7 @@ final class Post {
 		);
 
 		return $pieces;
-    }
+	}
 }
 
 class Pregenerated_Piece extends \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece {
