@@ -16,6 +16,7 @@ final class Post {
 	}
 
 	private function make_article_blog_posting( $article_data, $context ) {
+		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 		return $article_data;
 
 		if ( ! $this->should_add_post_data() ) {
@@ -33,6 +34,7 @@ final class Post {
 	}
     
 	private function add_blog_to_schema( $pieces, $context ) {
+		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 		if ( ! $this->should_add_post_data() ) {
 			return $pieces;
 		}
