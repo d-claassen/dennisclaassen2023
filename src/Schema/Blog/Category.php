@@ -16,20 +16,20 @@ final class Category {
 		return is_category();
 	}
 
-	private function make_blog_main_entity( $webpageData, $context) {
+	private function make_blog_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_blog_data() ) {
-			return $webpageData;
+			return $webpage_data;
 		}
 
 		$category = get_category( get_query_var( 'cat' ) );
 		assert( $category instanceof \WP_Term );
 
-		$webpageData['mainEntity'] = [
+		$webpage_data['mainEntity'] = [
 			'@id' => $context->site_url . '#/schema/Blog/' . $category->term_id,
 		];
 
-		return $webpageData;
+		return $webpage_data;
 	}
 
 	private function get_category_posts( int $category_id ): array {
@@ -67,10 +67,10 @@ final class Category {
 
 		$canonical = YoastSEO()->meta->for_current_page()->canonical;
 
-		$postData = $this->get_category_posts( $category->term_id );
-		$posts    = [];
-		$post_ids = [];
-		foreach ( $postData as $post ) {
+		$post_data = $this->get_category_posts( $category->term_id );
+		$posts     = [];
+		$post_ids  = [];
+		foreach ( $post_data as $post ) {
 			assert( $post instanceof \WP_Post );
 			$id         = get_permalink( $post->ID );
 			$post_ids[] = [ '@id' => $id ];

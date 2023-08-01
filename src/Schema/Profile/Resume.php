@@ -18,43 +18,40 @@ final class Resume {
 		return is_front_page();
 	}
 
-	private function make_person_main_entity( $webpageData, $context) {
+	private function make_person_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_resume_data() ) {
-			return $webpageData;
+			return $webpage_data;
 		}
 
-		$webpageData['mainEntity'] = [
+		$webpage_data['mainEntity'] = [
 			'@id'  => YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
 		];
 
-		return $webpageData;
+		return $webpage_data;
 	}
 
-	private function enhance_person_with_resume( $personData, $context) {
+	private function enhance_person_with_resume( $person_data, $context) {
 
 		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 
-		$user_data = \get_userdata( $context->site_user_id );
-		// $user_meta = get_user_meta( $context->site_user_id );
+		$user_data  = \get_userdata( $context->site_user_id );
 		$first_name = get_user_meta( $context->site_user_id, 'first_name', true );
 		$last_name  = get_user_meta( $context->site_user_id, 'last_name', true );
-		// var_dump($user_meta);
 
-		$personData['givenName']  = $first_name;
-		$personData['familyName'] = $last_name;
+		$person_data['givenName']  = $first_name;
+		$person_data['familyName'] = $last_name;
 
-		$personData['jobTitle'] = 'Lead developer';
-		$personData['gender']   = 'http://schema.org/Male';
-
-		$personData['nationality'] = [
+		$person_data['jobTitle']    = 'Lead developer';
+		$person_data['gender']      = 'http://schema.org/Male';
+		$person_data['nationality'] = [
 			'@type'          => 'Country',
 			'name'           => 'Netherlands',
 			'alternateName'  => 'NL',
 			'sameAs'         => 'https://en.wikipedia.org/wiki/Netherlands',
 		];
 
-		$personData['knowsLanguage'] = [
+		$person_data['knowsLanguage'] = [
 			[
 				'@type'          => 'http://schema.org/Language',
 				'name'           => 'Dutch',
@@ -71,10 +68,10 @@ final class Resume {
 
 		// Full resume, or leave with just the basics?
 		if ( ! $this->should_add_resume_data() ) {
-			return $personData;
+			return $person_data;
 		}
 
-		$personData['worksFor'] = [
+		$person_data['worksFor'] = [
 			[
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
@@ -166,7 +163,7 @@ final class Resume {
 			],
 		];
 
-		$personData['alumniOf'] = [
+		$person_data['alumniOf'] = [
 			[
 				'@type'      => 'http://schema.org/Role',
 				'alumniOf'   => [
@@ -178,7 +175,7 @@ final class Resume {
 			],
 		];
 
-		$personData['knowsAbout'] = [
+		$person_data['knowsAbout'] = [
 			[
 				'@id'  => 'https://www.dennisclaassen.nl/#/schema/Specialty/1',
 			],
@@ -196,10 +193,12 @@ final class Resume {
 			],
 		];
 
-		return $personData;
+		return $person_data;
 	}
 
 	private function add_resume_to_schema( $pieces, $context) {
+
+		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 
 		if ( ! $this->should_add_resume_data() ) {
 			return $pieces;

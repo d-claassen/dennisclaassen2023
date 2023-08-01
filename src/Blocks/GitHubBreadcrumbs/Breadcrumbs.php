@@ -31,7 +31,9 @@ class Breadcrumbs {
 	 *
 	 * @return string Returns the filtered post title for the current post wrapped inside "h1" tags.
 	 */
-	function render_block_dc23_github_breadcrumbs( $attributes, $content, $block ): string {
+	public function render_block_dc23_github_breadcrumbs( $attributes, $content, $block ): string {
+		assert( \is_array( $attributes ) );
+		assert( $block instanceof \WP_Block );
 
 		$is_single  = is_single();
 		$is_archive = is_category();
@@ -40,12 +42,14 @@ class Breadcrumbs {
 			assert( $category instanceof WP_Term );
 
 			$breadcrumb_list = $this->get_category_breadcrumb_list( $category );
-		} elseif ( $is_single ) {
+		}
+		elseif ( $is_single ) {
 			$post = get_post();
 			assert( $post instanceof WP_Post );
 
 			$breadcrumb_list = $this->get_post_breadcrumb_list( $post );
-		} else {
+		}
+		else {
 			// Breadcrumbs only render on a category page.
 			return '';
 		}
@@ -78,24 +82,24 @@ class Breadcrumbs {
 		$initial_category = reset( $categories );
 
 		do {
-			  $category_id   = ( $category->parent ?? $initial_category->term_id );
+			$category_id     = ( $category->parent ?? $initial_category->term_id );
 			$breadcrumb_list = sprintf(
 				'<%1$s>%2$s%3$s</%1$s>',
 				'li',
 				$this->get_category_as_link( $category_id ),
 				$separator
 			) . $breadcrumb_list;
-			 $category       = get_category( $category_id );
+			$category        = get_category( $category_id );
 		}
-		 while ( $category_id > 0 );
+		while ( $category_id > 0 );
 
 
-		 return $breadcrumb_list;
+		return $breadcrumb_list;
 	}
 
 	private function get_category_breadcrumb_list( WP_Term $category ): string {
 
-		  $separator = $this->get_separator();
+		$separator = $this->get_separator();
 
 		$breadcrumb_list = sprintf(
 			'<%1$s>%2$s %3$s</%1$s>',
@@ -114,7 +118,7 @@ class Breadcrumbs {
 			) . $breadcrumb_list;
 			$category        = get_category( $parent_id );
 		}
-		 while ( $parent_id > 0 );
+		while ( $parent_id > 0 );
 
 		return $breadcrumb_list;
 	}
@@ -125,10 +129,10 @@ class Breadcrumbs {
 
 	private function get_category_as_link( int $category_id ) {
 		// Prepare defaults based on the current blog.
-		$category_name   = get_bloginfo( 'name' );
-		  $category_link = get_site_url();
+		$category_name = get_bloginfo( 'name' );
+		$category_link = get_site_url();
 
-		 // If a valid category, load that category info.
+		// If a valid category, load that category info.
 		if ( is_int( $category_id ) && $category_id > 0 ) {
 			$category      = get_category( $category_id );
 			$category_name = $category->name;
@@ -136,7 +140,7 @@ class Breadcrumbs {
 		}
 
 		return <<<HTML
-		<a href="{$category_link}">{$category_name}</a>
+			<a href="{$category_link}">{$category_name}</a>
 		HTML;
 	}
 }

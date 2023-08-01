@@ -32,7 +32,8 @@ class Tree {
 	 *
 	 * @return string Returns the filtered post title for the current post wrapped inside "h1" tags.
 	 */
-	function render_block_dc23_github_tree( $attributes, $content, $block ) {
+	private function render_block_dc23_github_tree( $attributes, $content, $block ) {
+		assert( $block instanceof \WP_Block );
 		$is_home = is_front_page();
 		if ( $is_home ) {
 			$root_categories  = get_categories( [ 'parent' => 0 ] );
@@ -51,7 +52,6 @@ class Tree {
 		$is_archive = is_category();
 		if ( ! $is_archive ) {
 			return '';
-			return '<i>this is not an archive</i>';
 		}
 
 		$category = get_category( get_query_var( 'cat' ) );
@@ -59,9 +59,7 @@ class Tree {
 
 		$parent_id  = $category->parent;
 		$parent_row = null;
-		// if ( is_int( $parent_id ) && $parent_id > 0 ) {
-			$parent_row = $this->get_category_as_parent_row( $parent_id );
-		// }
+		$parent_row = $this->get_category_as_parent_row( $parent_id );
 
 		$children_ids     = get_term_children( $category->term_id, $category->taxonomy );
 		$child_categories = implode( '', array_map( $this->get_category_as_row( ... ), $children_ids ) );
@@ -80,17 +78,12 @@ class Tree {
 			HTML;
 		}
 
-		$dbg = compact( 'parent_row', 'category', 'children' );// [$parent, $category, $children];
+		$dbg = compact( 'parent_row', 'category', 'children' );
 
-		return '<i>this is an archive</i> ' . $content . '<pre>' . var_export( $dbg, true ) . '</pre>';
-
-		var_dump( $block->context );
-		return var_export( $block, true );
-
-		return $content;
+		return '';
 	}
 
-	function get_category_as_parent_row( int $parent_id ) {
+	private function get_category_as_parent_row( int $parent_id ) {
 
 		$category_link = get_site_url();
 		if ( is_int( $parent_id ) && $parent_id > 0 ) {
@@ -113,10 +106,10 @@ class Tree {
 			HTML;
 	}
 
-	function get_latest_post_for_category( int $category_id ): ?WP_Post {
+	private function get_latest_post_for_category( int $category_id ): ?WP_Post {
 		$args = [
-			'posts_per_page' => 1, // we need only the latest post, so get that post only
-			'cat'            => $category_id, // Use the category id, can also replace with category_name which uses category slug
+			'posts_per_page' => 1, // We need only the latest post, so get that post only.
+			'cat'            => $category_id, // Use the category id, can also replace with category_name which uses category slug.
 		];
 
 		$str   = '';
@@ -129,13 +122,13 @@ class Tree {
 		return null;
 	}
 
-	function get_category_as_row( int $category_id ) {
+	private function get_category_as_row( int $category_id ) {
 		$category         = get_category( $category_id );
 		$category_link    = get_category_link( $category );
 		$latest_post      = $this->get_latest_post_for_category( $category_id );
 		$latest_post_link = get_permalink( $latest_post->ID );
 		$latest_post_date = get_the_date( '', $latest_post );
-		// return var_Export( $latest_post, true );
+
 		return <<<HTML
 		<div class="Box-row">
 
@@ -164,7 +157,7 @@ class Tree {
 		HTML;
 	}
 
-	function get_child_posts_for_category( int $category_id ) {
+	private function get_child_posts_for_category( int $category_id ) {
 		$posts = new WP_Query(
 			[
 				'post_type'      => 'post',
@@ -184,23 +177,15 @@ class Tree {
 		);
 
 		return $posts->get_posts();
-
-		$args = [
-			'posts_per_page' => -1, // we need only the latest post, so get that post only
-			'cat'            => $category_id, // Use the category id, can also replace with category_name which uses category slug
-		];
-
-		$str = '';
-		return get_posts( $args );
 	}
 
-	function get_posts_as_row( int $category_id ) {
+	private function get_posts_as_row( int $category_id ) {
 		$posts = $this->get_child_posts_for_category( $category_id );
 
 		return implode( '', array_map( $this->get_post_as_row( ... ), $posts ) );
 	}
 
-	function get_post_as_row( WP_Post $post):string {
+	private function get_post_as_row( WP_Post $post):string {
 		$latest_post_title = $post->post_title;
 		$latest_post_link  = get_permalink( $post->ID );
 		$latest_post_date  = get_the_date( '', $post );

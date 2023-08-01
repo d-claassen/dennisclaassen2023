@@ -7,14 +7,13 @@ use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
 final class SiteLanguage {
 
-	private LanguageFactory $languageFactory;
+	private LanguageFactory $language_factory;
 
 	public function __construct() {
-		$this->languageFactory = new LanguageFactory();
+		$this->language_factory = new LanguageFactory();
 	}
 
 	public function register(): void {
-		// functions.php
 		\add_filter( 'wpseo_schema_graph_pieces', $this->add_site_language_to_schema( ... ), 11, 2 );
 		\add_filter( 'wpseo_schema_webpage', $this->enhance_inlanguage_property( ... ), 11, 1 );
 		\add_filter( 'wpseo_schema_website', $this->enhance_inlanguage_property( ... ), 11, 1 );
@@ -23,51 +22,52 @@ final class SiteLanguage {
 	}
 
 	private function add_site_language_to_schema( $pieces, $context ): array {
+		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 		if ( ! is_array( $pieces ) ) {
 			return [];
 		}
 
-		$pieces[] = $this->languageFactory->createLanguage( get_bloginfo( 'language' ) );
+		$pieces[] = $this->language_factory->createLanguage( get_bloginfo( 'language' ) );
 		return $pieces;
 	}
 
-	private function enhance_inlanguage_property( $schemaPieceData ) {
+	private function enhance_inlanguage_property( $schema_piece_data ) {
 		// @todo is it time to investigate https://packagist.org/packages/azjezz/psl ?!
-		if ( ! is_array( $schemaPieceData ) ) {
+		if ( ! is_array( $schema_piece_data ) ) {
 			return [];
 		}
 
-		if ( ! array_key_exists( 'inLanguage', $schemaPieceData ) || ! is_string( $schemaPieceData['inLanguage'] ) ) {
-			return $schemaPieceData;
+		if ( ! array_key_exists( 'inLanguage', $schema_piece_data ) || ! is_string( $schema_piece_data['inLanguage'] ) ) {
+			return $schema_piece_data;
 		}
 
 		$canonical = YoastSEO()->meta->for_current_page()->canonical;
 
-		$schemaPieceData['inLanguage'] = [
-			'@id' => $canonical . '#/language/' . $schemaPieceData['inLanguage'],
+		$schema_piece_data['inLanguage'] = [
+			'@id' => $canonical . '#/language/' . $schema_piece_data['inLanguage'],
 		];
 
-		return $schemaPieceData;
+		return $schema_piece_data;
 	}
 
-	private function enhance_person_image_inlanguage_property( $personData ): array {
+	private function enhance_person_image_inlanguage_property( $person_data ): array {
 		// @todo is it time to investigate https://packagist.org/packages/azjezz/psl ?!
-		if ( ! is_array( $personData ) ) {
+		if ( ! is_array( $person_data ) ) {
 			return [];
 		}
 
-		if ( ! array_key_exists( 'image', $personData ) || ! is_array( $personData['image'] ) ) {
-			return $personData;
+		if ( ! array_key_exists( 'image', $person_data ) || ! is_array( $person_data['image'] ) ) {
+			return $person_data;
 		}
 
-		$personData['image'] = $this->enhance_inlanguage_property( $personData['image'] );
-		return $personData;
+		$person_data['image'] = $this->enhance_inlanguage_property( $person_data['image'] );
+		return $person_data;
 	}
 }
 
 final class LanguageFactory {
 
-	public function createLanguage( string $locale, ?string $namePretty = null, ?string $sameAs = null ) {
+	public function createLanguage( string $locale ) {
 		switch ( $locale ) {
 			case 'en-US':
 				return new Language( 'en-US', 'English (American)', 'https://en.wikipedia.org/wiki/American_English' );
@@ -81,8 +81,8 @@ class Language {
 
 	public function __construct(
 		private string $locale,
-		private ?string $namePretty = null,
-		private ?string $sameAs = null
+		private ?string $name_pretty = null,
+		private ?string $same_as = null
 		) {}
 
 	public function is_needed(): bool {
@@ -97,13 +97,14 @@ class Language {
 			'@id'           => $canonical . '#/language/' . $this->locale,
 			'name'          => null,
 			'alternateName' => null,
-			'sameAs'        => $this->sameAs,
+			'sameAs'        => $this->same_as,
 		];
 
-		if ( isset( $this->namePretty ) ) {
-			$data['name']          = $this->namePretty;
+		if ( isset( $this->name_pretty ) ) {
+			$data['name']          = $this->name_pretty;
 			$data['alternateName'] = $this->locale;
-		} else {
+		}
+		else {
 			$data['name'] = $this->locale;
 		}
 

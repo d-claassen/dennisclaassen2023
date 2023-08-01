@@ -50,6 +50,9 @@
                 <exclude name="Yoast.Commenting.FileComment"/>
                 <exclude name="Squiz.Commenting.ClassComment"/>
                 <exclude name="Squiz.Commenting.FunctionComment"/>
+				<exclude name="Squiz.Commenting.VariableComment"/>
         </rule>
 
+
+    <config name="testVersion" value="7.4-"/>
 </ruleset>
