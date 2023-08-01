@@ -2,27 +2,27 @@
 
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         backupGlobals="false"
-         colors="true"
-         executionOrder="random"
-         resolveDependencies="true"
+	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+	backupGlobals="false"
+	colors="true"
+	executionOrder="random"
+	resolveDependencies="true"
 >
-    <php>
-        <ini name="display_errors" value="1" />
-        <ini name="error_reporting" value="-1" />
-    </php>
+	<php>
+		<ini name="display_errors" value="1" />
+		<ini name="error_reporting" value="-1" />
+	</php>
 
-    <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
-            <directory>src/*/Tests</directory>
-        </testsuite>
-    </testsuites>
+	<testsuites>
+		<testsuite name="Project Test Suite">
+			<directory>tests</directory>
+			<directory>src/*/Tests</directory>
+		</testsuite>
+	</testsuites>
 
-    <source>
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
-    </source>
+	<source>
+		<include>
+			<directory suffix=".php">src</directory>
+		</include>
+	</source>
 </phpunit>
