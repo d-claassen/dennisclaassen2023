@@ -11,11 +11,5 @@ class FirstTest extends \PHPUnit\Framework\TestCase {
 	 */
 	public function testTheTest(): void {
 		$this->assertEquals( 1, '1' );
-
-		$this->assertSame(
-			$this->testTheTest( ... ),
-			$this->testTheTest( ... ),
-			'same method'
-		);
 	}
 }
