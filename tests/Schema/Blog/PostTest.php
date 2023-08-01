@@ -353,6 +353,7 @@ class BlogTest extends \PHPUnit\Framework\TestCase {
         $context = $this->getContext();
         // @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
         $context->indexable->schema_article_type = 'BlogPosting';
+        // @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
         $filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
 
         self::assertSame( [], $filter_result );
