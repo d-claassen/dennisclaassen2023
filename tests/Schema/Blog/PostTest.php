@@ -6,61 +6,61 @@ use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
 class BlogTest extends \PHPUnit\Framework\TestCase {
 
-    public function setUp(): void {
-        parent::setUp();
-        \Brain\Monkey\setUp();
-    }
+	public function setUp(): void {
+		parent::setUp();
+		\Brain\Monkey\setUp();
+	}
 
-    private function getContext(): Meta_Tags_Context {
-        $context = new Meta_Tags_Context(
-            new \Yoast\WP\SEO\Helpers\Options_Helper(),
-            new \Yoast\WP\SEO\Helpers\Url_Helper(),
-            new \Yoast\WP\SEO\Helpers\Image_Helper(
-                new \Yoast\WP\SEO\Repositories\Indexable_Repository(
-                    new \Yoast\WP\SEO\Builders\Indexable_Builder(
-                        new \Yoast\WP\SEO\Builders\Indexable_Author_Builder(
-                            new \Yoast\WP\SEO\Helpers\Author_Archive_Helper(
-                                new \Yoast\WP\SEO\Helpers\Options_Helper(),
-                                new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
-                                    new \Yoast\WP\SEO\Helpers\Options_Helper()
-                                )
-                            ),
-                            new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions(),
-                            new \Yoast\WP\SEO\Helpers\Post_Helper(
-                                new \Yoast\WP\SEO\Helpers\String_Helper(),
-                                new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
-                                    new \Yoast\WP\SEO\Helpers\Options_Helper()
-                                )
-                            ),
-                            \Mockery::mock('wpdb')
-                        ),
-                        new \Yoast\WP\SEO\Builders\Indexable_Post_Builder(
-                            new \Yoast\WP\SEO\Helpers\Post_Helper(
-                                new \Yoast\WP\SEO\Helpers\String_Helper(),
-                                new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
-                                    new \Yoast\WP\SEO\Helpers\Options_Helper()
-                                )
-                            ),
-                            new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
-                                new \Yoast\WP\SEO\Helpers\Options_Helper()
-                            ),
-                            new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions(),
-                            new \Yoast\WP\SEO\Helpers\Meta_Helper()
-                        ),
-                        new \Yoast\WP\SEO\Builders\Indexable_Term_Builder(
-                            new \Yoast\WP\SEO\Helpers\Taxonomy_Helper(
-                                new \Yoast\WP\SEO\Helpers\Options_Helper(),
-                                new \Yoast\WP\SEO\Helpers\String_Helper()
-                            ),
-                            new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions(),
-                            new \Yoast\WP\SEO\Helpers\Post_Helper(
-                                new \Yoast\WP\SEO\Helpers\String_Helper(),
-                                new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
-                                    new \Yoast\WP\SEO\Helpers\Options_Helper()
-                                )
-                            ),
-                            \Mockery::mock('wpdb')
-                        ),
+	private function getContext(): Meta_Tags_Context {
+		$context = new Meta_Tags_Context(
+			new \Yoast\WP\SEO\Helpers\Options_Helper(),
+			new \Yoast\WP\SEO\Helpers\Url_Helper(),
+			new \Yoast\WP\SEO\Helpers\Image_Helper(
+				new \Yoast\WP\SEO\Repositories\Indexable_Repository(
+					new \Yoast\WP\SEO\Builders\Indexable_Builder(
+						new \Yoast\WP\SEO\Builders\Indexable_Author_Builder(
+							new \Yoast\WP\SEO\Helpers\Author_Archive_Helper(
+								new \Yoast\WP\SEO\Helpers\Options_Helper(),
+								new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
+									new \Yoast\WP\SEO\Helpers\Options_Helper()
+								)
+							),
+							new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions(),
+							new \Yoast\WP\SEO\Helpers\Post_Helper(
+								new \Yoast\WP\SEO\Helpers\String_Helper(),
+								new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
+									new \Yoast\WP\SEO\Helpers\Options_Helper()
+								)
+							),
+							\Mockery::mock('wpdb')
+						),
+						new \Yoast\WP\SEO\Builders\Indexable_Post_Builder(
+							new \Yoast\WP\SEO\Helpers\Post_Helper(
+								new \Yoast\WP\SEO\Helpers\String_Helper(),
+								new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
+									new \Yoast\WP\SEO\Helpers\Options_Helper()
+								)
+							),
+							new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
+								new \Yoast\WP\SEO\Helpers\Options_Helper()
+							),
+							new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions(),
+							new \Yoast\WP\SEO\Helpers\Meta_Helper()
+						),
+						new \Yoast\WP\SEO\Builders\Indexable_Term_Builder(
+							new \Yoast\WP\SEO\Helpers\Taxonomy_Helper(
+								new \Yoast\WP\SEO\Helpers\Options_Helper(),
+								new \Yoast\WP\SEO\Helpers\String_Helper()
+							),
+							new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions(),
+							new \Yoast\WP\SEO\Helpers\Post_Helper(
+								new \Yoast\WP\SEO\Helpers\String_Helper(),
+								new \Yoast\WP\SEO\Helpers\Post_Type_Helper(
+									new \Yoast\WP\SEO\Helpers\Options_Helper()
+								)
+							),
+							\Mockery::mock('wpdb')
+						),
                         new \Yoast\WP\SEO\Builders\Indexable_Home_Page_Builder(
                             new \Yoast\WP\SEO\Helpers\Options_Helper(),
                             new \Yoast\WP\SEO\Helpers\Url_Helper(),
