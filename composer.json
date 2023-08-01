@@ -14,7 +14,8 @@
         }
     },
     "require-dev": {
-        "yoast/yoastcs": "^2.0"
+        "yoast/yoastcs": "^2.0",
+        "phpunit/phpunit": "^10.2"
     },
     "config": {
         "allow-plugins": {
