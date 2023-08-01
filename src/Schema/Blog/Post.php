@@ -7,7 +7,6 @@ namespace DC23\Schema\Blog;
 final class Post {
 
 	public function register():void {
-		\add_filter( 'wpseo_schema_article', $this->make_article_blog_posting( ... ), 11, 2 );
 		\add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema( ... ), 11, 2 );
 	}
 
@@ -15,27 +14,13 @@ final class Post {
 		return is_single() && get_post_type() === 'post';
 	}
 
-	private function make_article_blog_posting( $article_data, $context ) {
-		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
-		return $article_data;
-
-		if ( ! $this->should_add_post_data() ) {
-			return $article_data;
-		}
-
-		$post = get_post();
-		assert( $post instanceof \WP_Post );
-
-		$webpage_data['mainEntity'] = [
-			'@id' => get_permalink( $post->ID ) . '#/schema/BlogPosting/' . $post->ID,
-		];
-
-		return $webpage_data;
-	}
-
 	private function add_blog_to_schema( $pieces, $context ) {
 		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 		if ( ! $this->should_add_post_data() ) {
+			return $pieces;
+		}
+
+		if ( $context->indexable->schema_article_type !== 'BlogPosting' ) {
 			return $pieces;
 		}
 
