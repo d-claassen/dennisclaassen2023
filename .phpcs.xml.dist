@@ -54,5 +54,8 @@
         </rule>
 
 
-    <config name="testVersion" value="7.4-"/>
+	<!-- The PHPCompatibility testVersion value set by YoastCS cannot be overridden here.
+		 It can, however, be overridden via a secondary ruleset import.
+		 In this secondary ruleset, the testVersion for PHPCompatibility is set to `7.4-`. -->
+	<rule ref=".phpcs.phpcompat.xml"/>
 </ruleset>

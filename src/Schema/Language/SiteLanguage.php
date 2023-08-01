@@ -27,7 +27,7 @@ final class SiteLanguage {
 			return [];
 		}
 
-		$pieces[] = $this->language_factory->createLanguage( get_bloginfo( 'language' ) );
+		$pieces[] = $this->language_factory->create_language( get_bloginfo( 'language' ) );
 		return $pieces;
 	}
 
@@ -67,7 +67,7 @@ final class SiteLanguage {
 
 final class LanguageFactory {
 
-	public function createLanguage( string $locale ) {
+	public function create_language( string $locale ) {
 		switch ( $locale ) {
 			case 'en-US':
 				return new Language( 'en-US', 'English (American)', 'https://en.wikipedia.org/wiki/American_English' );
