@@ -16,11 +16,13 @@
     "require-dev": {
         "yoast/yoastcs": "^2.0",
         "phpunit/phpunit": "^10.2",
-        "brain/monkey": "^2.6"
+        "brain/monkey": "^2.6",
+        "yoast/wordpress-seo": "^20.12"
     },
     "config": {
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/installers": true
         }
     },
     "scripts": {
@@ -33,5 +35,8 @@
         "test": [
 			"@php ./vendor/bin/phpunit --no-coverage"
 		]
+    },
+    "extra": {
+        "installer-disable": true
     }
 }
