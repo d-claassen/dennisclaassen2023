@@ -340,7 +340,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = $this->getContext();
+		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
 
 		self::assertSame( [], $filter_result );
@@ -358,7 +358,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = $this->getContext();
+		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'Article';
 		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
@@ -378,7 +378,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = $this->getContext();
+		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'BlogPosting';
 		// @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
