@@ -310,7 +310,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
-		$this->markTestSkipped('skip2');
+		// $this->markTestSkipped('skip2');
 		\Brain\Monkey\Functions\expect('is_single')
 			->once()
 			->andReturnFalse();
