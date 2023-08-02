@@ -319,7 +319,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		// $this->markTestSkipped('registered post schema');
-		$context = \Mockery::mock( Meta_Tags_Context::class ); $this->getContext();
+		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 
 		$this->markTestSkipped('got context');
 		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
