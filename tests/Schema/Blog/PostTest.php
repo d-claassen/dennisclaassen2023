@@ -4,7 +4,7 @@
 
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
-class BlogTest extends \PHPUnit\Framework\TestCase {
+class PostTest extends \PHPUnit\Framework\TestCase {
 
 	public function setUp(): void {
 		parent::setUp();
