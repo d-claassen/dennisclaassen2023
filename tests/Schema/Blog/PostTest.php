@@ -324,7 +324,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		// $this->markTestSkipped('got context');
 		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
-		$this->markTestSkipped('apply_filter worked too');
+		// $this->markTestSkipped('apply_filter worked too');
 		self::assertSame( [], $filter_result );
 	}
 
