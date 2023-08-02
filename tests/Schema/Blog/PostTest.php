@@ -321,7 +321,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		// $this->markTestSkipped('registered post schema');
 		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 
-		$this->markTestSkipped('got context');
+		// $this->markTestSkipped('got context');
 		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
 
 		$this->markTestSkipped('apply_filter worked too');
@@ -329,7 +329,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredPostTypePost(): void {
-		$this->markTestSkipped('skip3');
+		// $this->markTestSkipped('skip3');
 		\Brain\Monkey\Functions\expect('is_single')
 			->once()
 			->andReturnTrue();
@@ -347,7 +347,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredSchemaArticleTypeBlogPosting(): void {
-		$this->markTestSkipped('skip4');
+		// $this->markTestSkipped('skip4');
 		\Brain\Monkey\Functions\expect('is_single')
 			->once()
 			->andReturnTrue();
@@ -367,7 +367,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilteAddsBlogSchema(): void {
-		$this->markTestSkipped('skip5');
+		// $this->markTestSkipped('skip5');
 		\Brain\Monkey\Functions\expect('is_single')
 			->once()
 			->andReturnTrue();
