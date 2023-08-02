@@ -5,9 +5,9 @@
 	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
 	backupGlobals="false"
 	colors="true"
-	executionOrder="random"
 	resolveDependencies="true"
 >
+	<!-- executionOrder="random" -->
 	<php>
 		<ini name="display_errors" value="1" />
 		<ini name="error_reporting" value="-1" />
