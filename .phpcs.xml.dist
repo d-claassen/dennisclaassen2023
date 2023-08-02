@@ -12,7 +12,7 @@
 	#############################################################################
 	-->
 
-	<file>.</file>
+	<file>src</file>
 
 	<!-- Only check PHP files. -->
 	<arg name="extensions" value="php"/>
