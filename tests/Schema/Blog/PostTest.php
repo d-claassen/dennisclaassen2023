@@ -303,7 +303,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRegistrationAddsFilter(): void {
-		$this->markTestSkipped('skip');
+		// $this->markTestSkipped('skip');
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
