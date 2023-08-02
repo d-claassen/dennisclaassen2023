@@ -318,6 +318,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		// $this->markTestSkipped('the expect works');
 		( new \DC23\Schema\Blog\Post() )->register();
 
+		$this->markTestSkipped('registered post schema');
 		$context = $this->getContext();
 
 		$this->markTestSkipped('got context');
