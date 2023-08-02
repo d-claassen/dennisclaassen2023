@@ -322,7 +322,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 
 		// $this->markTestSkipped('got context');
-		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
 		$this->markTestSkipped('apply_filter worked too');
 		self::assertSame( [], $filter_result );
@@ -341,7 +341,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
-		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
 		self::assertSame( [], $filter_result );
 	}
@@ -361,7 +361,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'Article';
-		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
 		self::assertSame( [], $filter_result );
 	}
@@ -382,7 +382,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'BlogPosting';
 		// @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
-		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
 		self::assertSame( [], $filter_result );
 	}
