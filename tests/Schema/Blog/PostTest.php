@@ -1,6 +1,6 @@
 <?php
 
-namespace DC23\Tests\Schema\Blog;
+// namespace DC23\Tests\Schema\Blog;
 
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
