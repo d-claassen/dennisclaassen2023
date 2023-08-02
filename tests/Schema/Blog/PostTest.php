@@ -134,6 +134,15 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 							),
 							new \Yoast\WP\SEO\Helpers\Options_Helper()
 						)
+					),
+					new \Yoast\WP\SEO\Helpers\Current_Page_Helper(
+						new \Yoast\WP\SEO\Wrappers\WP_Query_Wrapper()
+					),
+					new \Yoast\WP\SEO\Loggers\Logger(),
+					new \Yoast\WP\SEO\Repositories\Indexable_Hierarchy_Repository(),
+					\Mockery::mock('wpdb'),
+					new \Yoast\WP\SEO\Services\Indexables\Indexable_Version_Manager(
+						new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions()
 					)
 				),
 				new \Yoast\WP\SEO\Repositories\SEO_Links_Repository(),
@@ -272,6 +281,15 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 						),
 						new \Yoast\WP\SEO\Helpers\Options_Helper()
 					)
+				),
+				new \Yoast\WP\SEO\Helpers\Current_Page_Helper(
+					new \Yoast\WP\SEO\Wrappers\WP_Query_Wrapper()
+				),
+				new \Yoast\WP\SEO\Loggers\Logger(),
+				new \Yoast\WP\SEO\Repositories\Indexable_Hierarchy_Repository(),
+				\Mockery::mock('wpdb'),
+				new \Yoast\WP\SEO\Services\Indexables\Indexable_Version_Manager(
+					new \Yoast\WP\SEO\Values\Indexables\Indexable_Builder_Versions()
 				)
 			),
 		);
