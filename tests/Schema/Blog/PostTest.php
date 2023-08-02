@@ -113,7 +113,7 @@ class BlogTest extends \PHPUnit\Framework\TestCase {
 						),
 						new \Yoast\WP\SEO\Helpers\Indexable_Helper(
 							new \Yoast\WP\SEO\Helpers\Options_Helper(),
-							new \Yoast\WP\SEO\Helpers\Environment_Helper()
+							new \Yoast\WP\SEO\Helpers\Environment_Helper(),
 							new \Yoast\WP\SEO\Helpers\Indexing_Helper(
 								new \Yoast\WP\SEO\Helpers\Options_Helper(),
 								new \Yoast\WP\SEO\Helpers\Date_Helper(),
