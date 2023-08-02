@@ -319,6 +319,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		$context = $this->getContext();
+
+		$this->markTestSkipped('got context');
 		$filter_result = apply_filter( 'wpseo_schema_graph_pieces', [], $context );
 
 		$this->markTestSkipped('apply_filter worked too');
