@@ -117,7 +117,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 							new \Yoast\WP\SEO\Helpers\Indexing_Helper(
 								new \Yoast\WP\SEO\Helpers\Options_Helper(),
 								new \Yoast\WP\SEO\Helpers\Date_Helper(),
-								new \Yoast_Notification_Center()
+								\Yoast_Notification_Center::get()
 							)
 						),
 						new \Yoast\WP\SEO\Services\Indexables\Indexable_Version_Manager(
@@ -151,7 +151,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 				new \Yoast\WP\SEO\Helpers\Indexing_Helper(
 					new \Yoast\WP\SEO\Helpers\Options_Helper(),
 					new \Yoast\WP\SEO\Helpers\Date_Helper(),
-					new \Yoast_Notification_Center()
+					\Yoast_Notification_Center::get()
 				)
 			),
 			new \Yoast\WP\SEO\Repositories\Indexable_Repository(
@@ -255,7 +255,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 						new \Yoast\WP\SEO\Helpers\Indexing_Helper(
 							new \Yoast\WP\SEO\Helpers\Options_Helper(),
 							new \Yoast\WP\SEO\Helpers\Date_Helper(),
-							new \Yoast_Notification_Center()
+							\Yoast_Notification_Center::get()
 						)
 					),
 					new \Yoast\WP\SEO\Services\Indexables\Indexable_Version_Manager(
