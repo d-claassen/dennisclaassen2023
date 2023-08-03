@@ -14,7 +14,13 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	private function getContext(): Meta_Tags_Context {
 		$context = \Mockery::mock( Meta_Tags_Context::class );
 		$context->indexable = \Mockery::mock( \Yoast\WP\SEO\Models\Indexable::class );
-		$context->indexable->orm = \Mockery::mock( \Yoast\WP\Lib\ORM::class );
+		$context->indexable->orm = new class extends \Yoast\WP\Lib\ORM {
+
+			public function __construct(
+				public $table_name = '',
+				public $data = []
+				) {}
+		};
 		return $context;
 		
 		$context = new Meta_Tags_Context(
