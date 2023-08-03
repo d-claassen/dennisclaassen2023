@@ -12,7 +12,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private function getContext(): Meta_Tags_Context {
-		$context = \Mocker::mock( Meta_Tags_Context::class );
+		$context = \Mockery::mock( Meta_Tags_Context::class );
 		$context->indexable = \Mockery::mock( \Yoast\WP\SEO\Models\Indexable::class );
 		return $context;
 		
