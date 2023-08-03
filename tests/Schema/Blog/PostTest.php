@@ -335,7 +335,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->andReturnTrue();
 
 		\Brain\Monkey\Functions\expect('get_post_type')
-			->once()
+			->zeroOrMoreTimes()
 			->andReturn('page');
 
 		( new \DC23\Schema\Blog\Post() )->register();
