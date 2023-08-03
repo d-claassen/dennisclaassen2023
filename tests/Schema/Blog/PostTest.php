@@ -12,6 +12,10 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private function getContext(): Meta_Tags_Context {
+		$context = \Mocker::mock( Meta_Tags_Context::class );
+		$context->indexable = \Mockery::mock( \Yoast\WP\SEO\Models\Indexable::class );
+		return $context;
+		
 		$context = new Meta_Tags_Context(
 			new \Yoast\WP\SEO\Helpers\Options_Helper(),
 			new \Yoast\WP\SEO\Helpers\Url_Helper(),
@@ -319,7 +323,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		// $this->markTestSkipped('registered post schema');
-		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
+		$context = $this->getContext();
 
 		// $this->markTestSkipped('got context');
 		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
@@ -340,7 +344,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
+		$context = $this->getContext();
 		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
 		self::assertSame( [], $filter_result );
@@ -358,7 +362,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
+		$context = $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'Article';
 		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
@@ -378,7 +382,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = \Mockery::mock( Meta_Tags_Context::class ); // $this->getContext();
+		$context = $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'BlogPosting';
 		// @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
