@@ -7,7 +7,7 @@ namespace DC23\Schema\Blog;
 final class Post {
 
 	public function register():void {
-		\add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema( ... ), 11, 2 );
+		\add_filter( 'wpseo_schema_graph_pieces', [ $this, 'add_blog_to_schema' ], 11, 2 );
 	}
 
 	private function should_add_post_data(): bool {
