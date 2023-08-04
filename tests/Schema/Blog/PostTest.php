@@ -376,7 +376,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		self::assertSame( [], $filter_result );
 
-		$this->assertTrue( \Brain\Monkey\Filters\applied('wpseo_schema_graph_pieces') > 0 )
+		$this->assertTrue( \Brain\Monkey\Filters\applied('wpseo_schema_graph_pieces') > 0 );
 	}
 
 	public function testRunningTheFilterAddsBlogSchema(): void {
