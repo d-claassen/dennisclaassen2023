@@ -375,9 +375,11 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
 
 		self::assertSame( [], $filter_result );
+
+		$this->assertTrue( \Brain\Monkey\Filters\applied('wpseo_schema_graph_pieces') > 0 )
 	}
 
-	public function testRunningTheFilteAddsBlogSchema(): void {
+	public function testRunningTheFilterAddsBlogSchema(): void {
 		// $this->markTestSkipped('skip5');
 		\Brain\Monkey\Functions\expect('is_single')
 			->zeroOrMoreTimes()
