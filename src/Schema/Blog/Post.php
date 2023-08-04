@@ -14,7 +14,7 @@ final class Post {
 		return is_single() && get_post_type() === 'post';
 	}
 
-	private function add_blog_to_schema( $pieces, $context ) {
+	public function add_blog_to_schema( $pieces, $context ) {
 		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 		if ( ! $this->should_add_post_data() ) {
 			return $pieces;
