@@ -367,6 +367,11 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturn('post');
 
+
+		\Brain\Monkey\Filters\expectApplied( 'wpseo_schema_graph_pieces' )
+			->once()
+			->with( 'foo' );
+		
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		$context = $this->getContext();
