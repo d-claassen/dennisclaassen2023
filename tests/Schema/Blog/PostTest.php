@@ -367,14 +367,14 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturn('post');
 
+		$context = $this->getContext();
 
 		\Brain\Monkey\Filters\expectApplied( 'wpseo_schema_graph_pieces' )
 			->once()
-			->with( 'foo' );
+			->with( [], $context );
 		
 		( new \DC23\Schema\Blog\Post() )->register();
 
-		$context = $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'Article';
 		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
