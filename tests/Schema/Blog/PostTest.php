@@ -327,13 +327,13 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->andReturnFalse();
 
 		// $this->markTestSkipped('the expect works');
-		( new \DC23\Schema\Blog\Post() )->register();
+		( $post = new \DC23\Schema\Blog\Post() )->register();
 
 		// $this->markTestSkipped('registered post schema');
 		$context = $this->getContext();
 
 		// $this->markTestSkipped('got context');
-		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = $post->add_blog_to_schema( [], $context );
 
 		// $this->markTestSkipped('apply_filter worked too');
 		self::assertSame( [], $filter_result );
@@ -349,10 +349,10 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturn('page');
 
-		( new \DC23\Schema\Blog\Post() )->register();
+		( $post = new \DC23\Schema\Blog\Post() )->register();
 
 		$context = $this->getContext();
-		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = $post->add_blog_to_schema( [], $context );
 
 		self::assertSame( [], $filter_result );
 	}
@@ -373,11 +373,11 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->once()
 			->with( [], $context );
 		
-		( new \DC23\Schema\Blog\Post() )->register();
+		( $post = new \DC23\Schema\Blog\Post() )->register();
 
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'Article';
-		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = $post->add_blog_to_schema( [], $context );
 
 		self::assertSame( [], $filter_result );
 
@@ -394,13 +394,13 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturn('post');
 
-		( new \DC23\Schema\Blog\Post() )->register();
+		( $post = new \DC23\Schema\Blog\Post() )->register();
 
 		$context = $this->getContext();
 		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'BlogPosting';
 		// @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
-		$filter_result = apply_filters( 'wpseo_schema_graph_pieces', [], $context );
+		$filter_result = $post->add_blog_to_schema( [], $context );
 
 		self::assertSame( [], $filter_result );
 	}
