@@ -21,7 +21,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 				public $data = []
 				) {}
 		};
-		return $context;
+		// Return actual model instead of prototype.
+		return $context->of( [] );
 		
 		$context = new Meta_Tags_Context(
 			new \Yoast\WP\SEO\Helpers\Options_Helper(),
