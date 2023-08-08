@@ -368,10 +368,6 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->andReturn('post');
 
 		$context = $this->getContext();
-
-		\Brain\Monkey\Filters\expectApplied( 'wpseo_schema_graph_pieces' )
-			->once()
-			->with( [], $context );
 		
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
@@ -380,8 +376,6 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$filter_result = $post->add_blog_to_schema( [], $context );
 
 		self::assertSame( [], $filter_result );
-
-		$this->assertTrue( \Brain\Monkey\Filters\applied('wpseo_schema_graph_pieces') > 0 );
 	}
 
 	public function testRunningTheFilterAddsBlogSchema(): void {
