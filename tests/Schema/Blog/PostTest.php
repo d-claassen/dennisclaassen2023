@@ -305,7 +305,10 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			),
 		);
 
-		return $context;
+		// Convert context prototype to modal.
+		$the_context = $context->of( [] );
+
+		return $the_context;
 	}
 
 	public function tearDown(): void {
