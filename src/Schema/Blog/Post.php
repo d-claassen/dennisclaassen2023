@@ -24,7 +24,7 @@ final class Post {
 			return $pieces;
 		}
 
-		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
+		$canonical = $context->canonical;
 
 		$post = \get_post();
 		assert( $post instanceof \WP_Post );
