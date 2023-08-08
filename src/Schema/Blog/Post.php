@@ -11,7 +11,7 @@ final class Post {
 	}
 
 	private function should_add_post_data(): bool {
-		return is_single() && get_post_type() === 'post';
+		return \is_single() && \get_post_type() === 'post';
 	}
 
 	public function add_blog_to_schema( $pieces, $context ) {
@@ -29,10 +29,10 @@ final class Post {
 		$post = \get_post();
 		assert( $post instanceof \WP_Post );
 
-		$id      = get_permalink( $post->ID ) . '#article';
+		$id      = \get_permalink( $post->ID ) . '#article';
 		$post_id = [ '@id' => $id ];
 
-		$categories = wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
+		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
 		$category   = reset( $categories );
 
 		$blog = new Pregenerated_Piece(
@@ -41,9 +41,7 @@ final class Post {
 				'@type'       => 'Blog',
 				'name'        => $category->name,
 				'description' => \wp_trim_excerpt( $category->description ),
-				'publisher'   => [
-					'@id' => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
-				],
+				'publisher'   => $context->site_represents_reference,
 				'inLanguage'  => [
 					'@id' => $canonical . '#/language/' . get_bloginfo( 'language' ),
 				],
