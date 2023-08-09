@@ -397,6 +397,29 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		\Brain\Monkey\Functions\expect('get_post')
 			->zeroOrMoreTimes()
 			->andReturn( $wp_post );
+		
+		$wp_post->ID = 1;
+		
+		\Brain\Monkey\Functions\expect('get_permalink')
+			->zeroOrMoreTimes()
+			->andReturn( 'https://example.com/page.html' );
+		
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )
+			->zeroOrMoreTimes()
+			->andReturn( [] );
+		
+		\Brain\Monkey\Functions\expect('wp_trim_excerpt')
+			->zeroOrMoreTimes()
+			->andReturn('blablabla');
+		
+		\Brain\Monkey\Functions\expect('get_bloginfo')
+			->zeroOrMoreTimes()
+			->with('language')
+			->andReturn('en-US');
+
+
+
+
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
