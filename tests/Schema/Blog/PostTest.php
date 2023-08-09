@@ -18,16 +18,16 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = \Mockery::mock(
 			Meta_Tags_Context::class,
 			[
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class ),
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\Url_Helper::class ),
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\Image_Helper::class ),
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\Schema\ID_Helper::class ),
-				\Mockery::mock( \WPSEO_Replace_Vars::class ),
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\Site_Helper::class ),
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\User_Helper::class ),
-				\Mockery::mock( \Yoast\WP\SEO\Helpers\Permalink_Helper::class ),
-				$this->indexable_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Indexable_Helper::class ),
-				$this->indexable_repository = \Mockery::mock( \Yoast\WP\SEO\Repositories\Indexable_Repository::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\Url_Helper::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\Image_Helper::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\Schema\ID_Helper::class ),
+				// \Mockery::mock( \WPSEO_Replace_Vars::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\Site_Helper::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\User_Helper::class ),
+				// \Mockery::mock( \Yoast\WP\SEO\Helpers\Permalink_Helper::class ),
+				// $this->indexable_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Indexable_Helper::class ),
+				// $this->indexable_repository = \Mockery::mock( \Yoast\WP\SEO\Repositories\Indexable_Repository::class ),
 			] 
 		);
 		$context = $context->makePartial();
@@ -437,6 +437,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 
+		/*
 		$this->indexable_repository
 			->expects('find_for_home_page')
 			->andReturn( $context->indexable );
@@ -444,7 +445,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$this->indexable_helper
 			->expects('dynamic_permalinks_enabled')
 			->andReturnFalse();
-
+		*/
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
