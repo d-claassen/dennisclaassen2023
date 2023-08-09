@@ -12,6 +12,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
+
+		echo '[setup]';
 	}
 
 	private function getContext(): Meta_Tags_Context {
@@ -336,7 +338,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRegistrationAddsFilter(): void {
-		// $this->markTestSkipped('skip');
+		$this->markTestSkipped('no context');
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
@@ -351,6 +353,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		// $this->markTestSkipped('the expect works');
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
+		echo '[testRunningTheFilterRequiredSinglePage:get_context]';
 		// $this->markTestSkipped('registered post schema');
 		$context = $this->getContext();
 
@@ -372,6 +375,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->andReturn('page');
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
+
 
 		$context = $this->getContext();
 		$filter_result = $post->add_blog_to_schema( [], $context );
