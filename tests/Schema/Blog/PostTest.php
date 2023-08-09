@@ -18,21 +18,21 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 	private function getContext(): Meta_Tags_Context {
 		echo '[options-helper]';
-		$options_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Options_Helper::class );
+		$options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
 		echo '[url-helper]';
-		$url_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Url_Helper::class );
+		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper::class );
 		echo '[image-helper]';
 		$image_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class );
 		echo '[id-helper]';
-		$id_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Schema\ID_Helper::class );
+		$id_helper = new \Yoast\WP\SEO\Helpers\Schema\ID_Helper();
 		echo 'replace-vars';
-		$replace_vars = \Mockery::spy( \WPSEO_Replace_Vars::class );
+		$replace_vars = new \WPSEO_Replace_Vars();
 		echo 'site-helper';
-		$site_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Site_Helper::class );
+		$site_helper = new \Yoast\WP\SEO\Helpers\Site_Helper();
 		echo 'user-helper';
-		$user_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\User_Helper::class );
+		$user_helper = new \Yoast\WP\SEO\Helpers\User_Helper();
 		echo 'permalink-helper';
-		$permalink_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Permalink_Helper::class );
+		$permalink_helper = new \Yoast\WP\SEO\Helpers\Permalink_Helper();
 		echo 'indexable-helper';
 		$this->indexable_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Indexable_Helper::class );
 		echo 'indexable-repo ';
