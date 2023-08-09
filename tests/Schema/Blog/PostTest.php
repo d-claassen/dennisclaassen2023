@@ -393,7 +393,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturn('post');
 
-		$wp_post = new \WP_Post();
+		$wp_post = \Mockery::mock( 'WP_Post' );
 		\Brain\Monkey\Functions\expect('get_post')
 			->zeroOrMoreTimes()
 			->andReturn( $wp_post );
