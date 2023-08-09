@@ -17,19 +17,39 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private function getContext(): Meta_Tags_Context {
+		echo '[options-helper]';
+		$options_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Options_Helper::class );
+		echo '[url-helper]';
+		$url_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Url_Helper::class );
+		echo '[image-helper]';
+		$image_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class );
+		echo '[id-helper]';
+		$id_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Schema\ID_Helper::class );
+		echo 'replace-vars';
+		$replace_vars = \Mockery::spy( \WPSEO_Replace_Vars::class );
+		echo 'site-helper';
+		$site_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Site_Helper::class );
+		echo 'user-helper';
+		$user_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\User_Helper::class );
+		echo 'permalink-helper';
+		$permalink_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Permalink_Helper::class );
+		echo 'indexable-helper';
+		$this->indexable_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Indexable_Helper::class );
+		echo 'indexable-repo ';
+		$this->indexable_repository = \Mockery::spy( \Yoast\WP\SEO\Repositories\Indexable_Repository::class );
 		$context = \Mockery::mock(
 			Meta_Tags_Context::class,
 			[
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\Options_Helper::class ),
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\Url_Helper::class ),
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class ),
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\Schema\ID_Helper::class ),
-				\Mockery::spy( \WPSEO_Replace_Vars::class ),
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\Site_Helper::class ),
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\User_Helper::class ),
-				\Mockery::spy( \Yoast\WP\SEO\Helpers\Permalink_Helper::class ),
-				$this->indexable_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Indexable_Helper::class ),
-				$this->indexable_repository = \Mockery::spy( \Yoast\WP\SEO\Repositories\Indexable_Repository::class ),
+				$options_helper,
+				$url_helper,
+				$image_helper,
+				$id_helper,
+				$replace_vars,
+				$site_helper,
+				$user_helper,
+				$permalink_helper,
+				$this->indexable_helper,
+				$this->indexable_repository,
 			] 
 		);
 		$context = $context->makePartial();
