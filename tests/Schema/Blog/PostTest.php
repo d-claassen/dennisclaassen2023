@@ -20,7 +20,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		echo '[options-helper]';
 		$options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
 		echo '[url-helper]';
-		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper::class );
+		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
 		echo '[image-helper]';
 		$image_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class );
 		echo '[id-helper]';
