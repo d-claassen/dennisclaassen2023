@@ -6,13 +6,30 @@ use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
 class PostTest extends \PHPUnit\Framework\TestCase {
 
+	private $indexable_helper;
+	private $indexable_repository;
+
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
 	}
 
 	private function getContext(): Meta_Tags_Context {
-		$context = \Mockery::mock( Meta_Tags_Context::class );
+		$context = \Mockery::mock(
+			Meta_Tags_Context::class,
+			[
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class ),
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\Url_Helper::class ),
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\Image_Helper::class ),
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\Schema\ID_Helper::class ),
+				\Mockery::mock( \WPSEO_Replace_Vars::class ),
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\Site_Helper::class ),
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\User_Helper::class ),
+				\Mockery::mock( \Yoast\WP\SEO\Helpers\Permalink_Helper::class ),
+				$this->indexable_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Indexable_Helper::class ),
+				$this->indexable_repository = \Mockery::mock( \Yoast\WP\SEO\Repositories\Indexable_Repository::class ),
+			] 
+		);
 		$context = $context->makePartial();
 		$context->indexable = \Mockery::mock( \Yoast\WP\SEO\Models\Indexable::class );
 		$context->indexable->orm = new class extends \Yoast\WP\Lib\ORM {
@@ -417,15 +434,20 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->with('language')
 			->andReturn('en-US');
 
+		$context = $this->getContext();
+		$context->indexable->schema_article_type = 'BlogPosting';
 
+		$this->indexable_repository
+			->expects('find_for_home_page')
+			->andReturn( $context->indexable );
 
+		$this->indexable_helper
+			->expects('dynamic_permalinks_enabled')
+			->andReturnFalse();
 
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
-		$context = $this->getContext();
-		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
-		$context->indexable->schema_article_type = 'BlogPosting';
 		// @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
 		$filter_result = $post->add_blog_to_schema( [], $context );
 
