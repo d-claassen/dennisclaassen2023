@@ -17,6 +17,11 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private function getContext(): Meta_Tags_Context {
+
+		\Brain\Monkey\Functions\expect('is_multisite')
+			->zeroOrMoreTimes()
+			->andReturnFalse();
+		
 		echo '[options-helper]';
 		$options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
 		echo '[url-helper]';
