@@ -66,6 +66,9 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 				public $data = []
 				) {}
 		};
+
+		$context->site_url = 'https://example.com/';
+		
 		// Return actual model instead of prototype.
 		return $context->of( [] );
 		
