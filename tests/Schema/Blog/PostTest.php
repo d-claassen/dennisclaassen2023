@@ -471,7 +471,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 
-		$this->options_helper->expects('company_or_person_user_id')->andReturns(1);
+		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
 		
 		/*
 		$this->indexable_repository
