@@ -473,9 +473,10 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		$this->options_helper->expects('get')->with('company_or_person', false)->andReturns('person');
 		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
-		\Brain\Monkey\Functions\expect('get_user_by')
-			->with('id', 1)
-			->andReturn( \Mockery::mock( \WP_User::class ) );
+		$user = \Mockery::mock( \WP_User::class );
+		$user->user_login = 'info@example.com';
+		\Brain\Monkey\Functions\expect('get_user_by')->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_userdata')->with('id', 1)->andReturn( $user );
 		
 		/*
 		$this->indexable_repository
