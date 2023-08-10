@@ -22,25 +22,25 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturnFalse();
 		
-		echo '[options-helper]';
+		//echo '[options-helper]';
 		$options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
-		echo '[url-helper]';
+		//echo '[url-helper]';
 		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
-		echo '[image-helper]';
+		//echo '[image-helper]';
 		$image_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class );
-		echo '[id-helper]';
+		//echo '[id-helper]';
 		$id_helper = new \Yoast\WP\SEO\Helpers\Schema\ID_Helper();
-		echo 'replace-vars';
+		//echo 'replace-vars';
 		$replace_vars = new \WPSEO_Replace_Vars();
-		echo 'site-helper';
+		//echo 'site-helper';
 		$site_helper = new \Yoast\WP\SEO\Helpers\Site_Helper();
-		echo 'user-helper';
+		//echo 'user-helper';
 		$user_helper = new \Yoast\WP\SEO\Helpers\User_Helper();
-		echo 'permalink-helper';
+		//echo 'permalink-helper';
 		$permalink_helper = new \Yoast\WP\SEO\Helpers\Permalink_Helper();
-		echo 'indexable-helper';
+		//echo 'indexable-helper';
 		$this->indexable_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Indexable_Helper::class );
-		echo 'indexable-repo ';
+		//echo 'indexable-repo ';
 		$this->indexable_repository = \Mockery::spy( \Yoast\WP\SEO\Repositories\Indexable_Repository::class );
 		$context = \Mockery::mock(
 			Meta_Tags_Context::class,
@@ -366,7 +366,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRegistrationAddsFilter(): void {
-		$this->markTestSkipped('no context');
+		//$this->markTestSkipped('no context');
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
@@ -452,10 +452,13 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		\Brain\Monkey\Functions\expect('get_permalink')
 			->zeroOrMoreTimes()
 			->andReturn( 'https://example.com/page.html' );
+
+		$category = \Mockery::mock( \WP_Term::class );
+		$category->term_id = 1;
 		
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )
 			->zeroOrMoreTimes()
-			->andReturn( [] );
+			->andReturn( [ $category ] );
 		
 		\Brain\Monkey\Functions\expect('wp_trim_excerpt')
 			->zeroOrMoreTimes()
