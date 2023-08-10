@@ -462,6 +462,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->andReturn( [ $category ] );
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
+		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 		
 		\Brain\Monkey\Functions\expect('get_bloginfo')
 			->zeroOrMoreTimes()
