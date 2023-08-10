@@ -12,8 +12,6 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
-
-		echo '[setup]';
 	}
 
 	private function getContext(): Meta_Tags_Context {
@@ -381,7 +379,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		// $this->markTestSkipped('the expect works');
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
-		echo '[testRunningTheFilterRequiredSinglePage:get_context]';
+		//echo '[testRunningTheFilterRequiredSinglePage:get_context]';
 		// $this->markTestSkipped('registered post schema');
 		$context = $this->getContext();
 
@@ -455,6 +453,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		$category = \Mockery::mock( \WP_Term::class );
 		$category->term_id = 1;
+		$category->name = 'The category name';
+		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
 		
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )
 			->zeroOrMoreTimes()
