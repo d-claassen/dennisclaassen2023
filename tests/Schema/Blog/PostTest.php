@@ -21,7 +21,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->andReturnFalse();
 		
 		//echo '[options-helper]';
-		$options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
+		$this->options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
 		//echo '[url-helper]';
 		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
 		//echo '[image-helper]';
@@ -43,7 +43,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = \Mockery::mock(
 			Meta_Tags_Context::class,
 			[
-				$options_helper,
+				$this->options_helper,
 				$url_helper,
 				$image_helper,
 				$id_helper,
@@ -431,6 +431,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterAddsBlogSchema(): void {
+		$this->options_helper->expects('company_or_person_user_id')->andReturns(1);
+		
 		// $this->markTestSkipped('skip5');
 		\Brain\Monkey\Functions\expect('is_single')
 			->zeroOrMoreTimes()
