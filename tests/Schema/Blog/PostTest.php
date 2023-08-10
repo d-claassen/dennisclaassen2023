@@ -20,7 +20,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		\Brain\Monkey\Functions\when('is_multisite')->justReturn(false);
 		
 		//echo '[options-helper]';
-		$this->options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
+		$this->options_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class );
 		//echo '[url-helper]';
 		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
 		//echo '[image-helper]';
