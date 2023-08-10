@@ -471,7 +471,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
-		$context->canonical = 'https://example.com';
+		$context->canonical = 'https://example.com/';
 
 		$this->options_helper->expects('get')->with('company_or_person', false)->andReturns('person');
 		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
