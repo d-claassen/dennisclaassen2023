@@ -6,6 +6,7 @@ use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
 class PostTest extends \PHPUnit\Framework\TestCase {
 
+	private $options_helper;
 	private $indexable_helper;
 	private $indexable_repository;
 
@@ -16,9 +17,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 	private function getContext(): Meta_Tags_Context {
 
-		\Brain\Monkey\Functions\expect('is_multisite')
-			->zeroOrMoreTimes()
-			->andReturnFalse();
+		\Brain\Monkey\Functions\when('is_multisite')->justReturn(false);
 		
 		//echo '[options-helper]';
 		$this->options_helper = new \Yoast\WP\SEO\Helpers\Options_Helper();
@@ -431,7 +430,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterAddsBlogSchema(): void {
-		$this->options_helper->expects('company_or_person_user_id')->andReturns(1);
+		
 		
 		// $this->markTestSkipped('skip5');
 		\Brain\Monkey\Functions\expect('is_single')
@@ -472,6 +471,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 
+		$this->options_helper->expects('company_or_person_user_id')->andReturns(1);
+		
 		/*
 		$this->indexable_repository
 			->expects('find_for_home_page')
