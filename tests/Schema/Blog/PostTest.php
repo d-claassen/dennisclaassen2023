@@ -460,9 +460,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			->zeroOrMoreTimes()
 			->andReturn( [ $category ] );
 		
-		\Brain\Monkey\Functions\expect('wp_trim_excerpt')
-			->zeroOrMoreTimes()
-			->andReturn('blablabla');
+		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		
 		\Brain\Monkey\Functions\expect('get_bloginfo')
 			->zeroOrMoreTimes()
