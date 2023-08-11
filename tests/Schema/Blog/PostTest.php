@@ -492,9 +492,11 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
-		// @TODO. Expect many other errors: YoastSEO(), get_post(), get_permalink(), wp_get_post_categories(), wp_trim_excerpt(), get_bloginfo()
-		$filter_result = $post->add_blog_to_schema( [], $context );
+		
+		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
+		self::assertCount( 1, $schema_pieces, '1 schema piece should be added' );
+		self::assertContainsOnlyInstancesOf( \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece::class, $schema_pieces );
 		self::assertSame( [], $filter_result );
 	}
 
