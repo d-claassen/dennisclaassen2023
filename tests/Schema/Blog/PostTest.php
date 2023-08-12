@@ -497,7 +497,10 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		self::assertCount( 1, $schema_pieces, '1 schema piece should be added' );
 		self::assertContainsOnlyInstancesOf( \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece::class, $schema_pieces );
-		self::assertSame( [], $schema_pieces );
+
+		$piece = array_pop( $schema_pieces );
+		$schema = $piece->generate();
+		self::assertSame( [], $schema );
 	}
 
 }
