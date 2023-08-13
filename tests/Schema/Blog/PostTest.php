@@ -500,6 +500,15 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		$piece = array_pop( $schema_pieces );
 		$schema = $piece->generate();
+
+		self::assertThat(
+			$schema,
+			self::logicalAnd(
+				self::arrayHasKey('@id'),
+				self::arrayHasKey('@type')
+			),
+			'schema has id and type'
+		);
 		self::assertSame( [], $schema );
 	}
 
