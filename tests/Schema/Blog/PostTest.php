@@ -499,6 +499,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		self::assertContainsOnlyInstancesOf( \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece::class, $schema_pieces );
 
 		$piece = array_pop( $schema_pieces );
+		self::assertTrue( $piece->is_needed(), 'The piece is needed in the output' );
 		$schema = $piece->generate();
 
 		self::assertThat(
