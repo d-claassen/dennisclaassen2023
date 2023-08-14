@@ -377,7 +377,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		var_dump( $has_filter );
 
-		self::assertTrue( $has_filter );
+		self::assertSame(true, $has_filter );
 	}
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
