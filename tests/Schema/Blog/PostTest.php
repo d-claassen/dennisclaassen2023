@@ -365,6 +365,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRegistrationAddsFilter(): void {
+		echo __FUNCTION__;
 		//$this->markTestSkipped('no context');
 		( new \DC23\Schema\Blog\Post() )->register();
 
@@ -372,6 +373,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
+		echo __FUNCTION__;
 		// $this->markTestSkipped('skip2');
 		\Brain\Monkey\Functions\expect('is_single')->andReturnFalse();
 
@@ -390,6 +392,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredPostTypePost(): void {
+		echo __FUNCTION__;
 		// $this->markTestSkipped('skip3');
 		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('page');
@@ -404,6 +407,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredSchemaArticleTypeBlogPosting(): void {
+		echo __FUNCTION__;
 		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
 
@@ -418,6 +422,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterAddsBlogSchema(): void {
+		echo __FUNCTION__;
 		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
 
