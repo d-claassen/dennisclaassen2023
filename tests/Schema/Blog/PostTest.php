@@ -369,6 +369,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		//$this->markTestSkipped('no context');
 		( new \DC23\Schema\Blog\Post() )->register();
 
+		echo 'registered';
+
 		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
 	}
 
