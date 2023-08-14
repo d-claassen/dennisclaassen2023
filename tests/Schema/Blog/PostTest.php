@@ -13,13 +13,15 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
+
+		echo '[setup]';
 	}
 
 	private function getContext(): Meta_Tags_Context {
 
 		\Brain\Monkey\Functions\when('is_multisite')->justReturn(false);
 		
-		//echo '[options-helper]';
+		echo '[options-helper]';
 		$this->options_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class );
 		//echo '[url-helper]';
 		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
