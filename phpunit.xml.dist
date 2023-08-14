@@ -2,27 +2,30 @@
 
 <!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         backupGlobals="false"
-         colors="true"
-         executionOrder="random"
-         resolveDependencies="true"
+	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+	backupGlobals="false"
+	bootstrap="vendor/autoload.php"
+	colors="true"
+	resolveDependencies="true"
 >
-    <php>
-        <ini name="display_errors" value="1" />
-        <ini name="error_reporting" value="-1" />
-    </php>
+	<!-- executionOrder="random" -->
+	<php>
+		<ini name="display_errors" value="1" />
+		<ini name="error_reporting" value="-1" />
 
-    <testsuites>
-        <testsuite name="Project Test Suite">
-            <directory>tests</directory>
-            <directory>src/*/Tests</directory>
-        </testsuite>
-    </testsuites>
+		<const name="WPSEO_VERSION" value="20.12" />
+	</php>
 
-    <source>
-        <include>
-            <directory suffix=".php">src</directory>
-        </include>
-    </source>
+	<testsuites>
+		<testsuite name="Project Test Suite">
+			<directory>tests</directory>
+			<directory>src/*/Tests</directory>
+		</testsuite>
+	</testsuites>
+
+	<source>
+		<include>
+			<directory suffix=".php">src</directory>
+		</include>
+	</source>
 </phpunit>

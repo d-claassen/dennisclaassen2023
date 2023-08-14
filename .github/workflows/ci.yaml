@@ -30,6 +30,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          coverage: xdebug
         
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
@@ -61,11 +62,14 @@ jobs:
       - name: 'Lint PHP'
         run: 'composer lint'
         
+      - name: 'PHP code style'
+        run: 'composer cs'
+        
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
         
       - name: 'Test PHP units'
-        run: 'composer test'
+        run: 'composer test -- --coverage-text --testdox' # --path-coverage'
         
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
