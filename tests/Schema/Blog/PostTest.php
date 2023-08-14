@@ -371,9 +371,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
 		// $this->markTestSkipped('skip2');
-		\Brain\Monkey\Functions\expect('is_single')
-			->zeroOrMoreTimes()
-			->andReturnFalse();
+		\Brain\Monkey\Functions\expect('is_single')->andReturnFalse();
 
 		// $this->markTestSkipped('the expect works');
 		( $post = new \DC23\Schema\Blog\Post() )->register();
@@ -391,13 +389,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 	public function testRunningTheFilterRequiredPostTypePost(): void {
 		// $this->markTestSkipped('skip3');
-		\Brain\Monkey\Functions\expect('is_single')
-			->zeroOrMoreTimes()
-			->andReturnTrue();
-
-		\Brain\Monkey\Functions\expect('get_post_type')
-			->zeroOrMoreTimes()
-			->andReturn('page');
+		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('page');
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
@@ -409,20 +402,13 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterRequiredSchemaArticleTypeBlogPosting(): void {
-		// $this->markTestSkipped('skip4');
-		\Brain\Monkey\Functions\expect('is_single')
-			->zeroOrMoreTimes()
-			->andReturnTrue();
-
-		\Brain\Monkey\Functions\expect('get_post_type')
-			->zeroOrMoreTimes()
-			->andReturn('post');
+		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
 
 		$context = $this->getContext();
 		
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
-		// @TODO. $context->indexable might need to be assigned a \Yoast\WP\SEO\Models\Indexable.
 		$context->indexable->schema_article_type = 'Article';
 		$filter_result = $post->add_blog_to_schema( [], $context );
 
@@ -430,44 +416,26 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testRunningTheFilterAddsBlogSchema(): void {
-		
-		
-		// $this->markTestSkipped('skip5');
-		\Brain\Monkey\Functions\expect('is_single')
-			->zeroOrMoreTimes()
-			->andReturnTrue();
-
-		\Brain\Monkey\Functions\expect('get_post_type')
-			->zeroOrMoreTimes()
-			->andReturn('post');
+		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
 
 		$wp_post = \Mockery::mock( 'WP_Post' );
-		\Brain\Monkey\Functions\expect('get_post')
-			->zeroOrMoreTimes()
-			->andReturn( $wp_post );
-		
 		$wp_post->ID = 1;
 		
-		\Brain\Monkey\Functions\expect('get_permalink')
-			->zeroOrMoreTimes()
-			->andReturn( 'https://example.com/page.html' );
+		\Brain\Monkey\Functions\expect('get_post')->andReturn( $wp_post );
+		\Brain\Monkey\Functions\expect('get_permalink')->andReturn( 'https://example.com/page.html' );
 
 		$category = \Mockery::mock( \WP_Term::class );
 		$category->term_id = 1;
 		$category->name = 'The category name';
 		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
 		
-		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )
-			->zeroOrMoreTimes()
-			->andReturn( [ $category ] );
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->andReturn( [ $category ] );
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 		
-		\Brain\Monkey\Functions\expect('get_bloginfo')
-			->zeroOrMoreTimes()
-			->with('language')
-			->andReturn('en-US');
+		\Brain\Monkey\Functions\expect('get_bloginfo')->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
@@ -475,23 +443,13 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		$this->options_helper->expects('get')->with('company_or_person', false)->andReturns('person');
 		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
+		
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
 		\Brain\Monkey\Functions\expect('get_user_by')->with('id', 1)->andReturn( $user );
 		\Brain\Monkey\Functions\expect('get_userdata')->with('id', 1)->andReturn( $user );
-		
-		/*
-		$this->indexable_repository
-			->expects('find_for_home_page')
-			->andReturn( $context->indexable );
-
-		$this->indexable_helper
-			->expects('dynamic_permalinks_enabled')
-			->andReturnFalse();
-		*/
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
-
 		
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
