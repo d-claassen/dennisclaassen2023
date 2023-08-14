@@ -375,6 +375,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		echo 'checked the filter';
 
+		var_dump( $has_filter );
+
 		self::assertTrue( $has_filter );
 	}
 
