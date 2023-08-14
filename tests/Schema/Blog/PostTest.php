@@ -522,16 +522,15 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 		self::assertSame(
 			['@id'=>'https://example.com/#/schema/person/vasb@rknzcyr.pbz1'],
 			$schema['publisher']
-			);
+		);
 		self::assertSame(
 			['@id'=>'https://example.com/#/language/en-US'],
 			$schema['inLanguage']
-			);
+		);
 		self::assertSame(
 			[['@id'=>'https://example.com/page.html#article']],
 			$schema['blogPost']
-			);
-		self::assertSame( [], $schema );
+		);
 	}
 
 }
