@@ -520,7 +520,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			)
 		);
 		self::assertSame(
-			['@id'=>'https://example.com/#/schema/Person/1'],
+			['@id'=>'https://example.com/#/schema/person/vasb@rknzcyr.pbz1'],
 			$schema['publisher']
 			);
 		self::assertSame(
