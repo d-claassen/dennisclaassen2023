@@ -524,7 +524,7 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			$schema['publisher']
 			);
 		self::assertSame(
-			['@id'=>'https://example.com/#/schema/Language/en-US'],
+			['@id'=>'https://example.com/#/language/en-US'],
 			$schema['inLanguage']
 			);
 		self::assertSame(
