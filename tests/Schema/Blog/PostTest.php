@@ -371,7 +371,11 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		echo 'registered';
 
-		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
+		$has_filter = has_filter( 'wpseo_schema_graph_pieces' );
+
+		echo 'checked the filter';
+
+		self::assertTrue( $has_filter );
 	}
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
