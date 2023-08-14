@@ -509,6 +509,28 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			),
 			'schema has id and type'
 		);
+		self::assertSame( 'https://example.com/#/schema/Blog/1', $schema['@id'], '@id uses: domain, term id, format');
+		self::assertSame( 'Blog', $schema['@type']);
+		self::assertSame('The category name', $schema['name']);
+		self::assertThat(
+			$schema['description'],
+			self::logicalAnd(
+				self::stringStartsWith('Very extensive and detailed description'),
+				self::stringEndsWith('may appear here in the future.')
+			)
+		);
+		self::assertSame(
+			['@id'=>'https://example.com/#/schema/Person/1'],
+			$schema['publisher']
+			);
+		self::assertSame(
+			['@id'=>'https://example.com/#/schema/Language/en-US'],
+			$schema['inLanguage']
+			);
+		self::assertSame(
+			[['@id'=>'https://example.com/page.html#article']],
+			$schema['blogPost']
+			);
 		self::assertSame( [], $schema );
 	}
 
