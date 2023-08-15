@@ -11,9 +11,9 @@ use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
 class PostTest extends \PHPUnit\Framework\TestCase {
 
-	private $options_helper;
-	private $indexable_helper;
-	private $indexable_repository;
+	private Options_Helper&MockInterface $options_helper;
+	private Indexable_Helper&MockInterface $indexable_helper;
+	private Indexable_Repository&MockInterface $indexable_repository;
 
 	public function setUp(): void {
 		parent::setUp();
