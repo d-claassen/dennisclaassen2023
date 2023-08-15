@@ -2,7 +2,12 @@
 
 namespace DC23\Tests\Schema\Blog;
 
+use Brain\Monkey\Functions;
+use Mockery\MockInterface;
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
+use Yoast\WP\SEO\Helpers\Indexable_Helper;
+use Yoast\WP\SEO\Helpers\Options_Helper;
+use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
 class PostTest extends \PHPUnit\Framework\TestCase {
 
