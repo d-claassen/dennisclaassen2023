@@ -4,9 +4,17 @@ namespace DC23\Tests\Schema\Blog;
 
 use Brain\Monkey\Functions;
 use Mockery\MockInterface;
+use Yoast\WP\Lib\ORM as Yoast_ORM;
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
+use Yoast\WP\SEO\Helpers\Image_Helper;
 use Yoast\WP\SEO\Helpers\Indexable_Helper;
 use Yoast\WP\SEO\Helpers\Options_Helper;
+use Yoast\WP\SEO\Helpers\Permalink_Helper;
+use Yoast\WP\SEO\Helpers\Schema\ID_Helper as Schema_ID_Helper;
+use Yoast\WP\SEO\Helpers\Site_Helper;
+use Yoast\WP\SEO\Helpers\Url_Helper;
+use Yoast\WP\SEO\Helpers\User_Helper;
+use Yoast\WP\SEO\Models\Indexable;
 use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
 class PostTest extends \PHPUnit\Framework\TestCase {
@@ -24,16 +32,16 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 
 		\Brain\Monkey\Functions\when('is_multisite')->justReturn(false);
 
-		$this->options_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class );
-		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
-		$image_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class );
-		$id_helper = new \Yoast\WP\SEO\Helpers\Schema\ID_Helper();
+		$this->options_helper = \Mockery::mock( Options_Helper::class );
+		$url_helper = new Url_Helper();
+		$image_helper = \Mockery::spy( Image_Helper::class );
+		$id_helper = new Schema_ID_Helper();
 		$replace_vars = new \WPSEO_Replace_Vars();
-		$site_helper = new \Yoast\WP\SEO\Helpers\Site_Helper();
-		$user_helper = new \Yoast\WP\SEO\Helpers\User_Helper();
-		$permalink_helper = new \Yoast\WP\SEO\Helpers\Permalink_Helper();
-		$this->indexable_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Indexable_Helper::class );
-		$this->indexable_repository = \Mockery::spy( \Yoast\WP\SEO\Repositories\Indexable_Repository::class );
+		$site_helper = new Site_Helper();
+		$user_helper = new User_Helper();
+		$permalink_helper = new Permalink_Helper();
+		$this->indexable_helper = \Mockery::spy( Indexable_Helper::class );
+		$this->indexable_repository = \Mockery::spy( Indexable_Repository::class );
 
 		$context = \Mockery::mock(
 			Meta_Tags_Context::class,
@@ -51,8 +59,8 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 			] 
 		);
 		$context = $context->makePartial();
-		$context->indexable = \Mockery::mock( \Yoast\WP\SEO\Models\Indexable::class );
-		$context->indexable->orm = new class extends \Yoast\WP\Lib\ORM {
+		$context->indexable = \Mockery::mock( Indexable::class );
+		$context->indexable->orm = new class extends Yoast_ORM {
 
 			public function __construct(
 				public $table_name = '',
