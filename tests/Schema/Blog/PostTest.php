@@ -18,27 +18,18 @@ class PostTest extends \PHPUnit\Framework\TestCase {
 	private function getContext(): Meta_Tags_Context {
 
 		\Brain\Monkey\Functions\when('is_multisite')->justReturn(false);
-		
-		//echo '[options-helper]';
+
 		$this->options_helper = \Mockery::mock( \Yoast\WP\SEO\Helpers\Options_Helper::class );
-		//echo '[url-helper]';
 		$url_helper = new \Yoast\WP\SEO\Helpers\Url_Helper();
-		//echo '[image-helper]';
 		$image_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Image_Helper::class );
-		//echo '[id-helper]';
 		$id_helper = new \Yoast\WP\SEO\Helpers\Schema\ID_Helper();
-		//echo 'replace-vars';
 		$replace_vars = new \WPSEO_Replace_Vars();
-		//echo 'site-helper';
 		$site_helper = new \Yoast\WP\SEO\Helpers\Site_Helper();
-		//echo 'user-helper';
 		$user_helper = new \Yoast\WP\SEO\Helpers\User_Helper();
-		//echo 'permalink-helper';
 		$permalink_helper = new \Yoast\WP\SEO\Helpers\Permalink_Helper();
-		//echo 'indexable-helper';
 		$this->indexable_helper = \Mockery::spy( \Yoast\WP\SEO\Helpers\Indexable_Helper::class );
-		//echo 'indexable-repo ';
 		$this->indexable_repository = \Mockery::spy( \Yoast\WP\SEO\Repositories\Indexable_Repository::class );
+
 		$context = \Mockery::mock(
 			Meta_Tags_Context::class,
 			[
