@@ -4,6 +4,7 @@ namespace DC23\Tests\Schema\Blog;
 
 use Brain\Monkey\Functions;
 use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
 use Yoast\WP\Lib\ORM as Yoast_ORM;
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
 use Yoast\WP\SEO\Helpers\Image_Helper;
@@ -17,7 +18,7 @@ use Yoast\WP\SEO\Helpers\User_Helper;
 use Yoast\WP\SEO\Models\Indexable;
 use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
-class PostTest extends \PHPUnit\Framework\TestCase {
+class PostTest extends TestCase {
 
 	private Options_Helper&MockInterface $options_helper;
 	private Indexable_Helper&MockInterface $indexable_helper;
