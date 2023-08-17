@@ -368,32 +368,24 @@ class PostTest extends TestCase {
 	}
 
 	public function testRegistrationAddsFilter(): void {
-		//$this->markTestSkipped('no context');
 		( new \DC23\Schema\Blog\Post() )->register();
 
 		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
 	}
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
-		// $this->markTestSkipped('skip2');
 		\Brain\Monkey\Functions\expect('is_single')->andReturnFalse();
 
-		// $this->markTestSkipped('the expect works');
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
-		//echo '[testRunningTheFilterRequiredSinglePage:get_context]';
-		// $this->markTestSkipped('registered post schema');
 		$context = $this->getContext();
 
-		// $this->markTestSkipped('got context');
 		$filter_result = $post->add_blog_to_schema( [], $context );
 
-		// $this->markTestSkipped('apply_filter worked too');
 		self::assertSame( [], $filter_result );
 	}
 
 	public function testRunningTheFilterRequiredPostTypePost(): void {
-		// $this->markTestSkipped('skip3');
 		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('page');
 
