@@ -427,7 +427,7 @@ class PostTest extends TestCase {
 		$category->name = 'The category name';
 		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
 
-		$other_category = \Mockey::mock( \WP_Term::class );
+		$other_category = \Mockery::mock( \WP_Term::class );
 		$other_category->term_id = 2;
 		$other_category->name = 'Another category\'s name';
 		$other_category->description = 'A different category with a detailed description abot the completely different content it contains.';
