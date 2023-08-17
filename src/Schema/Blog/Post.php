@@ -39,7 +39,8 @@ final class Post {
 			// - With multiple categories, it'll be a PITA to make sense.
 			return $pieces;
 		}
-		$category   = reset( $categories );
+		
+		$category = reset( $categories );
 
 		$blog = new Pregenerated_Piece(
 			[
