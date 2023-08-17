@@ -412,7 +412,7 @@ class PostTest extends TestCase {
 		self::assertSame( [], $filter_result );
 	}
 
-	public function testPicksFirstCategory(): void {
+	public function testIgnoresMultipleCategories(): void {
 		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
 
@@ -455,32 +455,7 @@ class PostTest extends TestCase {
 		
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
-		self::assertCount( 1, $schema_pieces, '1 schema piece should be added' );
-
-		self::assertContainsOnlyInstancesOf( \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece::class, $schema_pieces );
-
-		$piece = array_pop( $schema_pieces );
-		self::assertTrue( $piece->is_needed(), 'The piece is needed in the output' );
-		$schema = $piece->generate();
-
-		self::assertThat(
-			$schema,
-			self::logicalAnd(
-				self::arrayHasKey('@id'),
-				self::arrayHasKey('@type')
-			),
-			'schema has id and type'
-		);
-		self::assertSame( 'https://example.com/#/schema/Blog/1', $schema['@id'], '@id uses: domain, term id, format');
-		self::assertSame( 'Blog', $schema['@type']);
-		self::assertSame('The category name', $schema['name']);
-		self::assertThat(
-			$schema['description'],
-			self::logicalAnd(
-				self::stringStartsWith('Very extensive and detailed description'),
-				self::stringEndsWith('may appear here in the future.')
-			)
-		);
+		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
 	}
 
 	public function testWithoutCategory(): void {
@@ -518,23 +493,7 @@ class PostTest extends TestCase {
 		
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
-		self::assertCount( 1, $schema_pieces, '1 schema piece should be added' );
-
-		self::assertContainsOnlyInstancesOf( \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece::class, $schema_pieces );
-
-		$piece = array_pop( $schema_pieces );
-		self::assertTrue( $piece->is_needed(), 'The piece is needed in the output' );
-		$schema = $piece->generate();
-
-		self::assertThat(
-			$schema,
-			self::logicalAnd(
-				self::arrayHasKey('@id'),
-				self::arrayHasKey('@type')
-			),
-			'schema has id and type'
-		);
-		self::assertSame( 'https://example.com/#/schema/Blog/1', $schema['@id'], '@id uses: domain, term id, format');
+		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
 	}
 
 	
