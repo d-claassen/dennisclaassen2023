@@ -412,6 +412,77 @@ class PostTest extends TestCase {
 		self::assertSame( [], $filter_result );
 	}
 
+	public function testPicksFirstCategory(): void {
+		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
+
+		$wp_post = \Mockery::mock( 'WP_Post' );
+		$wp_post->ID = 1;
+		
+		\Brain\Monkey\Functions\expect('get_post')->andReturn( $wp_post );
+		\Brain\Monkey\Functions\expect('get_permalink')->andReturn( 'https://example.com/page.html' );
+
+		$category = \Mockery::mock( \WP_Term::class );
+		$category->term_id = 1;
+		$category->name = 'The category name';
+		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
+
+		$other_category = \Mockey::mock( \WP_Term::class );
+		$other_category->term_id = 2;
+		$other_category->name = 'Another category\'s name';
+		$other_category->description = 'A different category with a detailed description abot the completely different content it contains.';
+		
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->andReturn( [ $category, $other_category ] );
+		
+		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
+		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
+		
+		\Brain\Monkey\Functions\expect('get_bloginfo')->with('language')->andReturn('en-US');
+
+		$context = $this->getContext();
+		$context->indexable->schema_article_type = 'BlogPosting';
+		$context->canonical = 'https://example.com/';
+
+		$this->options_helper->expects('get')->with('company_or_person', false)->andReturns('person');
+		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
+		
+		$user = \Mockery::mock( \WP_User::class );
+		$user->user_login = 'info@example.com';
+		\Brain\Monkey\Functions\expect('get_user_by')->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_userdata')->with('id', 1)->andReturn( $user );
+
+		( $post = new \DC23\Schema\Blog\Post() )->register();
+		
+		$schema_pieces = $post->add_blog_to_schema( [], $context );
+
+		self::assertCount( 1, $schema_pieces, '1 schema piece should be added' );
+
+		self::assertContainsOnlyInstancesOf( \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece::class, $schema_pieces );
+
+		$piece = array_pop( $schema_pieces );
+		self::assertTrue( $piece->is_needed(), 'The piece is needed in the output' );
+		$schema = $piece->generate();
+
+		self::assertThat(
+			$schema,
+			self::logicalAnd(
+				self::arrayHasKey('@id'),
+				self::arrayHasKey('@type')
+			),
+			'schema has id and type'
+		);
+		self::assertSame( 'https://example.com/#/schema/Blog/1', $schema['@id'], '@id uses: domain, term id, format');
+		self::assertSame( 'Blog', $schema['@type']);
+		self::assertSame('The category name', $schema['name']);
+		self::assertThat(
+			$schema['description'],
+			self::logicalAnd(
+				self::stringStartsWith('Very extensive and detailed description'),
+				self::stringEndsWith('may appear here in the future.')
+			)
+		);
+	}
+
 	public function testRunningTheFilterAddsBlogSchema(): void {
 		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
