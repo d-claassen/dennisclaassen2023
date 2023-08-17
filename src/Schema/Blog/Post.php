@@ -33,6 +33,12 @@ final class Post {
 		$post_id = [ '@id' => $id ];
 
 		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
+		if ( count( $categories ) !== 1 ) {
+			// Only add Blog piece when there's one category:
+			// - Without category, there's no blog to connect with,
+			// - With multiple categories, it'll be a PITA to make sense.
+			return $pieces;
+		}
 		$category   = reset( $categories );
 
 		$blog = new Pregenerated_Piece(
