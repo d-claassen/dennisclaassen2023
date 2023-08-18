@@ -456,23 +456,23 @@ class PostTest extends TestCase {
 	}
 
 	public function testWithoutCategory(): void {
-		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
-		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
+		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
 
 		$wp_post = \Mockery::mock( 'WP_Post' );
 		$wp_post->ID = 1;
 		
-		\Brain\Monkey\Functions\expect('get_post')->andReturn( $wp_post );
-		\Brain\Monkey\Functions\expect('get_permalink')->andReturn( 'https://example.com/page.html' );
+		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
+		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
 
 		// No category.
-		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->andReturn( [] );
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [] );
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 		
-		\Brain\Monkey\Functions\expect('get_bloginfo')->with('language')->andReturn('en-US');
+		\Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
@@ -480,8 +480,8 @@ class PostTest extends TestCase {
 
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
-		\Brain\Monkey\Functions\expect('get_user_by')->with('id', 1)->andReturn( $user );
-		\Brain\Monkey\Functions\expect('get_userdata')->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_user_by')->once()->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_userdata')->once()->with('id', 1)->andReturn( $user );
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
@@ -492,38 +492,38 @@ class PostTest extends TestCase {
 
 	
 	public function testRunningTheFilterAddsBlogSchema(): void {
-		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
-		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
+		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
 
 		$wp_post = \Mockery::mock( 'WP_Post' );
 		$wp_post->ID = 1;
 		
-		\Brain\Monkey\Functions\expect('get_post')->andReturn( $wp_post );
-		\Brain\Monkey\Functions\expect('get_permalink')->andReturn( 'https://example.com/page.html' );
+		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
+		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
 		$category = \Mockery::mock( \WP_Term::class );
 		$category->term_id = 1;
 		$category->name = 'The category name';
 		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
 		
-		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->andReturn( [ $category ] );
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category ] );
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 		
-		\Brain\Monkey\Functions\expect('get_bloginfo')->with('language')->andReturn('en-US');
+		\Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 		$context->canonical = 'https://example.com/';
 
-		$this->options_helper->expects('get')->with('company_or_person', false)->andReturns('person');
-		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
+		$this->options_helper->expects('get')->once()->with('company_or_person', false)->andReturns('person');
+		$this->options_helper->expects('get')->once()->with('company_or_person_user_id', false)->andReturns(1);
 		
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
-		\Brain\Monkey\Functions\expect('get_user_by')->with('id', 1)->andReturn( $user );
-		\Brain\Monkey\Functions\expect('get_userdata')->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_user_by')->once()->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_userdata')->once()->with('id', 1)->andReturn( $user );
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
