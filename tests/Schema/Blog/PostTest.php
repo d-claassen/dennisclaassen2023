@@ -437,7 +437,7 @@ class PostTest extends TestCase {
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 		
-		\Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
+		// \Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
