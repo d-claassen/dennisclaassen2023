@@ -522,7 +522,7 @@ class PostTest extends TestCase {
 		
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
-		\Brain\Monkey\Functions\expect('get_user_by')->atLeast()->once()->with('id', 1)->andReturn( $user );
+		\Brain\Monkey\Functions\expect('get_user_by')->times(20)->with('id', 1)->andReturn( $user );
 		\Brain\Monkey\Functions\expect('get_userdata')->once()->with('id', 1)->andReturn( $user );
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
