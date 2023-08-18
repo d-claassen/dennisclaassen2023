@@ -24,13 +24,8 @@ final class Post {
 			return $pieces;
 		}
 
-		$canonical = $context->canonical;
-
 		$post = \get_post();
 		assert( $post instanceof \WP_Post );
-
-		$id      = \get_permalink( $post->ID ) . '#article';
-		$post_id = [ '@id' => $id ];
 
 		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
 		if ( count( $categories ) !== 1 ) {
@@ -41,6 +36,11 @@ final class Post {
 		}
 
 		$category = reset( $categories );
+
+		$id      = \get_permalink( $post->ID ) . '#article';
+		$post_id = [ '@id' => $id ];
+
+		$canonical = $context->canonical;
 
 		$blog = new Pregenerated_Piece(
 			[
