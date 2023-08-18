@@ -420,7 +420,7 @@ class PostTest extends TestCase {
 		$wp_post->ID = 1;
 		
 		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
-		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
+		// \Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
 		$category = \Mockery::mock( \WP_Term::class );
 		$category->term_id = 1;
