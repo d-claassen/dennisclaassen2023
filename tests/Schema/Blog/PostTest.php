@@ -420,7 +420,6 @@ class PostTest extends TestCase {
 		$wp_post->ID = 1;
 		
 		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
-		// \Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
 		$category = \Mockery::mock( \WP_Term::class );
 		$category->term_id = 1;
@@ -436,8 +435,6 @@ class PostTest extends TestCase {
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
-		
-		// \Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
@@ -445,8 +442,6 @@ class PostTest extends TestCase {
 		
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
-		// \Brain\Monkey\Functions\expect('get_user_by')->once()->with('id', 1)->andReturn( $user );
-		// \Brain\Monkey\Functions\expect('get_userdata')->once()->with('id', 1)->andReturn( $user );
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
@@ -463,7 +458,6 @@ class PostTest extends TestCase {
 		$wp_post->ID = 1;
 		
 		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
-		// \Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
 
 		// No category.
@@ -471,8 +465,6 @@ class PostTest extends TestCase {
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
-		
-		// \Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
@@ -480,8 +472,6 @@ class PostTest extends TestCase {
 
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
-		// \Brain\Monkey\Functions\expect('get_user_by')->once()->with('id', 1)->andReturn( $user );
-		// \Brain\Monkey\Functions\expect('get_userdata')->once()->with('id', 1)->andReturn( $user );
 
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
