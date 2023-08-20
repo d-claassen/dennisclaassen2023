@@ -412,34 +412,94 @@ class PostTest extends TestCase {
 		self::assertSame( [], $filter_result );
 	}
 
-	public function testRunningTheFilterAddsBlogSchema(): void {
-		\Brain\Monkey\Functions\expect('is_single')->andReturnTrue();
-		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
+	public function testIgnoresMultipleCategories(): void {
+		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
 
 		$wp_post = \Mockery::mock( 'WP_Post' );
 		$wp_post->ID = 1;
 		
-		\Brain\Monkey\Functions\expect('get_post')->andReturn( $wp_post );
-		\Brain\Monkey\Functions\expect('get_permalink')->andReturn( 'https://example.com/page.html' );
+		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
+
+		$category = \Mockery::mock( \WP_Term::class );
+		$category->term_id = 1;
+		$category->name = 'The category name';
+		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
+
+		$other_category = \Mockery::mock( \WP_Term::class );
+		$other_category->term_id = 2;
+		$other_category->name = 'Another category\'s name';
+		$other_category->description = 'A different category with a detailed description abot the completely different content it contains.';
+		
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category, $other_category ] );
+
+		$context = $this->getContext();
+		$context->indexable->schema_article_type = 'BlogPosting';
+		
+		$user = \Mockery::mock( \WP_User::class );
+		$user->user_login = 'info@example.com';
+
+		( $post = new \DC23\Schema\Blog\Post() )->register();
+		
+		$schema_pieces = $post->add_blog_to_schema( [], $context );
+
+		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
+	}
+
+	public function testWithoutCategory(): void {
+		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
+
+		$wp_post = \Mockery::mock( 'WP_Post' );
+		$wp_post->ID = 1;
+		
+		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
+
+		// No category.
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [] );
+
+		$context = $this->getContext();
+		$context->indexable->schema_article_type = 'BlogPosting';
+
+		$user = \Mockery::mock( \WP_User::class );
+		$user->user_login = 'info@example.com';
+
+		( $post = new \DC23\Schema\Blog\Post() )->register();
+		
+		$schema_pieces = $post->add_blog_to_schema( [], $context );
+
+		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
+	}
+
+	
+	public function testRunningTheFilterAddsBlogSchema(): void {
+		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
+		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
+
+		$wp_post = \Mockery::mock( 'WP_Post' );
+		$wp_post->ID = 1;
+		
+		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
+		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
 		$category = \Mockery::mock( \WP_Term::class );
 		$category->term_id = 1;
 		$category->name = 'The category name';
 		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
 		
-		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->andReturn( [ $category ] );
+		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category ] );
 		
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 		
-		\Brain\Monkey\Functions\expect('get_bloginfo')->with('language')->andReturn('en-US');
+		\Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 		$context->canonical = 'https://example.com/';
 
-		$this->options_helper->expects('get')->with('company_or_person', false)->andReturns('person');
-		$this->options_helper->expects('get')->with('company_or_person_user_id', false)->andReturns(1);
+		$this->options_helper->expects('get')->once()->with('company_or_person', false)->andReturns('person');
+		$this->options_helper->expects('get')->once()->with('company_or_person_user_id', false)->andReturns(1);
 		
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';

@@ -24,16 +24,23 @@ final class Post {
 			return $pieces;
 		}
 
-		$canonical = $context->canonical;
-
 		$post = \get_post();
 		assert( $post instanceof \WP_Post );
+
+		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
+		if ( count( $categories ) !== 1 ) {
+			// Only add Blog piece when there's one category:
+			// - Without category, there's no blog to connect with,
+			// - With multiple categories, it'll be a PITA to make sense.
+			return $pieces;
+		}
+
+		$category = reset( $categories );
 
 		$id      = \get_permalink( $post->ID ) . '#article';
 		$post_id = [ '@id' => $id ];
 
-		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
-		$category   = reset( $categories );
+		$canonical = $context->canonical;
 
 		$blog = new Pregenerated_Piece(
 			[
