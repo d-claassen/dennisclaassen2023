@@ -432,13 +432,9 @@ class PostTest extends TestCase {
 		$other_category->description = 'A different category with a detailed description abot the completely different content it contains.';
 		
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category, $other_category ] );
-		
-		// \Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
-		// \Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
-		// $context->canonical = 'https://example.com/';
 		
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
@@ -459,16 +455,11 @@ class PostTest extends TestCase {
 		
 		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
 
-
 		// No category.
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [] );
-		
-		// \Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
-		// \Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
-		// $context->canonical = 'https://example.com/';
 
 		$user = \Mockery::mock( \WP_User::class );
 		$user->user_login = 'info@example.com';
