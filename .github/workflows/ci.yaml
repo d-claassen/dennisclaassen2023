@@ -70,7 +70,10 @@ jobs:
         
       - name: 'Test PHP units'
         run: 'composer test -- --coverage-text --testdox' # --path-coverage'
-        
+
+      - name: 'PHP test quality'
+        run: 'php vendor/bin/infection --min-covered-msi=100  --show-mutations'
+
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
       
