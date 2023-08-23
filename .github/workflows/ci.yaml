@@ -6,9 +6,6 @@ on:
       - main
   pull_request: null
 
-permissions:
-  contents: write
-
 # Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
   # The concurrency group contains the workflow name and the branch name.
@@ -23,8 +20,6 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
         
       - name: 'Setup Node and node_modules cache'
         uses: actions/setup-node@v3
@@ -36,18 +31,6 @@ jobs:
         with:
           php-version: '8.2'
           coverage: xdebug
-
-      - name: install infection
-        run: |
-          composer config --no-plugins allow-plugins.infection/extension-installer true
-          composer require --dev infection/infection
-
-      - name: push
-        run: |
-          git config --global user.name 'Dennis Claassen'
-          git config --global user.email 'd-claassen@users.noreply.github.com'
-          git commit -am "install infection"
-          git push origin HEAD:install-infection
         
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
