@@ -7,6 +7,7 @@
 	bootstrap="vendor/autoload.php"
 	colors="true"
 	resolveDependencies="true"
+        executionOrder="default"
 >
 	<!-- executionOrder="random" -->
 	<php>
