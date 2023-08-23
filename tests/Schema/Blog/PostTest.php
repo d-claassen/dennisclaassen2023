@@ -73,7 +73,8 @@ class PostTest extends TestCase {
 		
 		// Return actual model instead of prototype.
 		return $context->of( [] );
-		
+
+		/*
 		$context = new Meta_Tags_Context(
 			new \Yoast\WP\SEO\Helpers\Options_Helper(),
 			new \Yoast\WP\SEO\Helpers\Url_Helper(),
@@ -360,6 +361,7 @@ class PostTest extends TestCase {
 		$the_context = $context->of( [] );
 
 		return $the_context;
+		*/
 	}
 
 	public function tearDown(): void {
