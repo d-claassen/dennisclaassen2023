@@ -17,12 +17,14 @@
         "yoast/yoastcs": "^2.0",
         "phpunit/phpunit": "^10.2",
         "brain/monkey": "^2.6",
-        "yoast/wordpress-seo": "^20.12"
+        "yoast/wordpress-seo": "^20.12",
+        "infection/infection": "^0.27.0"
     },
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "composer/installers": true
+            "composer/installers": true,
+            "infection/extension-installer": true
         }
     },
     "scripts": {
