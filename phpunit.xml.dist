@@ -7,8 +7,8 @@
 	bootstrap="vendor/autoload.php"
 	colors="true"
 	resolveDependencies="true"
+	executionOrder="random"
 >
-	<!-- executionOrder="random" -->
 	<php>
 		<ini name="display_errors" value="1" />
 		<ini name="error_reporting" value="-1" />
