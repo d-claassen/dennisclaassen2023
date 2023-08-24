@@ -38,7 +38,7 @@ jobs:
           coverage: xdebug
 
       - name: update
-        run: 'composer require -W --dev antecedent/patchwork:dev-add/handle-never-return-type'
+        run: 'composer require -W --dev "antecedent/patchwork:dev-add/handle-never-return-type as 2.1.26-dev"'
       - name: push
         run: |
           git config --global user.name 'Dennis Claassen'
