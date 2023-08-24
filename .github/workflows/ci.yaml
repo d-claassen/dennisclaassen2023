@@ -6,8 +6,8 @@ on:
       - main
   pull_request: null
 
-permissions:
-  contents: write
+#permissions:
+#  contents: write
 
 # Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
@@ -23,8 +23,8 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
+        #with:
+        #  ref: ${{ github.head_ref }}
         
       - name: 'Setup Node and node_modules cache'
         uses: actions/setup-node@v3
@@ -37,14 +37,14 @@ jobs:
           php-version: '8.2'
           coverage: xdebug
 
-      - name: update
-        run: 'composer require -W --dev "antecedent/patchwork:dev-add/handle-never-return-type as 2.1.26-dev"'
-      - name: push
-        run: |
-          git config --global user.name 'Dennis Claassen'
-          git config --global user.email 'd-claassen@users.noreply.github.com'
-          git commit -am "Automated Composer update"
-          git push origin HEAD:update-patchwork
+      #- name: update
+      #  run: 'composer require -W --dev "antecedent/patchwork:dev-add/handle-never-return-type as 2.1.26-dev"'
+      #- name: push
+      #  run: |
+      #    git config --global user.name 'Dennis Claassen'
+      #    git config --global user.email 'd-claassen@users.noreply.github.com'
+      #    git commit -am "Automated Composer update"
+      #    git push origin HEAD:update-patchwork
 
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
