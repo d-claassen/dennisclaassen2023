@@ -370,9 +370,10 @@ class PostTest extends TestCase {
 	}
 
 	public function testRegistrationAddsFilter(): void {
-		( new \DC23\Schema\Blog\Post() )->register();
+		$post = new \DC23\Schema\Blog\Post();
+		$post->register();
 
-		self::assertTrue( has_filter( 'wpseo_schema_graph_pieces' ) );
+		self::assertSame( 11, has_filter( 'wpseo_schema_graph_pieces', [ $post, 'add_blog_to_schema' ] ) );
 	}
 
 	public function testRunningTheFilterRequiredSinglePage(): void {
