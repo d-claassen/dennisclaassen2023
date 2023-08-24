@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c259f3270afb2cb5245eef820e43ff2",
+    "content-hash": "a540e116a66e01e645cc6181adc1a46f",
     "packages": [],
     "packages-dev": [
         {
             "name": "antecedent/patchwork",
-            "version": "2.1.25",
+            "version": "dev-add/handle-never-return-type",
             "source": {
                 "type": "git",
                 "url": "https://github.com/antecedent/patchwork.git",
-                "reference": "17314e042d45e0dacb0a494c2d1ef50e7621136a"
+                "reference": "6577db931597283af99325c7af79ddd8bdcd96e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/17314e042d45e0dacb0a494c2d1ef50e7621136a",
-                "reference": "17314e042d45e0dacb0a494c2d1ef50e7621136a",
+                "url": "https://api.github.com/repos/antecedent/patchwork/zipball/6577db931597283af99325c7af79ddd8bdcd96e4",
+                "reference": "6577db931597283af99325c7af79ddd8bdcd96e4",
                 "shasum": ""
             },
             "require": {
@@ -51,9 +51,9 @@
             ],
             "support": {
                 "issues": "https://github.com/antecedent/patchwork/issues",
-                "source": "https://github.com/antecedent/patchwork/tree/2.1.25"
+                "source": "https://github.com/antecedent/patchwork/tree/add/handle-never-return-type"
             },
-            "time": "2023-02-19T12:51:24+00:00"
+            "time": "2023-08-16T15:30:50+00:00"
         },
         {
             "name": "brain/monkey",
@@ -4666,9 +4666,18 @@
             "time": "2023-03-09T10:10:51+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "antecedent/patchwork",
+            "version": "dev-add/handle-never-return-type",
+            "alias": "2.1.26-dev",
+            "alias_normalized": "2.1.26.0-dev"
+        }
+    ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "antecedent/patchwork": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
