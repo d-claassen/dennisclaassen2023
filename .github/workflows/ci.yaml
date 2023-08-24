@@ -72,7 +72,7 @@ jobs:
         run: 'composer test -- --coverage-text --testdox' # --path-coverage'
 
       - name: 'PHP test quality'
-        run: 'php vendor/bin/infection --min-covered-msi=100  --show-mutations'
+        run: 'php vendor/bin/infection --min-covered-msi=100  --show-mutations --debug'
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
