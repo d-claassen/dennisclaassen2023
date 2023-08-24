@@ -9,5 +9,6 @@
     },
     "mutators": {
         "@default": true
-    }
+    },
+    "bootstrap": "./tests/bootstrap.php"
 }
