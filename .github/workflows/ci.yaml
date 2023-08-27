@@ -71,6 +71,12 @@ jobs:
       - name: 'Test PHP units'
         run: 'composer test -- --coverage-text --testdox' # --path-coverage'
 
+      - name: 'Upload Infection log'
+        uses: actions/upload-artifact@v3
+        with:
+          name: infection-log
+          path: infection.log
+
       - name: 'PHP test quality'
         run: 'php vendor/bin/infection --show-mutations --debug' # --test-framework-options="--process-isolation"' # --min-covered-msi=100' # --noop
 
