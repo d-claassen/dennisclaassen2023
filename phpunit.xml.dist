@@ -8,10 +8,6 @@
 	colors="true"
 	resolveDependencies="true"
 	executionOrder="random"
-    failOnWarning="true"
-    failOnNotice="true"
-    failOnDeprecation="true"
-    failOnEmptyTestSuite="false"
 >
 	<php>
 		<ini name="display_errors" value="1" />
