@@ -60,9 +60,7 @@ class PostTest extends TestCase {
 		$this->indexable_helper = \Mockery::spy( Indexable_Helper::class );
 		$this->indexable_repository = \Mockery::spy( Indexable_Repository::class );
 
-		$context = \Mockery::mock(
-			Meta_Tags_Context::class,
-			[
+		$context = new Meta_Tags_Context(
 				$this->options_helper,
 				$url_helper,
 				$image_helper,
@@ -73,9 +71,8 @@ class PostTest extends TestCase {
 				$permalink_helper,
 				$this->indexable_helper,
 				$this->indexable_repository,
-			] 
 		);
-		$context = $context->makePartial();
+		// $context = $context->makePartial();
 		$context->indexable = \Mockery::mock( Indexable::class );
 		$context->indexable->orm = new class extends Yoast_ORM {
 
