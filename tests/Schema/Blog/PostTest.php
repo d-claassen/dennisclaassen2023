@@ -2,7 +2,9 @@
 
 namespace DC23\Tests\Schema\Blog;
 
+use \Brain\Faker\Providers as BrainFaker;
 use Brain\Monkey\Functions;
+use Faker\Generator as FakerGenerator;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
 use Yoast\WP\Lib\ORM as Yoast_ORM;
@@ -19,7 +21,11 @@ use Yoast\WP\SEO\Models\Indexable;
 use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
 class PostTest extends TestCase {
+    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
+    protected FakerGenerator $faker;
+    protected BrainFaker $wpFaker;
+    
 	private Options_Helper&MockInterface $options_helper;
 	private Indexable_Helper&MockInterface $indexable_helper;
 	private Indexable_Repository&MockInterface $indexable_repository;
@@ -27,6 +33,16 @@ class PostTest extends TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
+		
+        $this->faker = \Brain\faker();
+        $this->wpFaker = $this->faker->wp();
+	}
+
+	public function tearDown(): void {
+        \Brain\fakerReset();
+        
+		\Brain\Monkey\tearDown();
+		parent::tearDown();
 	}
 
 	private function getContext(): Meta_Tags_Context {
@@ -364,11 +380,6 @@ class PostTest extends TestCase {
 		*/
 	}
 
-	public function tearDown(): void {
-		\Brain\Monkey\tearDown();
-		parent::tearDown();
-	}
-
 	public function testRegistrationAddsFilter(): void {
 		$post = new \DC23\Schema\Blog\Post();
 		$post->register();
@@ -418,30 +429,29 @@ class PostTest extends TestCase {
 	public function testIgnoresMultipleCategories(): void {
 		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
+		\Brain\Monkey\Functions\expect('get_the_ID')->once()->andReturn('1');
 
-		$wp_post = \Mockery::mock( 'WP_Post' );
-		$wp_post->ID = 1;
+		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
 		
-		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
-
-		$category = \Mockery::mock( \WP_Term::class );
-		$category->term_id = 1;
-		$category->name = 'The category name';
-		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
-
-		$other_category = \Mockery::mock( \WP_Term::class );
-		$other_category->term_id = 2;
-		$other_category->name = 'Another category\'s name';
-		$other_category->description = 'A different category with a detailed description abot the completely different content it contains.';
+		$category = $this->wpFaker->term( [ 
+			'term_id'     => 1,
+			'name'        => 'The category name',
+			'description' => 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.',
+		]);
+		
+		$other_category = $this->wpFaker->term( [ 
+			'term_id'     => 2,
+			'name'        => 'Another category\'s name',
+			'description' => 'A different category with a detailed description abot the completely different content it contains.',
+		] );
 		
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category, $other_category ] );
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 		
-		$user = \Mockery::mock( \WP_User::class );
-		$user->user_login = 'info@example.com';
-
+		$user = $this->wpFaker->user( [ 'ID' => 1, 'user_login' => 'info@example.com'] );
+		
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
@@ -452,43 +462,39 @@ class PostTest extends TestCase {
 	public function testWithoutCategory(): void {
 		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
+		\Brain\Monkey\Functions\expect('get_the_ID')->once()->andReturn('1');
 
-		$wp_post = \Mockery::mock( 'WP_Post' );
-		$wp_post->ID = 1;
+		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
 		
-		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
-
 		// No category.
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [] );
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
 
-		$user = \Mockery::mock( \WP_User::class );
-		$user->user_login = 'info@example.com';
-
+		$user = $this->wpFaker->user( [ 'ID' => 1, 'user_login' => 'info@example.com'] );
+		
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
 		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
 	}
-
 	
 	public function testRunningTheFilterAddsBlogSchema(): void {
 		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
+		\Brain\Monkey\Functions\expect('get_the_ID')->once()->andReturn('1');
 
-		$wp_post = \Mockery::mock( 'WP_Post' );
-		$wp_post->ID = 1;
+		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
 		
-		\Brain\Monkey\Functions\expect('get_post')->once()->andReturn( $wp_post );
 		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 
-		$category = \Mockery::mock( \WP_Term::class );
-		$category->term_id = 1;
-		$category->name = 'The category name';
-		$category->description = 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.';
+		$category = $this->wpFaker->term( [ 
+			'term_id'     => 1,
+			'name'        => 'The category name',
+			'description' => 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.',
+		]);
 		
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category ] );
 		
@@ -504,11 +510,8 @@ class PostTest extends TestCase {
 		$this->options_helper->expects('get')->once()->with('company_or_person', false)->andReturns('person');
 		$this->options_helper->expects('get')->once()->with('company_or_person_user_id', false)->andReturns(1);
 		
-		$user = \Mockery::mock( \WP_User::class );
-		$user->user_login = 'info@example.com';
-		\Brain\Monkey\Functions\expect('get_user_by')->with('id', 1)->andReturn( $user );
-		\Brain\Monkey\Functions\expect('get_userdata')->with('id', 1)->andReturn( $user );
-
+		$user = $this->wpFaker->user( [ 'ID' => 1, 'user_login' => 'info@example.com'] );
+		
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 		
 		$schema_pieces = $post->add_blog_to_schema( [], $context );

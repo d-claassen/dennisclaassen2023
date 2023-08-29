@@ -24,7 +24,7 @@ final class Post {
 			return $pieces;
 		}
 
-		$post = \get_post();
+		$post = \get_post( \get_the_ID() );
 		assert( $post instanceof \WP_Post );
 
 		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
