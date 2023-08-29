@@ -2,7 +2,7 @@
 
 namespace DC23\Tests\Schema\Blog;
 
-use \Brain\Faker\Providers as BrainFaker;
+use Brain\Faker\Providers as BrainFaker;
 use Brain\Monkey\Functions;
 use Faker\Generator as FakerGenerator;
 use Mockery\MockInterface;
