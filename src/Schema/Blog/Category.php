@@ -16,7 +16,7 @@ final class Category {
 		return is_category();
 	}
 
-	private function make_blog_main_entity( $webpage_data, $context) {
+	public function make_blog_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_blog_data() ) {
 			return $webpage_data;
@@ -55,7 +55,7 @@ final class Category {
 		return $posts->get_posts();
 	}
 
-	private function add_blog_to_schema( $pieces, $context) {
+	public function add_blog_to_schema( $pieces, $context) {
 
 		if ( ! $this->should_add_blog_data() ) {
 			return $pieces;
