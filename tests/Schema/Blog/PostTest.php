@@ -21,11 +21,11 @@ use Yoast\WP\SEO\Models\Indexable;
 use Yoast\WP\SEO\Repositories\Indexable_Repository;
 
 class PostTest extends TestCase {
-    use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+	use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
-    protected FakerGenerator $faker;
-    protected BrainFaker $wpFaker;
-    
+	protected FakerGenerator $faker;
+	protected BrainFaker $wpFaker;
+
 	private Options_Helper&MockInterface $options_helper;
 	private Indexable_Helper&MockInterface $indexable_helper;
 	private Indexable_Repository&MockInterface $indexable_repository;
@@ -34,12 +34,12 @@ class PostTest extends TestCase {
 		parent::setUp();
 		\Brain\Monkey\setUp();
 		
-        $this->faker = \Brain\faker();
-        $this->wpFaker = $this->faker->wp();
+		$this->faker = \Brain\faker();
+		$this->wpFaker = $this->faker->wp();
 	}
 
 	public function tearDown(): void {
-        \Brain\fakerReset();
+		\Brain\fakerReset();
         
 		\Brain\Monkey\tearDown();
 		parent::tearDown();
