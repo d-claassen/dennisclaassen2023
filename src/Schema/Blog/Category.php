@@ -7,9 +7,9 @@ final class Category {
 
 	public function register():void {
 
-		\add_filter( 'wpseo_schema_webpage', $this->make_blog_main_entity( ... ), 11, 2 );
+		\add_filter( 'wpseo_schema_webpage', [$this, 'make_blog_main_entity'], 11, 2 );
 
-		\add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema( ... ), 11, 2 );
+		\add_filter( 'wpseo_schema_graph_pieces', [$this, 'add_blog_to_schema'], 11, 2 );
 	}
 
 	private function should_add_blog_data(): bool {
