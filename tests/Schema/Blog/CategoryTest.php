@@ -60,7 +60,7 @@ class CategoryTest extends TestCase {
 	public function testMakesBlogMainEntity(): void {
 		\Brain\Monkey\Functions\when('is_category')->justReturn(true);
 
-		$wp_term = $this->wpFaker->term(['taxonomy' => 'category']);
+		$wp_term = $this->wpFaker->term(['term_id' => 1, 'taxonomy' => 'category']);
 
 		\Brain\Monkey\Functions\expect('get_query_var')
 			->once()
@@ -68,7 +68,7 @@ class CategoryTest extends TestCase {
 			->andReturn($wp_term->term_id);
 
 		$context = new \stdClass();
-		$context->site_url = 'https://www.example.com';
+		$context->site_url = 'https://www.example.com/';
 
 		$category = new Category();
 		$webpage_result = $category->make_blog_main_entity( [], $context );
