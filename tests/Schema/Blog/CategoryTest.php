@@ -60,7 +60,7 @@ class CategoryTest extends TestCase {
 	public function testMakesBlogMainEntity(): void {
 		\Brain\Monkey\Functions\when('is_category')->justReturn(true);
 
-		$wp_term = $this->wpFaker->term();
+		$wp_term = $this->wpFaker->term(['taxonomy' => 'category']);
 
 		\Brain\Monkey\Functions\expect('get_query_var')
 			->once()
