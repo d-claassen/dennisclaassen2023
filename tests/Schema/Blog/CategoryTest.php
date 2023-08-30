@@ -33,4 +33,16 @@ class CategoryTest extends TestCase {
 
 		self::assertSame( [], $webpage_result );
 	}
+
+	public function testOnlyAddsBlogOnCategoryPages(): void {
+		\Brain\Monkey\Functions\when('is_category')->justReturn(false);
+
+		$schema_original = [];
+		$context = null;
+		
+		$category = new Category();
+		$schema_result = $category->add_blog_to_schema( $schema_original, $context );
+
+		self::assertSame( [], $schema_result );
+	}
 }
