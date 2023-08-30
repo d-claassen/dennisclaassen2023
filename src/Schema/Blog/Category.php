@@ -19,11 +19,10 @@ final class Category {
 	public function make_blog_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_blog_data() ) {
-			\var_dump($webpage_data); // phpcs:ignore
 			return $webpage_data;
 		}
 
-		$category = get_category( get_query_var( 'cat' ) );
+		$category = \get_category( \get_query_var( 'cat' ) );
 		assert( $category instanceof \WP_Term );
 
 		$webpage_data['mainEntity'] = [
