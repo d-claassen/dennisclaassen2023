@@ -29,7 +29,7 @@ class CategoryTest extends TestCase {
 		$context = null;
 		
 		$category = new Category();
-		$webpage_result = $category->make_blog_main_entity( $webpage_output, $context );
+		$webpage_result = $category->make_blog_main_entity( $webpage_original, $context );
 
 		self::assertSame( [], $webpage_result );
 	}
