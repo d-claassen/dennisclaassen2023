@@ -56,4 +56,27 @@ class CategoryTest extends TestCase {
 
 		self::assertSame( [], $schema_result );
 	}
+
+	public function testMakesBlogMainEntity(): void {
+		\Brain\Monkey\Functions\when('is_category')->justReturn(true);
+
+		$wp_term = $this->wpFaker->term();
+
+		\Brain\Monkey\Functions\expect('get_query_var')
+			->once()
+			->with('cat')
+			->andReturn($wp_term->term_id);
+
+		$context = new \stdClass();
+		$context->site_url = 'https://www.example.com';
+
+		$category = new Category();
+		$webpage_result = $category->make_blog_main_entity( [], $context );
+
+		self::assertArrayHasKey('mainEntity', $webpage_result);
+		self::assertSame(
+			['@id' => 'https://www.example.com/#/schema/Blog/1'],
+			$webpage_result['mainEntity']
+		);
+	}
 }
