@@ -21,4 +21,16 @@ class CategoryTest extends TestCase {
 		self::assertSame(11, has_filter( 'wpseo_schema_webpage', [ $category, 'make_blog_main_entity' ] ) );
 		self::assertSame(11, has_filter( 'wpseo_schema_graph_pieces', [ $category, 'add_blog_to_schema' ] ) );
 	}
+
+	public function testOnlyChangeWebPageMainEntityOnCategoryPages(): {
+		\Brain\Monkey\Functions\when('is_category')->justReturn(false);
+
+		$webpage_original = [];
+		$context = null;
+		
+		$category = new Category();
+		$webpage_result = $category->make_blog_main_entity( $webpage_output, $context );
+
+		self::assertSame( [], $webpage_result );
+	}
 }
