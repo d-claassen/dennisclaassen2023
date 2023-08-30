@@ -1,16 +1,27 @@
 <?php
 
+use Brain\Faker\Providers as BrainFaker;
+use Faker\Generator as FakerGenerator;
 use DC23\Schema\Blog\Category;
 use PHPUnit\Framework\TestCase;
 
 class CategoryTest extends TestCase {
+	use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+
+	protected FakerGenerator $faker;
+	protected BrainFaker $wpFaker;
 
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
+
+		$this->faker   = \Brain\faker();
+		$this->wpFaker = $this->faker->wp();
 	}
 
 	public function tearDown(): void {
+		\Brain\fakerReset();
+		
 		\Brain\Monkey\tearDown();
 		parent::tearDown();
 	}
