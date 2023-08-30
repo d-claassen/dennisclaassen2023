@@ -22,7 +22,7 @@ class CategoryTest extends TestCase {
 		self::assertSame(11, has_filter( 'wpseo_schema_graph_pieces', [ $category, 'add_blog_to_schema' ] ) );
 	}
 
-	public function testOnlyChangeWebPageMainEntityOnCategoryPages(): {
+	public function testOnlyChangeWebPageMainEntityOnCategoryPages(): void {
 		\Brain\Monkey\Functions\when('is_category')->justReturn(false);
 
 		$webpage_original = [];
