@@ -22,7 +22,7 @@ final class Category {
 			return $webpage_data;
 		}
 
-		$category = \get_category( \get_query_var( 'cat' ) );
+		$category = \get_term( \get_query_var( 'cat' ), 'category' );
 		assert( $category instanceof \WP_Term );
 
 		$webpage_data['mainEntity'] = [
@@ -61,7 +61,7 @@ final class Category {
 			return $pieces;
 		}
 
-		$category = get_category( get_query_var( 'cat' ) );
+		$category = get_term( get_query_var( 'cat' ), 'category' );
 		assert( $category instanceof \WP_Term );
 
 
