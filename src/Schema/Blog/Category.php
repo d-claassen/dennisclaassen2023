@@ -65,7 +65,7 @@ final class Category {
 		assert( $category instanceof \WP_Term );
 
 
-		$canonical = YoastSEO()->meta->for_current_page()->canonical;
+		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
 
 		$post_data = $this->get_category_posts( $category->term_id );
 		$posts     = [];
