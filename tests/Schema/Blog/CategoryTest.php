@@ -79,4 +79,24 @@ class CategoryTest extends TestCase {
 			$webpage_result['mainEntity']
 		);
 	}
+
+	public function testAddsBlogToSchema(): void {
+		\Brain\Monkey\Functions\when('is_category')->justReturn(true);
+
+		$wp_term = $this->wpFaker->term(['term_id' => 1, 'taxonomy' => 'category']);
+
+		\Brain\Monkey\Functions\expect('get_query_var')
+			->once()
+			->with('cat')
+			->andReturn($wp_term->term_id);
+
+		$context = new \stdClass();
+		$context->site_url = 'https://www.example.com/';
+
+		$category = new Category();
+		$schema_result = $category->add_blog_to_schema( [], $context );
+
+		self::assertSame( [], $pieces );
+
+	}
 }
