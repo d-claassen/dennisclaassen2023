@@ -96,6 +96,7 @@ class CategoryTest extends TestCase {
 		$category = new Category();
 		$schema_result = $category->add_blog_to_schema( [], $context );
 
+		// shoudnt actually be empty, just dor debugging now
 		self::assertSame( [], $pieces );
 
 	}
