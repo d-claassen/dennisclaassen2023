@@ -16,6 +16,7 @@
 		<const name="WPSEO_VERSION" value="20.12" />
 		<const name="WPSEO_PATH" value="" />
 		<const name="YOAST_VENDOR_PREFIX_DIRECTORY" value="" />
+<condt name="YOAST_ENVIRONMENT" value="development" />
 	</php>
 
 	<testsuites>
