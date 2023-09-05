@@ -85,7 +85,7 @@ class CategoryTest extends TestCase {
 		\Brain\Monkey\Functions\when('site_url')->justReturn('https://www.example.org/');
 		\Brain\Monkey\Functions\when('is_admin')->justReturn(false);
 		\Brain\Monkey\Functions\when('get_current_blog_id')->justReturn(1);
-		\Brain\Monkey\Functions\when('get_option')->alias(function($key, $default, ...$args){
+		\Brain\Monkey\Functions\when('get_option')->alias(function($key, $default=false){
 			switch($key){
 				default:
 				echo $key;
