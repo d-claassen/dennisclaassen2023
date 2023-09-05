@@ -7,22 +7,22 @@ final class Category {
 
 	public function register():void {
 
-		\add_filter( 'wpseo_schema_webpage', $this->make_blog_main_entity( ... ), 11, 2 );
+		\add_filter( 'wpseo_schema_webpage', [ $this, 'make_blog_main_entity' ], 11, 2 );
 
-		\add_filter( 'wpseo_schema_graph_pieces', $this->add_blog_to_schema( ... ), 11, 2 );
+		\add_filter( 'wpseo_schema_graph_pieces', [ $this, 'add_blog_to_schema' ], 11, 2 );
 	}
 
 	private function should_add_blog_data(): bool {
 		return is_category();
 	}
 
-	private function make_blog_main_entity( $webpage_data, $context) {
+	public function make_blog_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_blog_data() ) {
 			return $webpage_data;
 		}
 
-		$category = get_category( get_query_var( 'cat' ) );
+		$category = \get_term( \get_query_var( 'cat' ), 'category' );
 		assert( $category instanceof \WP_Term );
 
 		$webpage_data['mainEntity'] = [
@@ -55,17 +55,17 @@ final class Category {
 		return $posts->get_posts();
 	}
 
-	private function add_blog_to_schema( $pieces, $context) {
+	public function add_blog_to_schema( $pieces, $context) {
 
 		if ( ! $this->should_add_blog_data() ) {
 			return $pieces;
 		}
 
-		$category = get_category( get_query_var( 'cat' ) );
+		$category = get_term( get_query_var( 'cat' ), 'category' );
 		assert( $category instanceof \WP_Term );
 
 
-		$canonical = YoastSEO()->meta->for_current_page()->canonical;
+		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
 
 		$post_data = $this->get_category_posts( $category->term_id );
 		$posts     = [];

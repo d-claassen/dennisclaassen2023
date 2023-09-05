@@ -4,7 +4,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
 	backupGlobals="false"
-	bootstrap="vendor/autoload.php"
+	bootstrap="tests/bootstrap.php"
 	colors="true"
 	resolveDependencies="true"
 	executionOrder="random"
@@ -14,6 +14,9 @@
 		<ini name="error_reporting" value="-1" />
 
 		<const name="WPSEO_VERSION" value="20.12" />
+		<const name="WPSEO_PATH" value="" />
+		<const name="YOAST_VENDOR_PREFIX_DIRECTORY" value="" />
+<const name="YOAST_ENVIRONMENT" value="development" />
 	</php>
 
 	<testsuites>
