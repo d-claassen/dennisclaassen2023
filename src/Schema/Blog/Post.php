@@ -20,7 +20,9 @@ final class Post {
 			return $pieces;
 		}
 
-		if ( $context->indexable->schema_article_type !== 'BlogPosting' ) {
+		$schema_article_type = (array) $context->schema_article_type;
+
+		if ( ! \in_array( 'BlogPosting', $schema_article_type, true )) {
 			return $pieces;
 		}
 
