@@ -44,17 +44,20 @@ final class Post {
 
 		$canonical = $context->canonical;
 
+		$category_url = \get_term_link( $category->term_id, 'category' );
+
 		$blog = new Pregenerated_Piece(
 			[
-				'@id'         => $context->site_url . '#/schema/Blog/' . $category->term_id,
-				'@type'       => 'Blog',
-				'name'        => $category->name,
-				'description' => \wp_trim_excerpt( $category->description ),
-				'publisher'   => $context->site_represents_reference,
-				'inLanguage'  => [
+				'@id'              => $context->site_url . '#/schema/Blog/' . $category->term_id,
+				'@type'            => 'Blog',
+				'mainEntityOfPage' => $category_url,
+				'name'             => $category->name,
+				'description'      => \wp_trim_excerpt( $category->description ),
+				'publisher'        => $context->site_represents_reference,
+				'inLanguage'       => [
 					'@id' => $canonical . '#/language/' . get_bloginfo( 'language' ),
 				],
-				'blogPost'    => [ $post_id ],
+				'blogPost'         => [ $post_id ],
 			]
 		);
 

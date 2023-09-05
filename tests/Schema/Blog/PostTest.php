@@ -196,6 +196,7 @@ class PostTest extends TestCase {
 		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
 		
 		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
+		\Brain\Monkey\Functions\expect('get_term_link')->once()->andReturn( 'https://example.com/category.html' );
 
 		$category = $this->wpFaker->term( [ 
 			'term_id'     => 1,
@@ -240,6 +241,7 @@ class PostTest extends TestCase {
 		);
 		self::assertSame( 'https://example.com/#/schema/Blog/1', $schema['@id'], '@id uses: domain, term id, format');
 		self::assertSame( 'Blog', $schema['@type']);
+		self::assertSame('https://example.com/category.html', $schema['mainEntityOfPage']);
 		self::assertSame('The category name', $schema['name']);
 		self::assertThat(
 			$schema['description'],
