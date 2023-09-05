@@ -83,6 +83,7 @@ class CategoryTest extends TestCase {
 	public function testAddsBlogToSchema(): void {
 		\Brain\Monkey\Functions\when('is_category')->justReturn(true);
 		\Brain\Monkey\Functions\when('site_url')->justReturn('https://www.example.org/');
+		\Brain\Monkey\Functions\when('is_admin')->justReturn(false);
 
 		$wp_term = $this->wpFaker->term(['term_id' => 1, 'taxonomy' => 'category']);
 
