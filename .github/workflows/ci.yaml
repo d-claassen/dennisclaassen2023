@@ -79,4 +79,9 @@ jobs:
 
       - name: 'Zip it'
         run: 'npm run-script plugin-zip -- --help'
-      
+
+      - name: 'Archive theme.zip'
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'theme-zip'
+          path: 'dennisclaassen2023.zip'
