@@ -11,6 +11,11 @@
 	"repository": "",
 	"bugs": "",
 	"main": "build/index.js",
+	"files": [
+		"readme.*",
+		"build/*",
+		"src/*"
+	],
 	"devDependencies": {
 		"@wordpress/scripts": "^26.10.0"
 	},
