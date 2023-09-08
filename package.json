@@ -13,7 +13,9 @@
 	"files": [
 		"readme.*",
 		"build/**",
-		"src/**"
+		"parts/**",
+		"src/**",
+		"templates/**"
 	],
 	"main": "build/index.js",
 	"devDependencies": {
