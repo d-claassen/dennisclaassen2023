@@ -12,6 +12,9 @@
 	"bugs": "",
 	"files": [
 		"readme.*",
+		"functions.php",
+		"style.css",
+		"theme.json",
 		"build/**",
 		"parts/**",
 		"src/**",
