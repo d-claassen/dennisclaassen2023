@@ -73,4 +73,7 @@ jobs:
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
+
+      - name: 'Zip it'
+        run: 'npm run-script plugin-zip'
       
