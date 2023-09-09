@@ -3,11 +3,11 @@ const wpJestConfig = require( '@wordpress/scripts/config/jest-unit.config.js' );
 const config = {
 	...wpJestConfig,
 	collectCoverageFrom: [
-		'src/**',
+		'src/**'
 	],
 	coveragePathIgnorePatterns: [
 		'(/specs/)',
-		'(\.spec\.[jt]s?$)',
+		'(\.spec\.[jt]s?$)'
 	],
 };
 
