@@ -20,9 +20,8 @@
 	</php>
 
 	<testsuites>
-		<testsuite name="Project Test Suite">
-			<directory>tests</directory>
-			<directory>src/*/Tests</directory>
+		<testsuite name="Mockery Tests">
+			<directory>tests/mockery</directory>
 		</testsuite>
 	</testsuites>
 
