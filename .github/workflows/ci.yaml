@@ -76,7 +76,11 @@ jobs:
         
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
-        
+
+      - name: 'Install WordPress'
+        shell: bash
+        run: '.github/workflows/install-wp-tests.sh wordpress_test root "" 127.0.0.1:3306 latest'
+
       - name: 'Test PHP units'
         run: 'composer test -- --coverage-text --testdox --testsuite="Mockery Tests"'
 
