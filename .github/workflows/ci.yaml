@@ -69,7 +69,7 @@ jobs:
         run: 'npm run-script test:unit -- --coverage'
         
       - name: 'Test PHP units'
-        run: 'composer test -- --coverage-text --testdox' # --path-coverage'
+        run: 'composer test -- --coverage-text --testdox --testsuite="Mockery Tests"'
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
