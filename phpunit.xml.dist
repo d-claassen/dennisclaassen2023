@@ -23,6 +23,9 @@
 		<testsuite name="Mockery Tests">
 			<directory>tests/mockery</directory>
 		</testsuite>
+		<testsuite name="WordPress context">
+			<directory>tests/wp-unit</directory>
+		</testsuite>
 	</testsuites>
 
 	<source>
