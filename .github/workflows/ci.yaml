@@ -86,6 +86,9 @@ jobs:
 
       - name: 'Test PHP units'
         run: 'composer test -- --coverage-text --testdox --testsuite="Mockery Tests"'
+        
+      - name: 'Test PHP WP units'
+        run: 'composer test -- --coverage-text --testdox --testsuite="WordPress context"'
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
