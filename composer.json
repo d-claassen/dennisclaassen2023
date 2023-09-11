@@ -13,11 +13,6 @@
             "DC23\\": "src/"
         }
     },
-    "autoload-dev": {
-      "files": [
-	"/tmp/wordpress-tests-lib/includes/bootstrap.php"
-      ]
-    },
     "require-dev": {
         "yoast/yoastcs": "^2.0",
         "phpunit/phpunit": "^10.2",
