@@ -50,8 +50,9 @@ jobs:
       - name: 'Composer install'
         run: 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
 
-      - name: 'Composer install pt 2'
-        run: 'composer require yoast/wp-test-utils --dev'
+# not yet ready for phpunit 10
+#      - name: 'Composer install pt 2'
+#        run: 'composer require yoast/wp-test-utils --dev'
         
       - name: 'Check engines'
         run: 'npm run-script check-engines'
