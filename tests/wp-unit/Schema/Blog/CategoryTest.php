@@ -7,6 +7,9 @@ class CategoryTest extends \WP_UnitTestCase {
 	public function expectDeprecated(){}
 	
 	public function testIt(): void {
+
+		do_action( 'wpseo_head' );
+		
 		$this->assertSame( 'en-US', get_bloginfo( 'language' ) );
 	}
 }
