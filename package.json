@@ -18,7 +18,8 @@
 		"build/**",
 		"parts/**",
 		"src/**",
-		"templates/**"
+		"templates/**",
+		"vendor/**"
 	],
 	"main": "build/index.js",
 	"devDependencies": {
