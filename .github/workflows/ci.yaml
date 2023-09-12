@@ -99,6 +99,9 @@ jobs:
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
 
+      - name: 'Ditch dev dependencies'
+        run: 'composer install --no-dev --prefer-dist --no-progress --no-suggest --optimize-autoloader'
+
       - name: 'build the theme'
         run: 'npm run-script build'
 
