@@ -7,8 +7,22 @@ class CategoryTest extends \WP_UnitTestCase {
 	public function expectDeprecated(){}
 	
 	public function testIt(): void {
+		$post = self::factory()->post->create(
+			array( 
+				'post_content' => $content,
+			)
+		);
 
-		do_action( 'wpseo_head' );
+		$post_filled = new \WP_Query( 
+			array(
+				'p' => $post,
+			)
+		);
+		while ( $post_filled->have_posts() ) {
+			$post_filled->the_post();
+
+			do_action( 'wpseo_head' );
+		}
 		
 		$this->assertSame( 'en-US', get_bloginfo( 'language' ) );
 	}
