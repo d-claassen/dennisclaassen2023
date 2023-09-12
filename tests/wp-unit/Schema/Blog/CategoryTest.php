@@ -9,7 +9,7 @@ class CategoryTest extends \WP_UnitTestCase {
 	public function testIt(): void {
 		$post = self::factory()->post->create(
 			array( 
-				'post_content' => $content,
+				'post_content' => 'Hello world!',
 			)
 		);
 
