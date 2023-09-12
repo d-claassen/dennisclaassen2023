@@ -7,6 +7,6 @@ class CategoryTest extends \WP_UnitTestCase {
 	public function expectDeprecated(){}
 	
 	public function testIt(): void {
-		$this->assertTrue( false );
+		$this->assertSame( 'en-US', get_bloginfo( 'language' ) );
 	}
 }
