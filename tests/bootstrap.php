@@ -3,7 +3,8 @@
 use function \Yoast\WPTestUtils\WPIntegration\get_path_to_wp_test_dir;
 
 // require_once __DIR__ . '/../vendor/autoload.php';
-// require_once __DIR__ . '/../vendor/yoast/wordpress-seo/src/functions.php';
+require_once __DIR__ . '/../vendor/yoast/wp-test-utils/src/WPIntegration/bootstrap-functions.php';
+
 /* *****[ Wire in the integration ]***** */
 
 $_tests_dir = get_path_to_wp_test_dir();
