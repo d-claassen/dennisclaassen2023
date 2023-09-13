@@ -52,7 +52,7 @@ jobs:
 
 # not yet ready for phpunit 10
       - name: 'Composer install pt 2'
-        run: 'composer require yoast/wp-test-utils --dev --with-dependencies'
+        run: 'composer require yoast/wp-test-utils --dev --with-all-dependencies'
 #      - name: 'Composer install pt 2'
 #        run: 'composer require yoast/phpunit-polyfills --dev'
         
