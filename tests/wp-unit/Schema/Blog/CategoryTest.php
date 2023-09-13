@@ -19,7 +19,7 @@ class CategoryTest extends \WP_UnitTestCase {
 			)
 		);
 
-		$this->expectOutput( '"@type": "Blog"' );
+		$this->expectOutputRegex( '/"@type": "Blog"/' );
 
 		
 		while ( $post_filled->have_posts() ) {
