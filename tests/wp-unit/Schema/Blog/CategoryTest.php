@@ -18,6 +18,10 @@ class CategoryTest extends \WP_UnitTestCase {
 				'p' => $post,
 			)
 		);
+
+		$this->expectOutput( '"@type": "Blog"' );
+
+		
 		while ( $post_filled->have_posts() ) {
 			$post_filled->the_post();
 
