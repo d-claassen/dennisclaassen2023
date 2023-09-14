@@ -7,19 +7,21 @@ class CategoryTest extends \WP_UnitTestCase {
 	public function expectDeprecated(){}
 	
 	public function testIt(): void {
+		global $wp_query;
+		
 		$post = self::factory()->post->create(
 			array( 
 				'post_content' => 'Hello world!',
 			)
 		);
 
-		$post_filled = new \WP_Query( 
+		$wp_query = new \WP_Query( 
 			array(
 				'p' => $post,
 			)
 		);
 
-		var_dump( $post_filled );
+		var_dump( $wp_query->is_singular() );
 
 		$this->expectOutputRegex( '/"@type": "Blog"/' );
 
