@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use function \Yoast\WPTestUtils\WPIntegration\get_path_to_wp_test_dir;
+use function \Yoast\WPTestUtils\WPIntegration\bootstrap_it;
 
 // require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../vendor/yoast/wp-test-utils/src/WPIntegration/bootstrap-functions.php';
@@ -18,6 +19,8 @@ function load_plugins() {
 
 // Add plugin to active mu-plugins - to make sure it gets loaded.
 tests_add_filter( 'muplugins_loaded', load_plugins(...) );
+
+bootstrap_it();
 
 register_theme_directory( __DIR__ .'/../../' );
 switch_theme( 'dennisclaassen2023' );
