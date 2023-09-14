@@ -19,6 +19,8 @@ class CategoryTest extends \WP_UnitTestCase {
 			)
 		);
 
+		var_dump( $post_filled );
+
 		$this->expectOutputRegex( '/"@type": "Blog"/' );
 
 		
