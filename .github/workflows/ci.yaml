@@ -91,7 +91,7 @@ jobs:
         run: '.github/workflows/install-wp-tests.sh wordpress_test root "" 127.0.0.1:3306 latest'
 
       - name: 'Test PHP units'
-        run: 'composer test -- -c phpunit-mockery.xml.dist--coverage-text --testdox --testsuite="Mockery Tests"'
+        run: 'composer test -- -c phpunit-mockery.xml.dist --coverage-text --testdox --testsuite="Mockery Tests"'
         
       - name: 'Test PHP WP units'
         run: 'composer test -- --coverage-text --testsuite="WordPress context" --bootstrap=tests/bootstrap.php' # --display-errors --display-warnings'
