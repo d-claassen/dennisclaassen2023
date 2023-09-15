@@ -21,7 +21,7 @@ class CategoryTest extends \WP_UnitTestCase {
 			)
 		);
 
-		var_dump( $wp_query->is_singular() );
+		$this->assertTrue( $wp_query->is_singular(), 'Query should be singular context' );
 
 		$this->expectOutputRegex( '/"@type": "Blog"/' );
 
