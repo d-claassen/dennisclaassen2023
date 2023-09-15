@@ -26,8 +26,8 @@ class CategoryTest extends \WP_UnitTestCase {
 		$this->expectOutputRegex( '/"@type": "Blog"/' );
 
 		
-		while ( $post_filled->have_posts() ) {
-			$post_filled->the_post();
+		while ( $wp_query->have_posts() ) {
+			$wp_query->the_post();
 
 			do_action( 'wpseo_head' );
 		}
