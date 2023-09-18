@@ -14,6 +14,10 @@ class CategoryTest extends \WP_UnitTestCase {
 				'post_content' => 'Hello world!',
 			)
 		);
+		$user = self::factory()->user->create();
+
+		\YoastSEO()->helpers->options->set( 'company_or_person', 'person' );
+		\YoastSEO()->helpers->options->set( ‎'company_or_person_user_id', $user->id );
 
 		$wp_query = new \WP_Query( 
 			array(
