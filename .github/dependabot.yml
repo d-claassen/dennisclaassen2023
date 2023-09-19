@@ -14,7 +14,3 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    allow:
-      # Allow all (direct & indirect) dependencies to be updated.
-      - dependency-name: "*"
-        dependency-type: "all"
