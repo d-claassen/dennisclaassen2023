@@ -28,6 +28,7 @@
 	<coverage>
 		<include>
 			<directory suffix=".php">src</directory>
+                        <directory sufgix=".php">vendor/yoast/wordpress-seo</directory>
 		</include>
 	</coverage>
 </phpunit>
