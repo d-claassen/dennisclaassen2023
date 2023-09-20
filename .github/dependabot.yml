@@ -14,4 +14,13 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    versioning-strategy: "increase"
+    groups:
+      unit-tests:
+        patterns:
+          - "phpunit/*"
+          - "brain/*"
+          - "antecedent/*"
+      code-style:
+        patterns:
+          - "yoast/yoastcs"
+          
