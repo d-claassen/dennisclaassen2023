@@ -48,7 +48,7 @@ jobs:
       - name: 'Push the tag'
         uses: actions-ecosystem/action-push-tag@v1
         with:
-          tag: ${{ milestone.title }}
+          tag: ${{ github.event.milestone.title }}
 
       - name: Test
         run: ls -l
