@@ -45,13 +45,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FILENAME: Changelog
 
+      - name: Test 1
+        run: ls -la
+
       - name: 'Push the tag'
         uses: actions-ecosystem/action-push-tag@v1
         with:
           tag: ${{ github.event.milestone.title }}
 
-      - name: Test
-        run: ls -l
+      - name: Test 2
+        run: ls -la
 
       - name: 'Archive theme.zip'
         uses: actions/upload-artifact@v3
