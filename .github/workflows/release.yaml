@@ -72,6 +72,7 @@ jobs:
       - name: 'Release'
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: ${{ github.event.milestone.title }}
           body_path: 'release_file.md'
           files: 'dennisclaassen2023.zip'
           prerelease: true
