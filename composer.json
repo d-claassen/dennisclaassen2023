@@ -17,7 +17,7 @@
         "yoast/yoastcs": "^2.0",
         "phpunit/phpunit": "^10.3.5",
         "brain/monkey": "^2.6",
-        "yoast/wordpress-seo": "^20.12",
+        "yoast/wordpress-seo": "^21.2",
         "antecedent/patchwork": "dev-add/handle-never-return-type as 2.1.26-dev",
         "brain/faker": "dev-master"
     },
