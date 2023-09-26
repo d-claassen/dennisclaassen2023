@@ -57,6 +57,6 @@ jobs:
       - name: 'Release'
         uses: softprops/action-gh-release@v1
         with:
-          body_path: 'Changelog.md'
+          body_path: 'release_file.md'
           files: 'dennisclaassen2023.zip'
           prerelease: true
