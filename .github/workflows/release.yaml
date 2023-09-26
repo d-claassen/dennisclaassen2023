@@ -48,10 +48,17 @@ jobs:
       - name: Test 1
         run: ls -la
 
-      - name: 'Push the tag'
-        uses: actions-ecosystem/action-push-tag@v1
-        with:
-          tag: ${{ github.event.milestone.title }}
+      - name: 'Push the tag (directly)'
+        run: |
+          git config --global user.name 'Dennis Claassen'
+          git config --global user.email 'd-claassen@users.noreply.github.com'
+          git tag ${{ github.event.milestone.title }}
+          git push origin HEAD:${{ github.event.milestone.title }}
+
+      # - name: 'Push the tag'
+      #   uses: actions-ecosystem/action-push-tag@v1
+      #   with:
+      #     tag: ${{ github.event.milestone.title }}
 
       - name: Test 2
         run: ls -la
