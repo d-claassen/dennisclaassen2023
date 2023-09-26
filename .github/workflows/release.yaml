@@ -52,8 +52,10 @@ jobs:
         run: |
           git config --global user.name 'Dennis Claassen'
           git config --global user.email 'd-claassen@users.noreply.github.com'
+          npm version "${{ github.event.milestone.title }}"
+          git commit -am 'Release version ${{ github.event.milestone.title }}'
           git tag ${{ github.event.milestone.title }}
-          git push origin ${{ github.event.milestone.title }}
+          git push --follow-tags
 
       # - name: 'Push the tag'
       #   uses: actions-ecosystem/action-push-tag@v1
