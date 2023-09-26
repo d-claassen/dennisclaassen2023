@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "yoast/yoastcs": "^2.0",
-        "phpunit/phpunit": "^10.2",
+        "phpunit/phpunit": "^10.3.5",
         "brain/monkey": "^2.6",
         "yoast/wordpress-seo": "^20.12",
         "antecedent/patchwork": "dev-add/handle-never-return-type as 2.1.26-dev",
