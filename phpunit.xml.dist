@@ -8,6 +8,7 @@
 	colors="true"
 	resolveDependencies="true"
 	executionOrder="random"
+	defaultTestSuite="Mockery Tests"
 >
 	<php>
 		<ini name="display_errors" value="1" />
