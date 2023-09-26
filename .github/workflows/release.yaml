@@ -44,7 +44,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FILENAME: Changelog
-          
+
+      - name: 'Push the tag'
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ milestone.title }}
+
       - name: Test
         run: ls -l
 
