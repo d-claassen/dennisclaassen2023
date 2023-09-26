@@ -53,7 +53,7 @@ jobs:
           git config --global user.name 'Dennis Claassen'
           git config --global user.email 'd-claassen@users.noreply.github.com'
           git tag ${{ github.event.milestone.title }}
-          git push origin HEAD:${{ github.event.milestone.title }}
+          git push origin ${{ github.event.milestone.title }}
 
       # - name: 'Push the tag'
       #   uses: actions-ecosystem/action-push-tag@v1
