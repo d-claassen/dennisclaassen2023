@@ -46,7 +46,7 @@ jobs:
           FILENAME: Changelog
           
       - name: Test
-        run: cat Changelog.md
+        run: ls -l
 
       - name: 'Archive theme.zip'
         uses: actions/upload-artifact@v3
