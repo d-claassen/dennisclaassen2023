@@ -55,6 +55,7 @@ jobs:
           npm version "${{ github.event.milestone.title }}"
           git add package.json
           sed -i 's/^Version: [0-9].*$/Version: ${{ github.event.milestone.title }}/' style.css
+          git add style.css
           git commit -m 'Release version ${{ github.event.milestone.title }}'
           git tag ${{ github.event.milestone.title }}
           git push --follow-tags
