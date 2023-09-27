@@ -52,7 +52,7 @@ jobs:
         run: |
           git config --global user.name 'Dennis Claassen'
           git config --global user.email 'd-claassen@users.noreply.github.com'
-          npm version "${{ github.event.milestone.title }}"
+          npm --no-git-tag-version version "${{ github.event.milestone.title }}"
           git add package.json
           sed -i 's/^Version: [0-9].*$/Version: ${{ github.event.milestone.title }}/' style.css
           git add style.css
