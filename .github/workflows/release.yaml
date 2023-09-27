@@ -89,7 +89,7 @@ jobs:
           version: ${{ github.event.milestone.title }}
 
       - name: 'Create next milestone'
-        uses: sv-tools/create-milestone-action@v1
+        uses: sv-tools/create-milestone-action@v1.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: ${{ steps.next_version.outputs.minor }}
