@@ -88,10 +88,9 @@ jobs:
         with:
           version: ${{ github.event.milestone.title }}
 
-      - name: 'Create next milestone'
-        uses: sv-tools/create-milestone-action@v1.4.1
+      - name: Create Milestone
+        uses: WyriHaximus/github-action-create-milestone@v1.1.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           title: ${{ steps.next_version.outputs.minor }}
           description: Next Release, semver size might be altered after creation.
         env:
