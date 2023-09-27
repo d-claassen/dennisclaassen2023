@@ -94,3 +94,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: ${{ steps.next_version.outputs.minor }}
           description: Next Release, semver size might be altered after creation.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       
