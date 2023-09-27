@@ -80,7 +80,7 @@ jobs:
           tag_name: ${{ github.event.milestone.title }}
           body_path: 'release_file.md'
           files: 'dennisclaassen2023.zip'
-          prerelease: true
+          prerelease: false
 
       - name: 'Get next milestone version'
         id: next_version
