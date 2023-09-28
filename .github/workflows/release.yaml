@@ -92,7 +92,7 @@ jobs:
         uses: WyriHaximus/github-action-create-milestone@v1.1.0
         with:
           title: ${{ steps.next_version.outputs.minor }}
-          description: 'Next Release. The semver size might be altered after creation.'
+          description: '"Next Release. The semver size might be altered after creation."'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
