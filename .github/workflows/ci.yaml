@@ -6,9 +6,6 @@ on:
       - main
   pull_request: null
 
-permissions:
-  contents: write
-
 # Cancels all previous workflow runs for the same branch that have not yet completed.
 concurrency:
   # The concurrency group contains the workflow name and the branch name.
@@ -32,8 +29,6 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
         
       - name: 'Setup Node and node_modules cache'
         uses: actions/setup-node@v3
@@ -51,14 +46,6 @@ jobs:
         
       - name: 'NPM install'
         run: npm install
-
-      - name: 'Upgrade the lockfile'
-        run: |
-          git config --global user.name 'Dennis Claassen'
-          git config --global user.email 'd-claassen@users.noreply.github.com'
-          git add package.json package-lock.json
-          git commit -m 'Upgrade the lockfile'
-          git push origin HEAD:upgrade-nodejs
         
       - name: 'Composer install'
         run: 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
