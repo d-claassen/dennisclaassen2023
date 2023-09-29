@@ -54,6 +54,7 @@ jobs:
         run: |
           git config --global user.name 'Dennis Claassen'
           git config --global user.email 'd-claassen@users.noreply.github.com'
+          git pull
           git add package.json package-lock.json
           git commit -m 'Upgrade the lockfile'
           git push origin HEAD:upgrade-nodejs
