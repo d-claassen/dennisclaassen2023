@@ -55,7 +55,7 @@ class CategoryTest extends \WP_UnitTestCase {
 
 		$this->assertJson( $schema_output );
 
-		$schema_data = \json_encode( $schema_output, JSON_OBJECT_AS_ARRAY );
+		$schema_data = \json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
 		$this->assertSame(['Article','BlogPosting'], $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
 		$this->assertSame('Blog', $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
