@@ -26,7 +26,7 @@ class PostTest extends \WP_UnitTestCase {
 		);
 
 		\YoastSEO()->helpers->options->set( 'schema-article-type-post', '' );
-		\YoastSEO()->helpers->meta->set_value( 'schema_article_type', '', $post_id );
+		\YoastSEO()->helpers->meta->delete( 'schema_article_type', $post_id );
 
 		$this->go_to( \get_permalink( $post_id ) );
 
