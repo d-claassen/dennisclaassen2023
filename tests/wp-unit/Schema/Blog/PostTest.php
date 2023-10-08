@@ -1,6 +1,6 @@
 <?php
 
-class CategoryTest extends \WP_UnitTestCase {
+class PostTest extends \WP_UnitTestCase {
 
 	private $user_id;
 
