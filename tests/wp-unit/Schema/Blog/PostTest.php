@@ -18,6 +18,27 @@ class PostTest extends \WP_UnitTestCase {
 	// with phpunit 10.
 	public function expectDeprecated(){}
 
+	public function test_default_article_unchanged_no_blog(): void {
+		$post_id = self::factory()->post->create(
+			array(
+				'post_content' => 'Hello world!',
+			)
+		);
+
+		\YoastSEO()->helpers->options->set( 'schema-article-type-post', '' );
+		\YoastSEO()->helpers->meta->set_value( 'schema_article_type', '', $post_id );
+
+		$this->go_to( \get_permalink( $post_id ) );
+
+		$schema_output = $this->get_schema_output();
+
+		$this->assertJson( $schema_output );
+
+		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
+
+		$this->assertSame(['Article'], $schema_data['@graph'][0]['@type'],'First graph piece should be Article');
+	}
+
 	public function test_default_article_type_adds_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
