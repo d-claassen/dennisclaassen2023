@@ -21,6 +21,7 @@ class PostTest extends \WP_UnitTestCase {
 	public function test_default_article_unchanged_no_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
+				'title'        => 'unchanged',
 				'post_content' => 'Hello world!',
 			)
 		);
@@ -42,6 +43,7 @@ class PostTest extends \WP_UnitTestCase {
 	public function test_default_article_type_adds_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
+				'title'        => 'default setting',
 				'post_content' => 'Hello world!',
 			)
 		);
@@ -64,6 +66,7 @@ class PostTest extends \WP_UnitTestCase {
 	public function test_indexable_article_type_adds_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
+				'title'        => 'indexable setting',
 				'post_content' => 'Hello world!',
 			)
 		);
@@ -83,7 +86,7 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
-	private function get_schema_output( bool $debug_wpseo_head = false ): string {
+	private function get_schema_output( bool $debug_wpseo_head = true ): string {
 
 		ob_start();
 		do_action( 'wpseo_head' );
