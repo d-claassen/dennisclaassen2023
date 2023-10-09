@@ -1,5 +1,7 @@
 <?php
 
+use PHPUnit\Framework\Attributes;
+
 class PostTest extends \WP_UnitTestCase {
 
 	private $user_id;
@@ -18,6 +20,7 @@ class PostTest extends \WP_UnitTestCase {
 	// with phpunit 10.
 	public function expectDeprecated(){}
 
+	#[Attributes\BackupGlobals]
 	public function test_default_article_unchanged_no_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
@@ -40,6 +43,7 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame(['Article'], $schema_data['@graph'][0]['@type'],'First graph piece should be Article');
 	}
 
+	#[Attributes\BackupGlobals]
 	public function test_default_article_type_adds_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
