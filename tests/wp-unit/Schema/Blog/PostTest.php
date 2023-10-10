@@ -67,6 +67,7 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
+	#[Attributes\BackupGlobals(true)]
 	public function test_indexable_article_type_adds_blog(): void {
 		$post_id = self::factory()->post->create(
 			array(
