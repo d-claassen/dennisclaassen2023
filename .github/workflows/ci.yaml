@@ -97,7 +97,7 @@ jobs:
         run: 'composer test -- --coverage-text --testdox --testsuite="Mockery Tests"'
 
       - name: 'Test PHP WP units'
-        run: 'composer test -- --coverage-text --testsuite="WordPress context" --bootstrap=/tmp/wordpress-tests-lib/includes/bootstrap.php --display-errors --display-warnings'
+        run: 'composer test -- --coverage-text --testsuite="WordPress context" --bootstrap=tests/wp-unit/bootstrap.php --display-errors --display-warnings'
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
