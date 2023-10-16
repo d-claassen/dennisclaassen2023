@@ -14,8 +14,19 @@ concurrency:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
-    name: 'Quality Control'
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system:
+          - ubuntu-latest
+        php-versions:
+          - '8.2'
+        node-versions:
+          - 16
+          - 18
+          - 20
+    runs-on: '${{ matrix.operating-system }}'
+    name: 'Quality Control / PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-versions }} @ ${{ matrix.operating-system }}'
 
     services:
       mysql:
@@ -33,12 +44,12 @@ jobs:
       - name: 'Setup Node and node_modules cache'
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '${{ matrix.node-versions }}'
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '${{ matrix.php-versions }}'
           coverage: xdebug
 
       - name: 'Validate composer.json and composer.lock'
