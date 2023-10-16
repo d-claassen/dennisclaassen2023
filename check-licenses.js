@@ -202,8 +202,8 @@ function traverseDepTree( deps ) {
 			return;
 		}
 
-		if ( dep.name === "fsevents" ) {
-			console.warn({name: dep.name, path: dep.path, dep});
+		if ( dep.name === undefined || dep.name === "fsevents" ) {
+			console.warn({ dep } );
 		}
 
 		if ( ! dep.hasOwnProperty( 'path' ) ) {
