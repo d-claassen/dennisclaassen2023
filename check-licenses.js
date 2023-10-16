@@ -202,7 +202,9 @@ function traverseDepTree( deps ) {
 			return;
 		}
 
-		console.warn( { name: dep.name, path: dep.path } );
+		if ( dep.name === "fsevents" ) {
+			console.warn({name: dep.name, path: dep.path, dep});
+		}
 
 		if ( ! dep.hasOwnProperty( 'path' ) ) {
 			if ( dep.hasOwnProperty( 'peerMissing' ) ) {
