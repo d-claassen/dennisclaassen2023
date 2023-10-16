@@ -70,6 +70,9 @@ jobs:
       - name: 'Check engines'
         run: 'npm run-script check-engines'
 
+      - name: 'NPM ls'
+        run: 'npm ls --long --json --all'
+
       - name: 'Check licenses (new)'
         run: 'node check-licenses.js || exit 0'
 
