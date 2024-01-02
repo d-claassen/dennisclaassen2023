@@ -41,6 +41,8 @@ jobs:
           php-version: '8.2'
           coverage: xdebug
 
+      - name: 'Update lockfile'
+        run: 'composer update'
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
 
