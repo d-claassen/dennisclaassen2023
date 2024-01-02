@@ -41,14 +41,14 @@ jobs:
           php-version: '8.2'
           coverage: xdebug
 
-      - name: 'Update lockfile'
-        run: composer config platform.php 8.2.14
-
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
 
       - name: 'NPM install'
         run: npm install
+
+      - name: 'Update lockfile'
+        run: composer config platform.php 8.2.14
 
       - name: 'Composer install'
         run: 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
