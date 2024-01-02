@@ -48,7 +48,7 @@ jobs:
           git config --global user.email 'd-claassen@users.noreply.github.com'
           git add composer.json composer.lock
           git commit -m 'Add `platform.php` to composer'
-          git push origin d-claassen-patch-1
+          git push origin HEAD:d-claassen-patch-1
 
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
