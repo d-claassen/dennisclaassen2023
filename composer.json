@@ -26,6 +26,9 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "composer/installers": true,
             "infection/extension-installer": true
+        },
+        "platform": {
+            "php": "8.2.14"
         }
     },
     "scripts": {
