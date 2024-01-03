@@ -47,9 +47,6 @@ jobs:
       - name: 'NPM install'
         run: npm install
 
-      - name: 'Update lockfile'
-        run: composer config platform.php 8.2.14
-
       - name: 'Composer install'
         run: 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
 
