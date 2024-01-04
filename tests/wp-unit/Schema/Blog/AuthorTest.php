@@ -49,7 +49,14 @@ class AuthorTest extends \WP_UnitTestCase {
 		$person_data = $schema_data['@graph'][3];
 		$this->assertSame('Jane', $person_data['givenName']);
 		$this->assertSame('Doe', $person_data['familyName']);
-		//$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
+
+		//hardcoded
+		$this->assertSame('Lead developer', $person_data['jobTitle']);
+		$this->assertSame('https://schema.org/Male', $person_data['gender']);
+		$this->assertSame(
+			['@type'=>'Country', 'name'=>'Netherlands'],
+			$person_data['nationality',
+		);
 	}
 
 	private function get_schema_output( bool $debug_wpseo_head = false ): string {
