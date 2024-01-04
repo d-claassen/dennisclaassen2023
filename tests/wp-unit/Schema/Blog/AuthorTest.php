@@ -22,7 +22,9 @@ class AuthorTest extends \WP_UnitTestCase {
 		$post_id = self::factory()->post->create(
 			array(
 				'post_content' => 'Hello world!',
-        'post_author'  => $this->author_id,
+				'post_author'  => $this->author_id,
+				'first_name'   => 'Jane',
+				'last_name'    => 'Doe',
 			)
 		);
 
@@ -30,17 +32,18 @@ class AuthorTest extends \WP_UnitTestCase {
 		$this->go_to( $author_url );
 
 		$schema_output = $this->get_schema_output( true );
-
 		$this->assertJson( $schema_output );
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
+		// \print_r( \array_column( $schema_data['@graph'], '@type' ) );
 		$this->assertSame('ProfilePage', $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
 
+		$this->assertSame(['Person', 'Organization'], $schema_data['@graph'][3]['@type'],'Fourth graph piece should be Person');
 
-		\print_r( \array_column( $schema_data['@graph'], '@type' ) );
-			
-		$this->assertSame(['Person', 'Organization'], $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
+		$person_data = $schema_data['@graph'][3];
+		$this->assertSame('Jane', $person_data['givenName']);
+		$this->assertSame('Doe', $person_data['familyName']);
 		//$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
