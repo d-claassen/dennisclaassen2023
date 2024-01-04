@@ -8,7 +8,14 @@ class AuthorTest extends \WP_UnitTestCase {
 		parent::setUp();
 
 		// Author who's the main Yoast user.
-		$this->author_id = self::factory()->user->create();
+		$this->author_id = self::factory()
+			->user
+			->create(
+				[
+				'first_name' => 'Jane',
+				'last_name'  => 'Doe',
+				]
+			);
 
 		\YoastSEO()->helpers->options->set( 'company_or_person', 'person' );
 		\YoastSEO()->helpers->options->set( 'company_or_person_user_id', $this->author_id );
@@ -23,8 +30,6 @@ class AuthorTest extends \WP_UnitTestCase {
 			array(
 				'post_content' => 'Hello world!',
 				'post_author'  => $this->author_id,
-				'first_name'   => 'Jane',
-				'last_name'    => 'Doe',
 			)
 		);
 
