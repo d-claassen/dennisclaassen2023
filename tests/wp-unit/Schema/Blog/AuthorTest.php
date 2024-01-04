@@ -37,7 +37,11 @@ class AuthorTest extends \WP_UnitTestCase {
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
 		$this->assertSame('ProfilePage', $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
-		//$this->assertSame('Blog', $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
+
+
+		\print_r( \array_column( $schema_data['@graph'), null, '@type' ) );
+			
+		$this->assertSame(['Person', 'Organization'], $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
 		//$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
