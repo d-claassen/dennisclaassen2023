@@ -26,9 +26,11 @@ class AuthorTest extends \WP_UnitTestCase {
 			)
 		);
 
-		$this->go_to( \get_author_posts_url( $this->author_id ) );
+		$author_url = \get_author_posts_url( $this->author_id );
+		\var_dump( $author_url );
+		$this->go_to( $author_url );
 
-		$schema_output = $this->get_schema_output();
+		$schema_output = $this->get_schema_output( true );
 
 		$this->assertJson( $schema_output );
 
