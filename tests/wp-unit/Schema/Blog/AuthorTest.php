@@ -38,7 +38,7 @@ class AuthorTest extends \WP_UnitTestCase {
 		$this->assertSame('ProfilePage', $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
 
 
-		\print_r( \array_column( $schema_data['@graph'], null, '@type' ) );
+		\print_r( \array_column( $schema_data['@graph'], '@type' ) );
 			
 		$this->assertSame(['Person', 'Organization'], $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
 		//$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
