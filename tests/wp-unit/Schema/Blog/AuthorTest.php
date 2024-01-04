@@ -53,6 +53,7 @@ class AuthorTest extends \WP_UnitTestCase {
 		}
 
 		$dom = new \DOMDocument();
+		\libxml_use_internal_errors( true );
 		$dom->strictErrorChecking = false;
 		$dom->loadHTML( $wpseo_head );
 		$scripts = $dom->getElementsByTagName('script');
