@@ -62,6 +62,10 @@ class AuthorTest extends \WP_UnitTestCase {
 			],
 			$person_data['nationality'],
 		);
+
+		$this->assertCount( 10, $person_data['worksFor'] );
+		$this->assertCount( 1, $person_data['alumniOf'] );
+		$this->assertCount( 5, $person_data['knowsAbout'] );
 	}
 
 	private function get_schema_output( bool $debug_wpseo_head = false ): string {
