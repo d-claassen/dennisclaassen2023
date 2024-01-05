@@ -33,6 +33,8 @@ class AuthorTest extends \WP_UnitTestCase {
 			)
 		);
 
+		update_user_meta( $this->author_id, 'gender', 'Male' );
+
 		$author_url = \get_author_posts_url( $this->author_id );
 		$this->go_to( $author_url );
 
