@@ -68,7 +68,7 @@ final class Resume {
 
 		// Full resume, or leave with just the basics?
 		if ( ! $this->should_add_resume_data() ) {
-			return $person_data;
+			// return $person_data;
 		}
 
 		$person_data['worksFor'] = [
