@@ -55,7 +55,7 @@ class AuthorTest extends \WP_UnitTestCase {
 		$this->assertSame('https://schema.org/Male', $person_data['gender']);
 		$this->assertSame(
 			['@type'=>'Country', 'name'=>'Netherlands'],
-			$person_data['nationality',
+			$person_data['nationality'],
 		);
 	}
 
