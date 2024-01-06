@@ -40,8 +40,11 @@ final class AuthorTest extends TestCase {
 
 		$author = $this->wpFaker->user();
 
-		\var_dump($author);
+		//\var_dump($author);
 
-		//update_user_meta( $author->ID, 'gender', 'Male' );
+		update_user_meta( $author->ID, 'gender', 'Male' );
+
+		\var_dump( \get_user_meta( $author->ID, 'gender', true ) );
+		
 	}
 }
