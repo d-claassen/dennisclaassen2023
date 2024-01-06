@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use Brain\Faker\Providers as BrainFaker;
 use Faker\Generator as FakerGenerator;
 use PHPUnit\Framework\TestCase;
