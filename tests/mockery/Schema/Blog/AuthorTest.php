@@ -5,7 +5,7 @@ use Faker\Generator as FakerGenerator;
 use PHPUnit\Framework\TestCase;
 
 final class AuthorTest extends TestCase {
-  use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+	use \Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 	protected FakerGenerator $faker;
 	protected BrainFaker $wpFaker;
@@ -33,12 +33,13 @@ final class AuthorTest extends TestCase {
 		parent::tearDown();
 	}
 
-  public function testIt(): void {
-    	\Brain\Monkey\Functions\when('is_author')->justReturn(true);
+	public function testIt(): void {
+		\Brain\Monkey\Functions\when('is_author')->justReturn(true);
 
-	  $author = $this->wpFaker->user();
-	  \var_dump($author);
-	  update_user_meta( $author->ID, 'gender', 'Male' );
-    
-  }
+		$author = $this->wpFaker->user();
+
+		\var_dump($author);
+
+		//update_user_meta( $author->ID, 'gender', 'Male' );
+	}
 }
