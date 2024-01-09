@@ -84,6 +84,9 @@ jobs:
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
 
+      - name: 'build the theme'
+        run: 'npm run-script build'
+
       - name: 'execute rights'
         run: 'chmod +x .github/workflows/install-wp-tests.sh'
 
@@ -102,9 +105,6 @@ jobs:
 
       - name: 'Ditch dev dependencies'
         run: 'composer install --no-dev --prefer-dist --no-progress --no-suggest --optimize-autoloader'
-
-      - name: 'build the theme'
-        run: 'npm run-script build'
 
       - name: 'Zip it'
         run: 'npm run-script plugin-zip -- --help'
