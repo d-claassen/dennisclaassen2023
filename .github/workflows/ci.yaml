@@ -84,6 +84,9 @@ jobs:
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
 
+      - name: 'build the theme'
+        run: 'npm run-script build'
+
       - name: 'execute rights'
         run: 'chmod +x .github/workflows/install-wp-tests.sh'
 
@@ -95,16 +98,13 @@ jobs:
         run: 'composer test -- --coverage-text --testdox --testsuite="Mockery Tests"'
 
       - name: 'Test PHP WP units'
-        run: 'composer test -- --random-order-seed=1704311503 --coverage-text --testsuite="WordPress context" --bootstrap=tests/wp-unit/bootstrap.php --display-errors --display-warnings'
+        run: 'composer test -- --process-isolation --coverage-text --testsuite="WordPress context" --bootstrap=tests/wp-unit/bootstrap.php --display-errors --display-warnings'
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
 
       - name: 'Ditch dev dependencies'
         run: 'composer install --no-dev --prefer-dist --no-progress --no-suggest --optimize-autoloader'
-
-      - name: 'build the theme'
-        run: 'npm run-script build'
 
       - name: 'Zip it'
         run: 'npm run-script plugin-zip -- --help'
