@@ -7,9 +7,9 @@ final class Author {
 
 	public function register(): void {
 		\add_filter(
-			'wpseo_schema_person', 
+			'wpseo_schema_person',
 			[ $this, 'enhance_author_page' ],
-			11, 
+			11,
 			2
 		);
 	}
@@ -28,7 +28,7 @@ final class Author {
 
 		$author_id = get_query_var( 'author' );
 
-		if (  $context->site_user_id == $author_id ) {
+		if ( $context->site_user_id == $author_id ) {
 			// author is site owner. maybe needs more person nodes??
 		}
 	}
