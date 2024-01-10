@@ -30,6 +30,16 @@ final class Author {
 
 		if ( $context->site_user_id == $author_id ) {
 			// author is site owner. maybe needs more person nodes??
+			// For now, exit early.
+			return $person_data;
 		}
+
+		$first_name = get_user_meta( $author_id, 'first_name', true );
+		$last_name  = get_user_meta( $author_id, 'last_name', true );
+
+		$person_data['givenName']  = $first_name;
+		$person_data['familyName'] = $last_name;
+
+		return $person_data;
 	}
 }
