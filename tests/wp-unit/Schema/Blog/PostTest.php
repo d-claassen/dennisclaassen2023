@@ -77,7 +77,7 @@ class PostTest extends \WP_UnitTestCase {
 
 		$this->go_to( \get_permalink( $post_id ) );
 
-		$schema_output = $this->get_schema_output();
+		$schema_output = $this->get_schema_output( true );
 
 		$this->assertJson( $schema_output );
 
@@ -88,7 +88,7 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
-	private function get_schema_output( bool $debug_wpseo_head = true ): string {
+	private function get_schema_output( bool $debug_wpseo_head = false ): string {
 
 		ob_start();
 		do_action( 'wpseo_head' );
