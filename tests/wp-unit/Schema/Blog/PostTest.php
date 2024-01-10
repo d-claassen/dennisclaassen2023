@@ -39,7 +39,7 @@ class PostTest extends \WP_UnitTestCase {
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
-		$this->assertSame(['Article'], $schema_data['@graph'][0]['@type'],'First graph piece should be Article');
+		$this->assertSame('Article', $schema_data['@graph'][0]['@type'],'First graph piece should be Article');
 	}
 
 	public function test_default_article_type_adds_blog(): void {
