@@ -66,6 +66,14 @@ final class Resume {
 			],
 		];
 
+		$nr_of_posts = \count_user_posts( $context->site_user_id, 'post', true );
+
+		$person_data['agentInteractionStatistic'] = [
+			'@type'                => 'InteractionCounter',
+			'interactionType'      => 'https://schema.org/WriteAction',
+			'userInteractionCount' => $nr_of_posts,
+		];
+
 		// Full resume, or leave with just the basics?
 		if ( ! $this->should_add_resume_data() ) {
 			return $person_data;
