@@ -12,7 +12,8 @@ use \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
 class Piece extends Abstract_Schema_Piece {
 
 	public function __construct(
-		private array $output
+		private array $output,
+		public $identifier = null
 	) {}
 
 	public function is_needed(): bool {
