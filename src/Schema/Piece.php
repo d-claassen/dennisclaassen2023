@@ -4,7 +4,7 @@ declare( strict_types=1 );
 
 namespace DC23\Schema;
 
-use \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
+use Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
 
 /**
  * Generic Schema.org piece to wrap any kind of data.
