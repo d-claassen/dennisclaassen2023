@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace DC23\Schema\Profile;
 
+use DC23\Schema\Piece;
+
 final class Resume {
 
 	public function register():void {
@@ -289,20 +291,5 @@ final class Resume {
 			]) extends Piece {}
 		);
 		return $pieces;
-	}
-}
-
-class Piece extends \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece {
-
-	public function __construct(
-		private array $output
-	) {}
-
-	public function is_needed(): bool {
-		return true;
-	}
-
-	public function generate(): array {
-		return $this->output;
 	}
 }
