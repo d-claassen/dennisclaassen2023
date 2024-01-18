@@ -4,6 +4,8 @@ declare( strict_types=1 );
 
 namespace DC23\Schema\Blog;
 
+use DC23\Schema\Piece as Pregenerated_Piece;
+
 final class Post {
 
 	public function register():void {
@@ -67,21 +69,5 @@ final class Post {
 		);
 
 		return $pieces;
-	}
-}
-
-class Pregenerated_Piece extends \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece {
-
-	public function __construct(
-		private array $output,
-		public $identifier = null
-	) {}
-
-	public function is_needed(): bool {
-		return true;
-	}
-
-	public function generate(): array {
-		return $this->output;
 	}
 }
