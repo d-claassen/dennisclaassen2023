@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\Attributes;
-
 class PostTest extends \WP_UnitTestCase {
 
 	private $user_id;
