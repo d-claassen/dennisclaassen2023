@@ -7,7 +7,7 @@ use DC23\Schema\Piece;
 
 final class Resume {
 
-	public function register():void {
+	public function register(): void {
 
 		\add_filter( 'wpseo_schema_person', $this->enhance_person_with_resume( ... ), 11, 2 );
 
@@ -17,7 +17,7 @@ final class Resume {
 	}
 
 	private function should_add_resume_data(): bool {
-		return is_front_page();
+		return \is_front_page();
 	}
 
 	private function make_person_main_entity( $webpage_data, $context) {
@@ -27,7 +27,7 @@ final class Resume {
 		}
 
 		$webpage_data['mainEntity'] = [
-			'@id'  => YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
+			'@id'  => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
 		];
 
 		return $webpage_data;
@@ -35,11 +35,11 @@ final class Resume {
 
 	private function enhance_person_with_resume( $person_data, $context) {
 
-		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 
 		$user_data  = \get_userdata( $context->site_user_id );
-		$first_name = get_user_meta( $context->site_user_id, 'first_name', true );
-		$last_name  = get_user_meta( $context->site_user_id, 'last_name', true );
+		$first_name = \get_user_meta( $context->site_user_id, 'first_name', true );
+		$last_name  = \get_user_meta( $context->site_user_id, 'last_name', true );
 
 		$person_data['givenName']  = $first_name;
 		$person_data['familyName'] = $last_name;
@@ -208,14 +208,14 @@ final class Resume {
 
 	private function add_resume_to_schema( $pieces, $context) {
 
-		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
 
 		if ( ! $this->should_add_resume_data() ) {
 			return $pieces;
 		}
 
 
-		array_push(
+		\array_push(
 			$pieces,
 			new class([
 				'@id'     => 'https://www.dennisclaassen.nl/#/schema/Organization/han',
