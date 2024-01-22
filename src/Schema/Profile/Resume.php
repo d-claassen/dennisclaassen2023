@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace DC23\Schema\Profile;
 
 use DC23\Schema\Piece;
+use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
 final class Resume {
 
@@ -20,6 +21,16 @@ final class Resume {
 		return \is_front_page();
 	}
 
+	/**
+	 * Enhance the WebPage with a mainEntity reference to the Person.
+	 *
+	 * @template T of array{"@type": string}
+	 *
+	 * @param T $webpage_data The WebPage schema piece.
+	 * @param Meta_Tags_Context $context The page context.
+	 *
+	 * @return T|(T&array{mainEntity: array{"@id": string}}) The original or enhanced WebPage piece.
+	 */
 	private function make_person_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_resume_data() ) {
@@ -33,9 +44,17 @@ final class Resume {
 		return $webpage_data;
 	}
 
+	/**
+	 * Enhance a Schema.org Person piece with the dite user info.
+	 *
+	 * @param array<string, string> $person_data The Person data.
+	 * @param Meta_Tags_Context $context The page context.
+	 *
+	 * @return array<string, string|array<string>> Full person resume data.
+	 */
 	private function enhance_person_with_resume( $person_data, $context) {
 
-		\assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof Meta_Tags_Context );
 
 		$user_data  = \get_userdata( $context->site_user_id );
 		$first_name = \get_user_meta( $context->site_user_id, 'first_name', true );
