@@ -5,7 +5,7 @@ namespace DC23\Schema\Language;
 
 final class LanguageFactory {
 
-	public function create_language( string $locale ) {
+	public function create_language( string $locale ): Language {
 		switch ( $locale ) {
 			case 'en-US':
 				return new Language( 'en-US', 'English (American)', 'https://en.wikipedia.org/wiki/American_English' );
