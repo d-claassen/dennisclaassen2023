@@ -20,11 +20,11 @@ final class Language {
 	 *
 	 * @return array{
 	 *       "@type": "Language",
-	 *	 "@id": string,
-	 *	 "name"?: nom-empty-string,
-	 *	 "alternateName"?: non-empty-string,
-	 *	 "sameAs"?: non-empty-string
-	 *	} The schema.org representation.
+	 *       "@id": string,
+	 *       "name"?: nom-empty-string,
+	 *       "alternateName"?: non-empty-string,
+	 *       "sameAs"?: non-empty-string
+	 *     } The schema.org representation.
 	 */
 	public function generate(): array {
 		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
