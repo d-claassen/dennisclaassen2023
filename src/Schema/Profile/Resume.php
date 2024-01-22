@@ -31,7 +31,7 @@ final class Resume {
 	 *
 	 * @return T|(T&array{mainEntity: array{"@id": string}}) The original or enhanced WebPage piece.
 	 */
-	private function make_person_main_entity( $webpage_data, $context) {
+	private function make_person_main_entity( $webpage_data, $context ) {
 
 		if ( ! $this->should_add_resume_data() ) {
 			return $webpage_data;
@@ -52,11 +52,10 @@ final class Resume {
 	 *
 	 * @return array<string, string|array<string>> Full person resume data.
 	 */
-	private function enhance_person_with_resume( $person_data, $context) {
+	private function enhance_person_with_resume( $person_data, $context ) {
 
 		\assert( $context instanceof Meta_Tags_Context );
 
-		$user_data  = \get_userdata( $context->site_user_id );
 		$first_name = \get_user_meta( $context->site_user_id, 'first_name', true );
 		$last_name  = \get_user_meta( $context->site_user_id, 'last_name', true );
 
@@ -229,7 +228,7 @@ final class Resume {
 	 * Add reusable pieces to the Schema.org graph.
 	 *
 	 * @param array<Abstract_Schema_Piece> $pieces Pieces in the traph.
-	 * @param Meta_Tags_Context $contect The page context.
+	 * @param Meta_Tags_Context $context The page context.
 	 *
 	 * @return array<Abstract_Schema_Piece> Pieces for the graph.
 	 */
@@ -240,7 +239,6 @@ final class Resume {
 		if ( ! $this->should_add_resume_data() ) {
 			return $pieces;
 		}
-
 
 		\array_push(
 			$pieces,
