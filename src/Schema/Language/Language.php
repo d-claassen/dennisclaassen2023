@@ -9,14 +9,25 @@ final class Language {
 		private string $locale,
 		private ?string $name_pretty = null,
 		private ?string $same_as = null
-		) {}
+	) {}
 
 	public function is_needed(): bool {
 		return true;
 	}
 
+	/**
+	 * Generate Schema.org representation of language.
+	 *
+	 * @return array{
+	 *       "@type": "Language",
+	 *	 "@id": string,
+	 *	 "name": string,
+	 *	 "alternateName"?: string,
+	 *	 "sameAs"?: string
+	 *	} The schema.org representation.
+	 */
 	public function generate(): array {
-		$canonical = YoastSEO()->meta->for_current_page()->canonical;
+		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
 
 		$data = [
 			'@type'         => 'Language',
@@ -34,6 +45,6 @@ final class Language {
 			$data['name'] = $this->locale;
 		}
 
-		return array_filter( $data );
+		return \array_filter( $data );
 	}
 }
