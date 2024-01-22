@@ -31,7 +31,7 @@ final class SiteLanguage {
 	 */
 	private function add_site_language_to_schema( $pieces, $context ): array {
 		\assert( $context instanceof Meta_Tags_Context );
-		if ( ! is_array( $pieces ) ) {
+		if ( ! \is_array( $pieces ) ) {
 			return [];
 		}
 
@@ -72,14 +72,14 @@ final class SiteLanguage {
 	 *
 	 * @template T of array{"@type": string, image?: array{ inLanguage?: string }}
 	 *
-	 * @param T $schema_piece_data The original piece data.
+	 * @param T $person_data The original piece data.
 	 *
-	 * @return array{}|T|(T&array{image:{inLanguage: array{"@id": string}}}) The enhanced schema.org piece.
+	 * @return T|(T&array{image:{inLanguage: array{"@id": string}}}) The enhanced schema.org piece.
 	 */
 	private function enhance_person_image_inlanguage_property( $person_data ): array {
 		// @todo is it time to investigate https://packagist.org/packages/azjezz/psl ?!
 		if ( ! \is_array( $person_data ) ) {
-			return [];
+			return $person_data;
 		}
 
 		if ( ! \array_key_exists( 'image', $person_data ) || ! \is_array( $person_data['image'] ) ) {
