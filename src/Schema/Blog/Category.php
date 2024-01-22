@@ -91,8 +91,7 @@ final class Category {
 		}
 
 		$category = \get_term( \get_query_var( 'cat' ), 'category' );
-		assert( $category instanceof WP_Term );
-
+		\assert( $category instanceof WP_Term );
 
 		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
 
@@ -100,7 +99,7 @@ final class Category {
 		$posts     = [];
 		$post_ids  = [];
 		foreach ( $post_data as $post ) {
-			assert( $post instanceof WP_Post );
+			\assert( $post instanceof WP_Post );
 			$id         = \get_permalink( $post->ID );
 			$post_ids[] = [ '@id' => $id ];
 			$posts[]    = new Piece(

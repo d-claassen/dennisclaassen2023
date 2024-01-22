@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace DC23\Schema\Profile;
 
 use DC23\Schema\Piece;
+use Yoast\WP\SEO\Context\Meta_Tags_Context;
 
 final class Resume {
 
-	public function register():void {
+	public function register(): void {
 
 		\add_filter( 'wpseo_schema_person', $this->enhance_person_with_resume( ... ), 11, 2 );
 
@@ -17,9 +18,19 @@ final class Resume {
 	}
 
 	private function should_add_resume_data(): bool {
-		return is_front_page();
+		return \is_front_page();
 	}
 
+	/**
+	 * Enhance the WebPage with a mainEntity reference to the Person.
+	 *
+	 * @template T of array{"@type": string}
+	 *
+	 * @param T $webpage_data The WebPage schema piece.
+	 * @param Meta_Tags_Context $context The page context.
+	 *
+	 * @return T|(T&array{mainEntity: array{"@id": string}}) The original or enhanced WebPage piece.
+	 */
 	private function make_person_main_entity( $webpage_data, $context) {
 
 		if ( ! $this->should_add_resume_data() ) {
@@ -27,19 +38,27 @@ final class Resume {
 		}
 
 		$webpage_data['mainEntity'] = [
-			'@id'  => YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
+			'@id'  => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
 		];
 
 		return $webpage_data;
 	}
 
+	/**
+	 * Enhance a Schema.org Person piece with the dite user info.
+	 *
+	 * @param array<string, string> $person_data The Person data.
+	 * @param Meta_Tags_Context $context The page context.
+	 *
+	 * @return array<string, string|array<string>> Full person resume data.
+	 */
 	private function enhance_person_with_resume( $person_data, $context) {
 
-		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof Meta_Tags_Context );
 
 		$user_data  = \get_userdata( $context->site_user_id );
-		$first_name = get_user_meta( $context->site_user_id, 'first_name', true );
-		$last_name  = get_user_meta( $context->site_user_id, 'last_name', true );
+		$first_name = \get_user_meta( $context->site_user_id, 'first_name', true );
+		$last_name  = \get_user_meta( $context->site_user_id, 'last_name', true );
 
 		$person_data['givenName']  = $first_name;
 		$person_data['familyName'] = $last_name;
@@ -206,16 +225,24 @@ final class Resume {
 		return $person_data;
 	}
 
-	private function add_resume_to_schema( $pieces, $context) {
+	/**
+	 * Add reusable pieces to the Schema.org graph.
+	 *
+	 * @param array<Abstract_Schema_Piece> $pieces Pieces in the traph.
+	 * @param Meta_Tags_Context $contect The page context.
+	 *
+	 * @return array<Abstract_Schema_Piece> Pieces for the graph.
+	 */
+	private function add_resume_to_schema( $pieces, $context ) {
 
-		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof Meta_Tags_Context );
 
 		if ( ! $this->should_add_resume_data() ) {
 			return $pieces;
 		}
 
 
-		array_push(
+		\array_push(
 			$pieces,
 			new class([
 				'@id'     => 'https://www.dennisclaassen.nl/#/schema/Organization/han',
