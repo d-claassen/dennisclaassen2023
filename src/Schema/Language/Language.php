@@ -21,9 +21,9 @@ final class Language {
 	 * @return array{
 	 *       "@type": "Language",
 	 *	 "@id": string,
-	 *	 "name": string,
-	 *	 "alternateName"?: string,
-	 *	 "sameAs"?: string
+	 *	 "name"?: nom-empty-string,
+	 *	 "alternateName"?: non-empty-string,
+	 *	 "sameAs"?: non-empty-string
 	 *	} The schema.org representation.
 	 */
 	public function generate(): array {
