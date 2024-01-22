@@ -225,9 +225,17 @@ final class Resume {
 		return $person_data;
 	}
 
-	private function add_resume_to_schema( $pieces, $context) {
+	/**
+	 * Add reusable pieces to the Schema.org graph.
+	 *
+	 * @param array<Abstract_Schema_Piece> $pieces Pieces in the traph.
+	 * @param Meta_Tags_Context $contect The page context.
+	 *
+	 * @return array<Abstract_Schema_Piece> Pieces for the graph.
+	 */
+	private function add_resume_to_schema( $pieces, $context ) {
 
-		\assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof Meta_Tags_Context );
 
 		if ( ! $this->should_add_resume_data() ) {
 			return $pieces;
