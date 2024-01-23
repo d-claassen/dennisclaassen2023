@@ -13,7 +13,7 @@ class Tree {
 	/**
 	 * Renders the `dc23/github-tree` block on the server.
 	 *
-	 * @param array    $attributes Block attributes.
+	 * @param array<string, string> $attributes Block attributes.
 	 * @param string   $content    Block default content.
 	 * @param WP_Block $block      Block instance.
 	 *
@@ -26,21 +26,21 @@ class Tree {
 	/**
 	 * Renders the `dc23/github-tree` block on the server.
 	 *
-	 * @param array    $attributes Block attributes.
+	 * @param array<string, string> $attributes Block attributes.
 	 * @param string   $content    Block default content.
 	 * @param WP_Block $block      Block instance.
 	 *
 	 * @return string Returns the filtered post title for the current post wrapped inside "h1" tags.
 	 */
-	private function render_block_dc23_github_tree( $attributes, $content, $block ) {
-		assert( $block instanceof \WP_Block );
-		$is_home = is_front_page();
+	private function render_block_dc23_github_tree( $attributes, $content, $block ): string {
+		\assert( $block instanceof WP_Block );
+		$is_home = \is_front_page();
 		if ( $is_home ) {
-			$root_categories  = get_categories( [ 'parent' => 0 ] );
-			$root_ids         = array_column( $root_categories, 'term_id' );
-			$child_categories = implode( '', array_map( $this->get_category_as_row( ... ), $root_ids ) );
+			$root_categories  = \get_categories( [ 'parent' => 0 ] );
+			$root_ids         = \array_column( $root_categories, 'term_id' );
+			$child_categories = \implode( '', \array_map( $this->get_category_as_row( ... ), $root_ids ) );
 
-			$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'Box' ] );
+			$wrapper_attributes = \get_block_wrapper_attributes( [ 'class' => 'Box' ] );
 
 			return <<<HTML
 			<div {$wrapper_attributes}>
@@ -49,25 +49,25 @@ class Tree {
 			HTML;
 		}
 
-		$is_archive = is_category();
+		$is_archive = \is_category();
 		if ( ! $is_archive ) {
 			return '';
 		}
 
-		$category = get_category( get_query_var( 'cat' ) );
-		assert( $category instanceof WP_Term );
+		$category = \get_category( \get_query_var( 'cat' ) );
+		\assert( $category instanceof WP_Term );
 
 		$parent_id  = $category->parent;
 		$parent_row = null;
 		$parent_row = $this->get_category_as_parent_row( $parent_id );
 
-		$children_ids     = get_term_children( $category->term_id, $category->taxonomy );
-		$child_categories = implode( '', array_map( $this->get_category_as_row( ... ), $children_ids ) );
+		$children_ids     = \get_term_children( $category->term_id, $category->taxonomy );
+		$child_categories = \implode( '', \array_map( $this->get_category_as_row( ... ), $children_ids ) );
 
 		$child_posts = $this->get_posts_as_row( $category->term_id );
 
 		if (  $parent_row || $child_categories || $child_posts ) {
-			$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'Box' ] );
+			$wrapper_attributes = \get_block_wrapper_attributes( [ 'class' => 'Box' ] );
 
 			return <<<HTML
 			<div {$wrapper_attributes}>
@@ -78,16 +78,14 @@ class Tree {
 			HTML;
 		}
 
-		$dbg = compact( 'parent_row', 'category', 'children' );
-
 		return '';
 	}
 
-	private function get_category_as_parent_row( int $parent_id ) {
+	private function get_category_as_parent_row( int $parent_id ): string {
 
-		$category_link = get_site_url();
-		if ( is_int( $parent_id ) && $parent_id > 0 ) {
-			$category_link = get_category_link( $parent_id );
+		$category_link = \get_site_url();
+		if ( \is_int( $parent_id ) && $parent_id > 0 ) {
+			$category_link = \get_category_link( $parent_id );
 		}
 
 		return <<<HTML
@@ -113,7 +111,7 @@ class Tree {
 		];
 
 		$str   = '';
-		$posts = get_posts( $args );
+		$posts = \get_posts( $args );
 
 		foreach ($posts as $post) :
 			return $post;
@@ -122,12 +120,12 @@ class Tree {
 		return null;
 	}
 
-	private function get_category_as_row( int $category_id ) {
-		$category         = get_category( $category_id );
-		$category_link    = get_category_link( $category );
+	private function get_category_as_row( int $category_id ): string {
+		$category         = \get_category( $category_id );
+		$category_link    = \get_category_link( $category );
 		$latest_post      = $this->get_latest_post_for_category( $category_id );
-		$latest_post_link = get_permalink( $latest_post->ID );
-		$latest_post_date = get_the_date( '', $latest_post );
+		$latest_post_link = \get_permalink( $latest_post->ID );
+		$latest_post_date = \get_the_date( '', $latest_post );
 
 		return <<<HTML
 		<div class="Box-row">
@@ -157,7 +155,12 @@ class Tree {
 		HTML;
 	}
 
-	private function get_child_posts_for_category( int $category_id ) {
+ /**
+	 * Get all posts in category.
+		*
+		* @return array<WP_Post> List of posts.
+		*/ 
+	private function get_child_posts_for_category( int $category_id ): array {
 		$posts = new WP_Query(
 			[
 				'post_type'      => 'post',
@@ -179,16 +182,16 @@ class Tree {
 		return $posts->get_posts();
 	}
 
-	private function get_posts_as_row( int $category_id ) {
+	private function get_posts_as_row( int $category_id ): string {
 		$posts = $this->get_child_posts_for_category( $category_id );
 
-		return implode( '', array_map( $this->get_post_as_row( ... ), $posts ) );
+		return \implode( '', array_map( $this->get_post_as_row( ... ), $posts ) );
 	}
 
-	private function get_post_as_row( WP_Post $post):string {
+	private function get_post_as_row( WP_Post $post): string {
 		$latest_post_title = $post->post_title;
-		$latest_post_link  = get_permalink( $post->ID );
-		$latest_post_date  = get_the_date( '', $post );
+		$latest_post_link  = \get_permalink( $post->ID );
+		$latest_post_date  = \get_the_date( '', $post );
 		return <<<HTML
 		<div class="Box-row">
 			<div class="Box-icon" style="color: #656d76">
