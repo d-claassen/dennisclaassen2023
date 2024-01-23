@@ -38,7 +38,7 @@ class AuthorTest extends \WP_UnitTestCase {
 		$author_url = \get_author_posts_url( $this->author_id );
 		$this->go_to( $author_url );
 
-		$schema_output = $this->get_schema_output( true );
+		$schema_output = $this->get_schema_output();
 		$this->assertJson( $schema_output );
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
@@ -57,8 +57,8 @@ class AuthorTest extends \WP_UnitTestCase {
 		$this->assertSame('http://schema.org/Male', $person_data['gender']);
 		$this->assertSame(
 			[
-			'@type' => 'Country', 
-			'name' => 'Netherlands', 
+			'@type' => 'Country',
+			'name' => 'Netherlands',
 			'alternateName' => 'NL',
 			'sameAs' => 'https://en.wikipedia.org/wiki/Netherlands',
 			],
