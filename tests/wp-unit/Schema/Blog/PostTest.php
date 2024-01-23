@@ -72,11 +72,9 @@ class PostTest extends \WP_UnitTestCase {
 		);
 
 		\YoastSEO()->helpers->meta->set_value( 'schema_article_type', 'BlogPosting', $post_id );
-		$this->assertSame(
-			'BlogPosting',
-			\YoastSEO()->helpers->meta->get_value( 'schema_article_type', $post_id ),
-			'Verifying the post meta article type'
-		);
+
+		// Update object to persist meta value to indexable.
+		self::factory()->post->update_object( $post_id, [] );
 
 		$this->go_to( \get_permalink( $post_id ) );
 
