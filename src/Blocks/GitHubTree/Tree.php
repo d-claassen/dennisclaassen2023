@@ -155,11 +155,11 @@ class Tree {
 		HTML;
 	}
 
- /**
+	/**
 	 * Get all posts in category.
-		*
-		* @return array<WP_Post> List of posts.
-		*/ 
+	 *
+	 * @return array<WP_Post> List of posts.
+	 */ 
 	private function get_child_posts_for_category( int $category_id ): array {
 		$posts = new WP_Query(
 			[
