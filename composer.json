@@ -42,7 +42,7 @@
 			"@php ./vendor/bin/phpunit"
         ],
         "test-wp": [
-            "@php ./vendor/bin/phpunit -c phpunit-wp.xml.dist"
+            "@php ./vendor/bin/phpunit -c phpunit-wp.xml.dist --process-isolation"
         ],
         "test-wp:start": [
             "echo $WP_DEVELOP_DIR",
