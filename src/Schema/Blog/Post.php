@@ -4,9 +4,13 @@ declare( strict_types=1 );
 
 namespace DC23\Schema\Blog;
 
+use DC23\Schema\Piece as Pregenerated_Piece;
+use WP_Post;
+use Yoast\WP\SEO\Context\Meta_Tags_Context;
+
 final class Post {
 
-	public function register():void {
+	public function register(): void {
 		\add_filter( 'wpseo_schema_graph_pieces', [ $this, 'add_blog_to_schema' ], 11, 2 );
 	}
 
@@ -14,8 +18,16 @@ final class Post {
 		return \is_single() && \get_post_type() === 'post';
 	}
 
+	/**
+	 * Add Blog piece to Schema.org graph.
+	 *
+	 * @param array<Abstract_Schema_Piece> $pieces Pieces in Graph.
+	 * @param Meta_Tags_Context $context Current page context.
+	 *
+	 * @return array<Abstract_Schema_Piece> Pieces for the Graph.
+	 */
 	public function add_blog_to_schema( $pieces, $context ) {
-		assert( $context instanceof \Yoast\WP\SEO\Context\Meta_Tags_Context );
+		\assert( $context instanceof Meta_Tags_Context );
 		if ( ! $this->should_add_post_data() ) {
 			return $pieces;
 		}
@@ -27,17 +39,17 @@ final class Post {
 		}
 
 		$post = \get_post( \get_the_ID() );
-		assert( $post instanceof \WP_Post );
+		\assert( $post instanceof WP_Post );
 
 		$categories = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
-		if ( count( $categories ) !== 1 ) {
+		if ( \count( $categories ) !== 1 ) {
 			// Only add Blog piece when there's one category:
 			// - Without category, there's no blog to connect with,
 			// - With multiple categories, it'll be a PITA to make sense.
 			return $pieces;
 		}
 
-		$category = reset( $categories );
+		$category = \reset( $categories );
 
 		$id      = \get_permalink( $post->ID ) . '#article';
 		$post_id = [ '@id' => $id ];
@@ -55,7 +67,7 @@ final class Post {
 				'description'      => \wp_trim_excerpt( $category->description ),
 				'publisher'        => $context->site_represents_reference,
 				'inLanguage'       => [
-					'@id' => $canonical . '#/language/' . get_bloginfo( 'language' ),
+					'@id' => $canonical . '#/language/' . \get_bloginfo( 'language' ),
 				],
 				'blogPost'         => [ $post_id ],
 			]
@@ -67,21 +79,5 @@ final class Post {
 		);
 
 		return $pieces;
-	}
-}
-
-class Pregenerated_Piece extends \Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece {
-
-	public function __construct(
-		private array $output,
-		public $identifier = null
-	) {}
-
-	public function is_needed(): bool {
-		return true;
-	}
-
-	public function generate(): array {
-		return $this->output;
 	}
 }

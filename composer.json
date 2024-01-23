@@ -14,8 +14,8 @@
         }
     },
     "require-dev": {
-        "yoast/yoastcs": "^2.0",
-        "phpunit/phpunit": "^10.5.5",
+        "yoast/yoastcs": "^3.0",
+        "phpunit/phpunit": "^10.5.9",
         "brain/monkey": "^2.6",
         "yoast/wordpress-seo": "^21.8",
         "antecedent/patchwork": "^2.1.27",
@@ -40,7 +40,24 @@
 		],
         "test": [
 			"@php ./vendor/bin/phpunit"
-		]
+        ],
+        "test-wp": [
+            "@php ./vendor/bin/phpunit -c phpunit-wp.xml.dist --process-isolation"
+        ],
+        "test-wp:start": [
+            "echo $WP_DEVELOP_DIR",
+            "cd $WP_DEVELOP_DIR && npm run env:start"
+        ],
+        "test-wp:stop": [
+            "echo $WP_DEVELOP_DIR",
+            "cd $WP_DEVELOP_DIR && npm run env:stop"
+        ],
+        "test-once": [
+            "@test",
+            "@test-wp:start",
+            "@test-wp",
+            "@test-wp:stop"
+        ]
     },
     "extra": {
         "installer-disable": true

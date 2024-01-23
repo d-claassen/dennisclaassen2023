@@ -4,7 +4,7 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
 	backupGlobals="false"
-	bootstrap="vendor/autoload.php"
+	bootstrap="tests/wp-unit/bootstrap.php"
 	colors="true"
 	resolveDependencies="true"
 	executionOrder="random"
@@ -13,14 +13,13 @@
 		<ini name="display_errors" value="1" />
 		<ini name="error_reporting" value="-1" />
 
-		<const name="WPSEO_VERSION" value="21.8" />
 		<const name="WPSEO_PATH" value="" />
 		<const name="YOAST_ENVIRONMENT" value="development" />
 	</php>
 
 	<testsuites>
-		<testsuite name="Mockery Tests">
-			<directory>tests/mockery</directory>
+		<testsuite name="WordPress context">
+			<directory>tests/wp-unit</directory>
 		</testsuite>
 	</testsuites>
 
