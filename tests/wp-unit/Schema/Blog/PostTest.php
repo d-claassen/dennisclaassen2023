@@ -3,7 +3,7 @@
 /**
  * Class PostTest.
  *
- * @testdox Schema for a "post" post
+ * @testdox Schema for a single post "post"
  */
 class PostTest extends \WP_UnitTestCase {
 
@@ -103,6 +103,42 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame(['Article','BlogPosting'], $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
 		$this->assertSame('Blog', $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
 		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
+	}
+
+	/**
+	 * @testdox Should not contain Blog piece when the post has multiple categories
+	 */
+	public function test_should_not_contain_blog_piece_when_post_has_multiple_categories(): void {
+		$post_id = self::factory()->post->create(
+			array(
+				'title'        => 'indexable setting',
+				'post_content' => 'Hello world!',
+			)
+		);
+
+		\YoastSEO()->helpers->meta->set_value( 'schema_article_type', 'BlogPosting', $post_id );
+
+		\wp_set_post_categories(
+			$post_id,
+			[
+				self::factory()->category->create(),
+				self::factory()->category->create(),
+				self::factory()->category->create(),
+			]
+		);
+
+		// Update object to persist meta value to indexable.
+		self::factory()->post->update_object( $post_id, [] );
+
+		$this->go_to( \get_permalink( $post_id ) );
+
+		$schema_output = $this->get_schema_output();
+
+		$this->assertJson( $schema_output );
+
+		$schema_data = \json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
+
+		$this->assertSame(['Article','BlogPosting'], $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
 	}
 
 	private function get_schema_output( bool $debug_wpseo_head = false ): string {
