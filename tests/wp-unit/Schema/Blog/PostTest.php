@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class PostTest.
+ *
+ * @testdox Schema for a "post" post
+ */
 class PostTest extends \WP_UnitTestCase {
 
 	private $user_id;
@@ -18,7 +23,10 @@ class PostTest extends \WP_UnitTestCase {
 	// with phpunit 10.
 	public function expectDeprecated(){}
 
-	public function test_default_article_unchanged_no_blog(): void {
+	/**
+	 * @testdox Should not contain Blog piece when the article type is not BlogPosting
+	 */
+	public function test_should_not_add_blog_piece_when_article_type_is_not_blog_posting(): void {
 		$post_id = self::factory()->post->create(
 			array(
 				'title'        => 'unchanged',
@@ -40,14 +48,19 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame('Article', $schema_data['@graph'][0]['@type'],'First graph piece should be Article');
 	}
 
-	public function test_default_article_type_adds_blog(): void {
+	/**
+	 * @testdox Should contain Blog piece when the article type for the post type is BlogPosting
+	 */
+	public function test_should_add_blog_piece_when_default_article_type_is_blog_posting(): void {
 		$post_id = self::factory()->post->create(
 			array(
 				'title'        => 'default setting',
 				'post_content' => 'Hello world!',
+				'post_type'    => 'post',
 			)
 		);
 
+		// Set the default Schema.org article type for the post type "post" to BlogPosting.
 		\YoastSEO()->helpers->options->set( 'schema-article-type-post', 'BlogPosting' );
 
 		$this->go_to( \get_permalink( $post_id ) );
@@ -63,7 +76,10 @@ class PostTest extends \WP_UnitTestCase {
 		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
-	public function test_indexable_article_type_adds_blog(): void {
+	/**
+	 * @testdox Should contain Blog piece when the article type for the single post is BlogPosting
+	 */
+	public function test_should_contain_blog_piece_when_article_type_for_post_is_blog_posting(): void {
 		$post_id = self::factory()->post->create(
 			array(
 				'title'        => 'indexable setting',
