@@ -38,7 +38,7 @@ final class Resume {
 		}
 
 		$webpage_type = (array) $webpage_data['@type'];
-		if ( ! in_array( 'ProfilePage', $webpage_type, true ) ) {
+		if ( ! \in_array( 'ProfilePage', $webpage_type, true ) ) {
 			return $webpage_data;
 		}
 
