@@ -33,7 +33,12 @@ final class Resume {
 	 */
 	private function make_person_main_entity( $webpage_data, $context ) {
 
-		if ( ! $this->should_add_resume_data() ) {
+		if ( ! $this->should_add_resume_data() || $context->site_represents !== 'person' ) {
+			return $webpage_data;
+		}
+
+		$webpage_type = (array) $webpage_data['@type'];
+		if ( ! in_array( 'ProfilePage', $webpage_type, true ) ) {
 			return $webpage_data;
 		}
 
