@@ -33,7 +33,12 @@ final class Resume {
 	 */
 	private function make_person_main_entity( $webpage_data, $context ) {
 
-		if ( ! $this->should_add_resume_data() ) {
+		if ( ! $this->should_add_resume_data() || $context->site_represents !== 'person' ) {
+			return $webpage_data;
+		}
+
+		$webpage_type = (array) $webpage_data['@type'];
+		if ( ! \in_array( 'ProfilePage', $webpage_type, true ) ) {
 			return $webpage_data;
 		}
 
@@ -93,11 +98,6 @@ final class Resume {
 			'interactionType'      => 'https://schema.org/WriteAction',
 			'userInteractionCount' => $nr_of_posts,
 		];
-
-		// Full resume, or leave with just the basics?
-		if ( ! $this->should_add_resume_data() ) {
-			return $person_data;
-		}
 
 		$person_data['worksFor'] = [
 			[
