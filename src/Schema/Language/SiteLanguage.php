@@ -46,12 +46,12 @@ final class SiteLanguage {
 	 *
 	 * @param T $schema_piece_data The original piece data.
 	 *
-	 * @return array{}|T|(T&array{inLanguage: array{"@id": string}}) The enhanced schema.org piece.
+	 * @return T|(T&array{inLanguage: array{"@id": string}}) The enhanced schema.org piece.
 	 */
 	private function enhance_inlanguage_property( $schema_piece_data ) {
 		// @todo is it time to investigate https://packagist.org/packages/azjezz/psl ?!
 		if ( ! \is_array( $schema_piece_data ) ) {
-			return [];
+			return $schema_piece_data;
 		}
 
 		if ( ! \array_key_exists( 'inLanguage', $schema_piece_data ) || ! \is_string( $schema_piece_data['inLanguage'] ) ) {
