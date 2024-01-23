@@ -3,7 +3,6 @@ declare(strict_types=1);
 namespace DC23\Blocks\GitHubBreadcrumbs;
 
 use WP_Post;
-use WP_Query;
 use WP_Term;
 
 final class Breadcrumbs {

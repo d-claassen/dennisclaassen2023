@@ -110,12 +110,11 @@ class Tree {
 			'cat'            => $category_id, // Use the category id, can also replace with category_name which uses category slug.
 		];
 
-		$str   = '';
 		$posts = \get_posts( $args );
 
-		foreach ($posts as $post) :
+		foreach ($posts as $post) {
 			return $post;
-		endforeach;
+		}
 
 		return null;
 	}
@@ -185,10 +184,10 @@ class Tree {
 	private function get_posts_as_row( int $category_id ): string {
 		$posts = $this->get_child_posts_for_category( $category_id );
 
-		return \implode( '', array_map( $this->get_post_as_row( ... ), $posts ) );
+		return \implode( '', \array_map( $this->get_post_as_row( ... ), $posts ) );
 	}
 
-	private function get_post_as_row( WP_Post $post): string {
+	private function get_post_as_row( WP_Post $post ): string {
 		$latest_post_title = $post->post_title;
 		$latest_post_link  = \get_permalink( $post->ID );
 		$latest_post_date  = \get_the_date( '', $post );

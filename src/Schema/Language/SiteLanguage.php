@@ -74,7 +74,7 @@ final class SiteLanguage {
 	 *
 	 * @param T $person_data The original piece data.
 	 *
-	 * @return T|(T&array{image:{inLanguage: array{"@id": string}}}) The enhanced schema.org piece.
+	 * @return T|(T&array{image:array{inLanguage: array{"@id": string}}}) The enhanced schema.org piece.
 	 */
 	private function enhance_person_image_inlanguage_property( $person_data ): array {
 		// @todo is it time to investigate https://packagist.org/packages/azjezz/psl ?!
