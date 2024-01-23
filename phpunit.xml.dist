@@ -8,7 +8,6 @@
 	colors="true"
 	resolveDependencies="true"
 	executionOrder="random"
-	defaultTestSuite="Mockery Tests"
 >
 	<php>
 		<ini name="display_errors" value="1" />
@@ -22,9 +21,6 @@
 	<testsuites>
 		<testsuite name="Mockery Tests">
 			<directory>tests/mockery</directory>
-		</testsuite>
-		<testsuite name="WordPress context">
-			<directory>tests/wp-unit</directory>
 		</testsuite>
 	</testsuites>
 
