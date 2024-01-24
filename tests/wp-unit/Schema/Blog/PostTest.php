@@ -45,7 +45,9 @@ class PostTest extends \WP_UnitTestCase {
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
-		$this->assertSame('Article', $schema_data['@graph'][0]['@type'],'First graph piece should be Article');
+		$article_piece = $this->get_piece_by_type( $schema_data['@graph'], 'Article' );
+
+		$this->assertSame('Article', $article_piece['@type'],'Article piece should just be Article');
 	}
 
 	/**
@@ -71,9 +73,12 @@ class PostTest extends \WP_UnitTestCase {
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
-		$this->assertSame(['Article','BlogPosting'], $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
-		$this->assertSame('Blog', $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
-		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
+		$article_piece = $this->get_piece_by_type( $schema_data['@graph'], [ 'Article', 'BlogPosting' ] );
+		$blog_piece = $this->get_piece_by_type( $schema_data['@graph'], 'Blog' );
+
+		$this->assertSame(['Article','BlogPosting'], $article_piece['@type'],'Article graph piece should be BlogPosting');
+		$this->assertSame('Blog', $blog_piece['@type'],'Blog graph piece should exist');
+		$this->assertSame($article_piece['@id'], $blog_piece['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
 	/**
@@ -100,9 +105,12 @@ class PostTest extends \WP_UnitTestCase {
 
 		$schema_data = \json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
-		$this->assertSame(['Article','BlogPosting'], $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
-		$this->assertSame('Blog', $schema_data['@graph'][6]['@type'],'Sixth graph piece should be Blog');
-		$this->assertSame($schema_data['@graph'][0]['@id'], $schema_data['@graph'][6]['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
+		$article_piece = $this->get_piece_by_type( $schema_data['@graph'], [ 'Article', 'BlogPosting' ] );
+		$blog_piece = $this->get_piece_by_type( $schema_data['@graph'], 'Blog' );
+
+		$this->assertSame(['Article','BlogPosting'], $article_piece['@type'],'Article piece should be BlogPosting');
+		$this->assertSame('Blog', $blog_piece['@type'],'Blog graph piece should exit');
+		$this->assertSame($article_piece['@id'], $blog_piece['blogPost'][0]['@id'],'Blog should refer to BlogPosting');
 	}
 
 	/**
@@ -138,7 +146,9 @@ class PostTest extends \WP_UnitTestCase {
 
 		$schema_data = \json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
-		$this->assertSame(['Article','BlogPosting'], $schema_data['@graph'][0]['@type'],'First graph piece should be BlogPosting');
+		$article_piece = $this->get_piece_by_type( $schema_data['@graph'], [ 'Article', 'BlogPosting' ] );
+
+		$this->assertSame([ 'Article', 'BlogPosting' ], $article_piece['@type'],'Article graph piece should be BlogPosting');
 	}
 
 	private function get_schema_output( bool $debug_wpseo_head = false ): string {
@@ -162,5 +172,23 @@ class PostTest extends \WP_UnitTestCase {
 		}
 
 		throw new \LengthException('No schema script was found in the wpseo_head output.' );
+	}
+
+	/**
+	 * Find a Schema.org piece in the root of the Graph by its type.
+	 *
+	 * @param array<int, array{"@type": string}> $graph Schema.org graph.
+	 * @param string|array<int, string> $type Schema type to search for.
+	 * @return array{"@type": string} The matching schema.org piece.
+	 */
+	private function get_piece_by_type( $graph, $type ): array {
+		$nodes_of_type = array_filter( $graph, fn( $piece ) => $piece['@type'] === $type );
+
+		if ( empty( $nodes_of_type ) ) {
+			throw new InvalidArgumentException( 'No piece found for type' );
+		}
+
+		// Return first instance.
+		return reset( $nodes_of_type );
 	}
 }
