@@ -12,6 +12,7 @@ final class Post {
 
 	public function register(): void {
 		\add_filter( 'wpseo_schema_graph_pieces', [ $this, 'add_blog_to_schema' ], 11, 2 );
+		\add_filter( 'wpseo_schema_webpage', [ $this, 'add_reading_time_to_webpage' ], 11, 2 );
 	}
 
 	private function should_add_post_data(): bool {
@@ -21,8 +22,8 @@ final class Post {
 	/**
 	 * Add Blog piece to Schema.org graph.
 	 *
-	 * @param array<Abstract_Schema_Piece> $pieces Pieces in Graph.
-	 * @param Meta_Tags_Context $context Current page context.
+	 * @param array<Abstract_Schema_Piece> $pieces  Pieces in Graph.
+	 * @param Meta_Tags_Context            $context Current page context.
 	 *
 	 * @return array<Abstract_Schema_Piece> Pieces for the Graph.
 	 */
@@ -34,7 +35,7 @@ final class Post {
 
 		$schema_article_type = (array) $context->schema_article_type;
 
-		if ( ! \in_array( 'BlogPosting', $schema_article_type, true )) {
+		if ( ! \in_array( 'BlogPosting', $schema_article_type, true ) ) {
 			return $pieces;
 		}
 
@@ -79,5 +80,31 @@ final class Post {
 		);
 
 		return $pieces;
+	}
+
+	/**
+	 * Enhance the WebPage with a timeRequired property.
+	 *
+	 * @template T of array{"@type": string}
+	 *
+	 * @param T                 $webpage_data The WebPage schema piece.
+	 * @param Meta_Tags_Context $context      The page context.
+	 *
+	 * @return T|(T&array{mainEntity: array{"@id": string}}) The original or enhanced WebPage piece.
+	 */
+	public function add_reading_time_to_webpage( $webpage_data, $context ) {
+		\assert( $context instanceof Meta_Tags_Context );
+		if ( ! $this->should_add_post_data() ) {
+			return $webpage_data;
+		}
+
+		$reading_time = $context->presentation->estimated_reading_time_minutes;
+		if ( $reading_time <= 0 ) {
+			return $webpage_data;
+		}
+
+		$webpage_data['timeRequired'] = \sprintf( 'PT%dM', $reading_time );
+
+		return $webpage_data;
 	}
 }
