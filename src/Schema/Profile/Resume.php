@@ -236,10 +236,6 @@ final class Resume {
 
 		\assert( $context instanceof Meta_Tags_Context );
 
-		if ( ! $this->should_add_resume_data() ) {
-			return $pieces;
-		}
-
 		\array_push(
 			$pieces,
 			new class([
