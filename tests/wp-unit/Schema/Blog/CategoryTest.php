@@ -44,10 +44,10 @@ class CategoryTest extends \WP_UnitTestCase {
 		$schema_data = \json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
 		$blog_piece    = $this->get_piece_by_type( $schema_data['@graph'], 'Blog' );
-		$webpage_piece = $this->get_piece_by_type( $schema_data['@graph'], ['WebPage', 'CollectionPage'] );
+		$webpage_piece = $this->get_piece_by_type( $schema_data['@graph'], 'CollectionPage' );
 
 		$this->assertSame('Blog', $blog_piece['@type'],'Blog graph piece should be Blog');
-		$this->assertSame(['WebPage','CollectionPage'], $webpage_piece, 'WebPage should be CollectionPage');
+		$this->assertSame('CollectionPage', $webpage_piece, 'WebPage should be CollectionPage');
 		$this->assertSame($blog_piece['@id'], $webpage_piece['mainEntity']['@id'], 'MainEntity should be Blog');
 	}
 
