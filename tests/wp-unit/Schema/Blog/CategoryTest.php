@@ -37,7 +37,7 @@ class CategoryTest extends \WP_UnitTestCase {
 
 		$this->go_to( \get_category_link( $category_id ) );
 
-		$schema_output = $this->get_schema_output( true );
+		$schema_output = $this->get_schema_output();
 
 		$this->assertJson( $schema_output );
 
