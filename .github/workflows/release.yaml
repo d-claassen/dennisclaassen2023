@@ -91,7 +91,7 @@ jobs:
           version: ${{ github.event.milestone.title }}
 
       - name: Create Milestone
-        uses: WyriHaximus/github-action-create-milestone@v1.1.0
+        uses: WyriHaximus/github-action-create-milestone@v1.2.0
         with:
           title: ${{ steps.next_version.outputs.minor }}
           # description: '"Next Release. The semver size might be altered after creation."'
