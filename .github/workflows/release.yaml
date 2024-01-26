@@ -71,7 +71,7 @@ jobs:
         run: ls -la
 
       - name: 'Archive theme.zip'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'dennisclaassen2023'
           path: 'dennisclaassen2023.zip'
