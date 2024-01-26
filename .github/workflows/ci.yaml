@@ -33,7 +33,7 @@ jobs:
       - name: 'Setup Node and node_modules cache'
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version-file: '.nvmrc'
 
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
