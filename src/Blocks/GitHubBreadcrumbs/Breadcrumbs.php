@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace DC23\Blocks\GitHubBreadcrumbs;
 
+use WP_Block;
 use WP_Post;
 use WP_Term;
 
