@@ -9,7 +9,7 @@ use Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
 /**
  * Generic Schema.org piece to wrap any kind of data.
  *
- * @template T of array<string, string|int|T>
+ * @template T
  */
 class Piece extends Abstract_Schema_Piece {
 
