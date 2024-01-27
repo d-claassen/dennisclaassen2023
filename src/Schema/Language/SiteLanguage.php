@@ -18,7 +18,7 @@ final class SiteLanguage {
 		\add_filter( 'wpseo_schema_webpage', $this->enhance_inlanguage_property( ... ), 11, 1 );
 		\add_filter( 'wpseo_schema_website', $this->enhance_inlanguage_property( ... ), 11, 1 );
 		\add_filter( 'wpseo_schema_imageobject', $this->enhance_inlanguage_property( ... ), 11, 1 );
-		\add_filter( 'wpseo_schema_person', $this->enhance_person_image_inlanguage_property( ... ), 11, 2 );
+		\add_filter( 'wpseo_schema_person', $this->enhance_person_image_inlanguage_property( ... ), 11, 1 );
 	}
 
 	/**
