@@ -5,6 +5,7 @@ namespace DC23\Schema\Profile;
 
 use DC23\Schema\Piece;
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
+use Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
 
 final class Resume {
 
