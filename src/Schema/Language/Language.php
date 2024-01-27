@@ -21,7 +21,7 @@ final class Language {
 	 * @return array{
 	 *       "@type": "Language",
 	 *       "@id": string,
-	 *       "name"?: nom-empty-string,
+	 *       "name"?: non-empty-string,
 	 *       "alternateName"?: non-empty-string,
 	 *       "sameAs"?: non-empty-string
 	 *     } The schema.org representation.
