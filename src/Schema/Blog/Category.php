@@ -108,8 +108,8 @@ final class Category {
 					'@id'               => $id,
 					'@type'             => 'BlogPosting',
 					'mainEntityOfPage'  => $id,
-					'headline'          => $post->title,
-					'name'              => $post->title,
+					'headline'          => $post->post_title,
+					'name'              => $post->post_title,
 					'description'       => \get_the_excerpt( $post ),
 					'datePublished'     => \get_the_date( 'Y-m-d', $post ),
 					'author'            => [
