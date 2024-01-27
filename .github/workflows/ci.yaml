@@ -81,6 +81,9 @@ jobs:
       - name: 'PHP code style'
         run: 'composer cs'
 
+      - name: 'Static analysis PHP'
+        run: './vendor/bin/phpstan analyze src'
+
       - name: 'Test JS units'
         run: 'npm run-script test:unit -- --coverage'
 
