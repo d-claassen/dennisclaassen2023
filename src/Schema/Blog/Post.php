@@ -7,6 +7,7 @@ namespace DC23\Schema\Blog;
 use DC23\Schema\Piece as Pregenerated_Piece;
 use WP_Post;
 use Yoast\WP\SEO\Context\Meta_Tags_Context;
+use Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
 
 final class Post {
 
