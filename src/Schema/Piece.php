@@ -21,8 +21,12 @@ class Piece extends Abstract_Schema_Piece {
 	 */
 	public function __construct(
 		private array $output,
-		public $identifier = null
-	) {}
+		?string $identifier = null
+	) {
+		if ( $identifier !== null ) {
+			$this->identifier = $identifier;
+		}
+	}
 
 	public function is_needed(): bool {
 		return true;
