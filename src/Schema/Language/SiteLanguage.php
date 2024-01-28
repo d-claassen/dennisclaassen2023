@@ -46,7 +46,7 @@ final class SiteLanguage {
 	 *
 	 * @param T $schema_piece_data The original piece data.
 	 *
-	 * @return (T is array{inLanguage:string} ? T&array{inLanguage: array{"@id": string}} : T) The enhanced schema.org piece.
+	 * @return ($schema_piece_data is array{inLanguage:string} ? T&array{inLanguage: array{"@id": string}} : T) The enhanced schema.org piece.
 	 */
 	private function enhance_inlanguage_property( $schema_piece_data ) {
 		// @todo is it time to investigate https://packagist.org/packages/azjezz/psl ?!
