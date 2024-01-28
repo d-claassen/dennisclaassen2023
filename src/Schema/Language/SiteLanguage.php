@@ -42,9 +42,9 @@ final class SiteLanguage {
 	/**
 	 * Enhance a schema piece with the inLanguage property.
 	 *
-	 * @template T of array{"@type": string, inLanguage?: string}
+	 * @template T of array{"@type": string}
 	 *
-	 * @param T $schema_piece_data The original piece data.
+	 * @param T&array{inLanguage?: string} $schema_piece_data The original piece data.
 	 *
 	 * @return ($schema_piece_data is array{inLanguage:string} ? T&array{inLanguage: array{"@id": string}} : T) The enhanced schema.org piece.
 	 */
