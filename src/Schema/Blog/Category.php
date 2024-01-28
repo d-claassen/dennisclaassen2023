@@ -7,6 +7,7 @@ use DC23\Schema\Piece;
 use WP_Post;
 use WP_Query;
 use WP_Term;
+use Yoast\WP\SEO\Context\Meta_Tags_Context;
 use Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece;
 
 final class Category {
@@ -107,8 +108,8 @@ final class Category {
 					'@id'               => $id,
 					'@type'             => 'BlogPosting',
 					'mainEntityOfPage'  => $id,
-					'headline'          => $post->title,
-					'name'              => $post->title,
+					'headline'          => $post->post_title,
+					'name'              => $post->post_title,
 					'description'       => \get_the_excerpt( $post ),
 					'datePublished'     => \get_the_date( 'Y-m-d', $post ),
 					'author'            => [
