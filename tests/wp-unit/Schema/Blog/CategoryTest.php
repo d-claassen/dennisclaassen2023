@@ -31,7 +31,11 @@ class CategoryTest extends \WP_UnitTestCase {
 			)
 		);
 
-		$category_id = self::factory()->category->create();
+		$category_id = self::factory()->category->create(
+			[
+				'name' => 'News',
+			]
+		);
 
 		\wp_set_post_categories( $post_id, [ $category_id ] );
 
@@ -49,6 +53,8 @@ class CategoryTest extends \WP_UnitTestCase {
 		$this->assertSame('Blog', $blog_piece['@type'],'Blog graph piece should be Blog');
 		$this->assertSame('CollectionPage', $webpage_piece['@type'], 'WebPage should be CollectionPage');
 		$this->assertSame($blog_piece['@id'], $webpage_piece['mainEntity']['@id'], 'MainEntity should be Blog');
+		
+		$this->assertSame('News', $blog_piece['name']);
 	}
 
 	private function get_schema_output( bool $debug_wpseo_head = false ): string {
