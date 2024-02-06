@@ -39,7 +39,9 @@ class CategoryTest extends \WP_UnitTestCase {
 
 		\wp_set_post_categories( $post_id, [ $category_id ] );
 
-		$this->go_to( \get_category_link( $category_id ) );
+		$this->go_to( $category_link = \get_category_link( $category_id ) );
+
+		$this->assertNull( $category_link );
 
 		$schema_output = $this->get_schema_output();
 
