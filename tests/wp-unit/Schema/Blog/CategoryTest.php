@@ -39,9 +39,7 @@ class CategoryTest extends \WP_UnitTestCase {
 
 		\wp_set_post_categories( $post_id, [ $category_id ] );
 
-		$this->go_to( $category_link = \get_category_link( $category_id ) );
-
-		$this->assertNull( $category_link );
+		$this->go_to( \get_category_link( $category_id ) );
 
 		$schema_output = $this->get_schema_output();
 
@@ -57,8 +55,9 @@ class CategoryTest extends \WP_UnitTestCase {
 		$this->assertSame($blog_piece['@id'], $webpage_piece['mainEntity']['@id'], 'MainEntity should be Blog');
 		
 		$this->assertSame(
-			'http://example.org/#/schema/Blog/2',
-			$blog_piece['@id']
+			'http://example.org/#/schema/blog/2',
+			$blog_piece['@id'],
+			'Format {{website}}/#/schema/{{type}}/{{ID}}'
 		);
 		$this->assertSame('News', $blog_piece['name']);
 	}
