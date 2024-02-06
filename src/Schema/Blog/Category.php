@@ -43,7 +43,7 @@ final class Category {
 		\assert( $category instanceof WP_Term );
 
 		$webpage_data['mainEntity'] = [
-			'@id' => $context->site_url . '#/schema/Blog/' . $category->term_id,
+			'@id' => $context->site_url . '#/schema/blog/' . $category->term_id,
 		];
 
 		return $webpage_data;
