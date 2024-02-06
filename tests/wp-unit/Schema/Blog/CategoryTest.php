@@ -33,7 +33,6 @@ class CategoryTest extends \WP_UnitTestCase {
 
 		$category_id = self::factory()->category->create(
 			[
-				'term_id' => 12,
 				'name' => 'News',
 			]
 		);
@@ -56,7 +55,7 @@ class CategoryTest extends \WP_UnitTestCase {
 		$this->assertSame($blog_piece['@id'], $webpage_piece['mainEntity']['@id'], 'MainEntity should be Blog');
 		
 		$this->assertSame(
-			'https://example.com/news#/schema/Blog/12',
+			'http://example.com/#/schema/Blog/2',
 			$blog_piece['@id']
 		);
 		$this->assertSame('News', $blog_piece['name']);
