@@ -55,7 +55,7 @@ class CategoryTest extends \WP_UnitTestCase {
 		$this->assertSame($blog_piece['@id'], $webpage_piece['mainEntity']['@id'], 'MainEntity should be Blog');
 		
 		$this->assertSame(
-			'http://example.com/#/schema/Blog/2',
+			'http://example.org/#/schema/Blog/2',
 			$blog_piece['@id']
 		);
 		$this->assertSame('News', $blog_piece['name']);
