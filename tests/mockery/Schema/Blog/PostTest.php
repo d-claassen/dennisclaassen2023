@@ -239,7 +239,7 @@ class PostTest extends TestCase {
 			),
 			'schema has id and type'
 		);
-		self::assertSame( 'https://example.com/#/schema/Blog/1', $schema['@id'], '@id uses: domain, term id, format');
+		self::assertSame( 'https://example.com/#/schema/blog/1', $schema['@id'], '@id uses: domain, term id, format');
 		self::assertSame( 'Blog', $schema['@type']);
 		self::assertSame('https://example.com/category.html', $schema['mainEntityOfPage']);
 		self::assertSame('The category name', $schema['name']);
