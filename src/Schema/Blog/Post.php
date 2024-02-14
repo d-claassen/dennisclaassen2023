@@ -62,7 +62,7 @@ final class Post {
 
 		$blog = new Pregenerated_Piece(
 			[
-				'@id'              => $context->site_url . '#/schema/Blog/' . $category->term_id,
+				'@id'              => $context->site_url . '#/schema/blog/' . $category->term_id,
 				'@type'            => 'Blog',
 				'mainEntityOfPage' => $category_url,
 				'name'             => $category->name,

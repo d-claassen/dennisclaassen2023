@@ -43,7 +43,7 @@ final class Category {
 		\assert( $category instanceof WP_Term );
 
 		$webpage_data['mainEntity'] = [
-			'@id' => $context->site_url . '#/schema/Blog/' . $category->term_id,
+			'@id' => $context->site_url . '#/schema/blog/' . $category->term_id,
 		];
 
 		return $webpage_data;
@@ -129,7 +129,7 @@ final class Category {
 
 		$blog = new Piece(
 			[
-				'@id'         => $context->site_url . '#/schema/Blog/' . $category->term_id,
+				'@id'         => $context->site_url . '#/schema/blog/' . $category->term_id,
 				'@type'       => 'Blog',
 				'name'        => $category->name,
 				'description' => \wp_trim_excerpt( $category->description ),

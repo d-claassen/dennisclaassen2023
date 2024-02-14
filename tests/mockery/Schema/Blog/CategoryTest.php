@@ -83,7 +83,7 @@ class CategoryTest extends TestCase {
 
 		self::assertArrayHasKey('mainEntity', $webpage_result);
 		self::assertSame(
-			['@id' => 'https://www.example.com/#/schema/Blog/1'],
+			['@id' => 'https://www.example.com/#/schema/blog/1'],
 			$webpage_result['mainEntity']
 		);
 	}
