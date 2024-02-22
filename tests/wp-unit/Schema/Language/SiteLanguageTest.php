@@ -60,4 +60,45 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
             $webpage_data['inLanguage']
         );
     }
+				
+				private function get_schema_output( bool $debug_wpseo_head = false ): string {
+
+		ob_start();
+		do_action( 'wpseo_head' );
+		$wpseo_head = ob_get_contents();
+		ob_end_clean();
+
+		if ( $debug_wpseo_head ) {
+			print $wpseo_head;
+		}
+
+		$dom = new \DOMDocument();
+		$dom->loadHTML( $wpseo_head );
+		$scripts = $dom->getElementsByTagName('script');
+		foreach( $scripts as $script ) {
+			if( $script instanceof \DOMElement && $script->getAttribute('type') === 'application/ld+json') {
+				return $script->textContent;
+			}
+		}
+
+		throw new \LengthException('No schema script was found in the wpseo_head output.' );
+	}
+
+	/**
+	 * Find a Schema.org piece in the root of the Graph by its type.
+	 *
+	 * @param array<int, array{"@type": string}> $graph Schema.org graph.
+	 * @param string|array<int, string> $type Schema type to search for.
+	 * @return array{"@type": string} The matching schema.org piece.
+	 */
+	private function get_piece_by_type( $graph, $type ): array {
+		$nodes_of_type = array_filter( $graph, fn( $piece ) => $piece['@type'] === $type );
+
+		if ( empty( $nodes_of_type ) ) {
+			throw new InvalidArgumentException( 'No piece found for type' );
+		}
+
+		// Return first instance.
+		return reset( $nodes_of_type );
+	}
 }
