@@ -1,8 +1,6 @@
 <?php
 
-use WP_UnitTestCase;
-
-final class SiteLanguageTest extends WP_UnitTestCase {
+final class SiteLanguageTest extends \WP_UnitTestCase {
 
     public function set_up(): void {
         parent::set_up();
