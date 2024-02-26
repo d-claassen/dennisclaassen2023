@@ -60,6 +60,8 @@ final class SiteLanguage {
 
 		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
 
+		\var_dump( $canonical );
+
 		$schema_piece_data['inLanguage'] = [
 			'@id' => $canonical . '#/language/' . $schema_piece_data['inLanguage'],
 		];
