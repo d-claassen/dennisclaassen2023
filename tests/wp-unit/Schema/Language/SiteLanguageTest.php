@@ -45,7 +45,7 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		\var_dump( $home_url = get_home_url() );
 		$this->go_to( $home_url );
 
-        $schema_output = $this->get_schema_output();
+        $schema_output = $this->get_schema_output(true);
 		$this->assertJson( $schema_output );
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
