@@ -29,6 +29,8 @@ final class Language {
 	public function generate(): array {
 		$canonical = \YoastSEO()->meta->for_current_page()->canonical;
 
+		\var_dump( $canonical );
+
 		$data = [
 			'@type'         => 'Language',
 			'@id'           => $canonical . '#/language/' . $this->locale,
