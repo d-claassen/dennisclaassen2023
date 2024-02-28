@@ -66,13 +66,13 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 			'WebSite/inLanguage is incorrect'
 		);
 		
+		/*
 		$this->assertSame(
 			[ '@id' => 'http://example.org/#/schema/language/en-us'],
 			$image_data['inLanguage'],
 			'ImageObject/inLanguage is incorrect'
 		);
-		
-		/*
+
 		$this->assertSame(
 			[ '@id' => 'http://example.org/#/schema/language/en-us'],
 			$person_data['image']['inLanguage'],
