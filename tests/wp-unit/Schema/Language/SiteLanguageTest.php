@@ -42,11 +42,9 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		// Update object to persist meta value to indexable.
 		self::factory()->post->update_object( $post_id, [] );
 
-		\var_dump( $post_id );
-		\var_dump( $home_url = get_home_url() );
-		$this->go_to( $home_url );
+		$this->go_to( get_home_url() );
 
-        $schema_output = $this->get_schema_output(true);
+		$schema_output = $this->get_schema_output();
 		$this->assertJson( $schema_output );
 
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
