@@ -52,9 +52,7 @@ class ResumeTest extends \WP_UnitTestCase {
 		\update_option( 'show_on_front', 'page' );
 		\update_option( 'page_on_front', $post_id );
 
-		\var_dump( $post_id );
-		\var_dump( $home_url = get_home_url() );
-		$this->go_to( $home_url );
+		$this->go_to( get_home_url() );
 
 		$schema_output = $this->get_schema_output();
 		$this->assertJson( $schema_output );
