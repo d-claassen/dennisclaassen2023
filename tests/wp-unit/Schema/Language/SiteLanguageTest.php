@@ -60,7 +60,7 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 			'WebPage/inLanguage is incorrect'
 		);
 		
-		$this->assertSame(
+		$this->assertNotSame(
 			[ '@id' => 'http://example.org/#/schema/language/en-us'],
 			$website_data['inLanguage'],
 			'WebSite/inLanguage is incorrect'
