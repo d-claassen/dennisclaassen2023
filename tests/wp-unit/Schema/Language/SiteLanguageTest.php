@@ -53,7 +53,7 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		$website_data = $this->get_piece_by_type( $schema_data['@graph'], 'WebSite' );
 		// $image_data   = $this->get_piece_by_type( $schema_data['@graph'], 'ImageObject' );
 		$person_data  = $this->get_piece_by_type( $schema_data['@graph'], ['Person', 'Organization' ] );
-		$language_sata = $this->get_piece_by_type( $schema_data['@graph'], 'Language' );
+		$language_data = $this->get_piece_by_type( $schema_data['@graph'], 'Language' );
 
 		$this->assertSame(
 			// [ '@id' => 'http://example.org/#/schema/language/en-us'],
