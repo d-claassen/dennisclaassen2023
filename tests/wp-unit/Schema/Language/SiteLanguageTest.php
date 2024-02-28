@@ -35,12 +35,12 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		// Configure the custom homepage as "ProfilePage".
 		\YoastSEO()->helpers->meta->set_value( 'schema_page_type', 'ProfilePage', $post_id );
 
-		// Update object to persist meta value to indexable.
-		self::factory()->post->update_object( $post_id, [] );
-
 		// Configure the page to be the custom frontpage.
 		\update_option( 'show_on_front', 'page' );
 		\update_option( 'page_on_front', $post_id );
+
+		// Update object to persist meta value to indexable.
+		self::factory()->post->update_object( $post_id, [] );
 
 		\var_dump( $post_id );
 		\var_dump( $home_url = get_home_url() );
