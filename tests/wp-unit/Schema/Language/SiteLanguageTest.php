@@ -2,8 +2,8 @@
 
 final class SiteLanguageTest extends \WP_UnitTestCase {
 
-    public function set_up(): void {
-        parent::set_up();
+	public function set_up(): void {
+		parent::set_up();
         
 		// Author who's the main Yoast user.
 		$this->author_id = self::factory()
@@ -17,14 +17,14 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 
 		\YoastSEO()->helpers->options->set( 'company_or_person', 'person' );
 		\YoastSEO()->helpers->options->set( 'company_or_person_user_id', $this->author_id );
-    }
-    
-    // override wordpress function thats incompatible
+	}
+
+	// override wordpress function thats incompatible
 	// with phpunit 10.
 	public function expectDeprecated(){}
     
-    public function test_frontpage_has_enriched_language_nodes(): void {
-        $post_id = self::factory()->post->create(
+	public function test_frontpage_has_enriched_language_nodes(): void {
+		$post_id = self::factory()->post->create(
 			array(
 				'post_content' => 'Custom homepage',
 				'post_author'  => $this->author_id,
@@ -50,12 +50,19 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
 
 		$webpage_data = $this->get_piece_by_type( $schema_data['@graph'], ['WebPage', 'ProfilePage'] );
+		$website_data = $this->get_piece_by_type( $schema_data['@graph'], 'WebSite' );
 		$person_data  = $this->get_piece_by_type( $schema_data['@graph'], ['Person', 'Organization' ] );
         
 		$this->assertSame(
 			[ '@id' => 'http://example.org/#/schema/language/en-us'],
 			$webpage_data['inLanguage']
 		);
+		
+		$this->assertSame(
+			[ '@id' => 'http://example.org/#/schema/language/en-us'],
+			$website_data['inLanguage']
+		);
+		
 	}
 				
 				private function get_schema_output( bool $debug_wpseo_head = false ): string {
