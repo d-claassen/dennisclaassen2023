@@ -115,11 +115,27 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 
 		// $blog_piece    = $this->get_piece_by_type( $schema_data['@graph'], 'Blog' );
 		$webpage_piece = $this->get_piece_by_type( $schema_data['@graph'], 'CollectionPage' );
+		$website_data  = $this->get_piece_by_type( $schema_data['@graph'], 'WebSite' );
+		$person_data   = $this->get_piece_by_type( $schema_data['@graph'], ['Person', 'Organization' ] );
+		$language_data = $this->get_piece_by_type( $schema_data['@graph'], 'Language' );
 
 		$this->assertSame(
 			[ '@id' => 'http://example.org/?cat=2#/language/en-US'],
 			$webpage_piece['inLanguage'],
 			'WebPage should be in language'
+		);
+		
+		$this->assertSame(
+			// [ '@id' => 'http://example.org/#/schema/language/en-us'],
+			[ '@id' => 'http://example.org/#/language/en-US'],
+			$website_data['inLanguage'],
+			'WebSite/inLanguage is incorrect'
+		);
+		
+		$this->assertSame(
+			'http://example.org/#/language/en-US',
+			$language_data['@id'],
+			'Language piece has incorrect @id'
 		);
 	}
 
