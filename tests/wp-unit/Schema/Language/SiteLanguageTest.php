@@ -126,14 +126,14 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		);
 		
 		$this->assertSame(
-			// [ '@id' => 'http://example.org/#/schema/language/en-us'],
-			[ '@id' => 'http://example.org/#/language/en-US'],
+			// [ '@id' => 'http://example.org/?cat=2#/schema/language/en-us'],
+			[ '@id' => 'http://example.org/?cat=2#/language/en-US'],
 			$website_data['inLanguage'],
 			'WebSite/inLanguage is incorrect'
 		);
 		
 		$this->assertSame(
-			'http://example.org/#/language/en-US',
+			'http://example.org/?cat=2#/language/en-US',
 			$language_data['@id'],
 			'Language piece has incorrect @id'
 		);
