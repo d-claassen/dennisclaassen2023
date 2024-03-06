@@ -13,6 +13,7 @@ use Yoast\WP\SEO\Helpers\Image_Helper;
 use Yoast\WP\SEO\Helpers\Indexable_Helper;
 use Yoast\WP\SEO\Helpers\Options_Helper;
 use Yoast\WP\SEO\Helpers\Permalink_Helper;
+use Yoast\WP\SEO\Helpers\Request_Helper;
 use Yoast\WP\SEO\Helpers\Schema\ID_Helper as Schema_ID_Helper;
 use Yoast\WP\SEO\Helpers\Site_Helper;
 use Yoast\WP\SEO\Helpers\Url_Helper;
@@ -33,14 +34,14 @@ class PostTest extends TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		\Brain\Monkey\setUp();
-		
+
 		$this->faker = \Brain\faker();
 		$this->wpFaker = $this->faker->wp();
 	}
 
 	public function tearDown(): void {
 		\Brain\fakerReset();
-        
+
 		\Brain\Monkey\tearDown();
 		parent::tearDown();
 	}
@@ -59,6 +60,7 @@ class PostTest extends TestCase {
 		$permalink_helper = new Permalink_Helper();
 		$this->indexable_helper = \Mockery::spy( Indexable_Helper::class );
 		$this->indexable_repository = \Mockery::spy( Indexable_Repository::class );
+		$request_helper = new Request_Helper();
 
 		$context = new Meta_Tags_Context(
 			$this->options_helper,
@@ -71,6 +73,7 @@ class PostTest extends TestCase {
 			$permalink_helper,
 			$this->indexable_helper,
 			$this->indexable_repository,
+			$request_helper,
 		);
 		$context->indexable = \Mockery::mock( Indexable::class );
 		$context->indexable->orm = new class extends Yoast_ORM {
@@ -82,7 +85,7 @@ class PostTest extends TestCase {
 		};
 
 		$context->site_url = 'https://example.com/';
-		
+
 		// Return actual model instead of prototype.
 		return $context->of( [] );
 	}
@@ -124,7 +127,7 @@ class PostTest extends TestCase {
 		\Brain\Monkey\Functions\expect('get_post_type')->andReturn('post');
 
 		$context = $this->getContext();
-		
+
 		( $post = new \DC23\Schema\Blog\Post() )->register();
 
 		$context->indexable->schema_article_type = 'Article';
@@ -139,28 +142,28 @@ class PostTest extends TestCase {
 		\Brain\Monkey\Functions\expect('get_the_ID')->once()->andReturn('1');
 
 		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
-		
-		$category = $this->wpFaker->term( [ 
+
+		$category = $this->wpFaker->term( [
 			'term_id'     => 1,
 			'name'        => 'The category name',
 			'description' => 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.',
 		]);
-		
-		$other_category = $this->wpFaker->term( [ 
+
+		$other_category = $this->wpFaker->term( [
 			'term_id'     => 2,
 			'name'        => 'Another category\'s name',
 			'description' => 'A different category with a detailed description abot the completely different content it contains.',
 		] );
-		
+
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category, $other_category ] );
 
 		$context = $this->getContext();
 		$context->indexable->schema_article_type = 'BlogPosting';
-		
+
 		$user = $this->wpFaker->user( [ 'ID' => 1, 'user_login' => 'info@example.com'] );
-		
+
 		( $post = new \DC23\Schema\Blog\Post() )->register();
-		
+
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
 		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
@@ -172,7 +175,7 @@ class PostTest extends TestCase {
 		\Brain\Monkey\Functions\expect('get_the_ID')->once()->andReturn('1');
 
 		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
-		
+
 		// No category.
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [] );
 
@@ -180,35 +183,35 @@ class PostTest extends TestCase {
 		$context->indexable->schema_article_type = 'BlogPosting';
 
 		$user = $this->wpFaker->user( [ 'ID' => 1, 'user_login' => 'info@example.com'] );
-		
+
 		( $post = new \DC23\Schema\Blog\Post() )->register();
-		
+
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
 		self::assertCount( 0, $schema_pieces, 'no schema piece should be added' );
 	}
-	
+
 	public function testRunningTheFilterAddsBlogSchema(): void {
 		\Brain\Monkey\Functions\expect('is_single')->once()->andReturnTrue();
 		\Brain\Monkey\Functions\expect('get_post_type')->once()->andReturn('post');
 		\Brain\Monkey\Functions\expect('get_the_ID')->once()->andReturn('1');
 
 		$wp_post = $this->wpFaker->post( [ 'ID' => 1 ] );
-		
+
 		\Brain\Monkey\Functions\expect('get_permalink')->once()->andReturn( 'https://example.com/page.html' );
 		\Brain\Monkey\Functions\expect('get_term_link')->once()->andReturn( 'https://example.com/category.html' );
 
-		$category = $this->wpFaker->term( [ 
+		$category = $this->wpFaker->term( [
 			'term_id'     => 1,
 			'name'        => 'The category name',
 			'description' => 'Very extensive and detailed description about this category. It explains what the reader can find here, why this exists, and what may appear here in the future.',
 		]);
-		
+
 		\Brain\Monkey\Functions\expect( 'wp_get_post_categories' )->once()->andReturn( [ $category ] );
-		
+
 		\Brain\Monkey\Functions\when('wp_trim_excerpt')->returnArg();
 		\Brain\Monkey\Functions\when('wp_hash')->alias('str_rot13');
-		
+
 		\Brain\Monkey\Functions\expect('get_bloginfo')->once()->with('language')->andReturn('en-US');
 
 		$context = $this->getContext();
@@ -217,11 +220,11 @@ class PostTest extends TestCase {
 
 		$this->options_helper->expects('get')->once()->with('company_or_person', false)->andReturns('person');
 		$this->options_helper->expects('get')->once()->with('company_or_person_user_id', false)->andReturns(1);
-		
+
 		$user = $this->wpFaker->user( [ 'ID' => 1, 'user_login' => 'info@example.com'] );
-		
+
 		( $post = new \DC23\Schema\Blog\Post() )->register();
-		
+
 		$schema_pieces = $post->add_blog_to_schema( [], $context );
 
 		self::assertCount( 1, $schema_pieces, '1 schema piece should be added' );
