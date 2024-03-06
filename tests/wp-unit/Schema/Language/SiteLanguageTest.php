@@ -2,6 +2,8 @@
 
 final class SiteLanguageTest extends \WP_UnitTestCase {
 
+	private $author_id;
+
 	public function set_up(): void {
 		parent::set_up();
         
