@@ -101,7 +101,7 @@ jobs:
         run: 'composer test -- --coverage-text --testdox'
 
       - name: 'Test PHP WP units'
-        run: 'composer test-wp -- --coverage-text --display-errors --display-warnings --display-deprecations'
+        run: 'composer test-wp -- --coverage-text --display-errors --display-warnings'
 
       - name: 'Test e2e'
         run: 'npm run-script test:e2e'
