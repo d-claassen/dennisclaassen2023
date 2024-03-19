@@ -1,0 +1,78 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: null
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  wp-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php_version: ["7.4", "8.1", "8.2"]
+        wp_version: ["6.3", "6.4", "trunk"]
+        dependencies_version: ["lowest", "highest"]
+
+    name: "WP Test: PHP ${{ matrix.php_version }} / WP ${{ matrix.wp_version }} / Composer ${{ matrix.dependencies_version }}"
+
+    # Allow builds to fail on as-of-yet unreleased WordPress versions.
+    continue-on-error: ${{ matrix.wp_version == 'trunk' }}
+
+    services:
+      mysql:
+        # Use MySQL 5.7 for PHP 7.4, otherwise MySQL 8.0.
+        image: mysql:${{ ( matrix.php_version == '7.4' && '5.7' ) || '8.0' }}
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node and node_modules cache'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: 'Setup PHP'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_version }}
+          coverage: xdebug
+
+      - name: 'Validate composer.json and composer.lock'
+        run: 'composer validate --no-check-publish'
+
+      - name: 'NPM install'
+        run: npm install
+
+      - name: 'Composer install'
+        uses: ramsey/composer-install@v3
+        with:
+          dependency-version: ${{ matrix.dependencies_version }}
+          composer-options: '--prefer-dist --no-progress --no-suggest --optimize-autoloader'
+
+      - name: 'build the theme'
+        run: 'npm run-script build'
+
+      - name: 'execute rights'
+        run: 'chmod +x .github/workflows/install-wp-tests.sh'
+
+      - name: 'Install WordPress'
+        shell: bash
+        run: '.github/workflows/install-wp-tests.sh wordpress_test root "" 127.0.0.1:3306 ${{ matrix.wp_version }}'
+
+      - name: 'Test PHP WP units'
+        run: 'composer test-wp -- --coverage-text --display-errors --display-warnings'
