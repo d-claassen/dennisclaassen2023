@@ -24,6 +24,10 @@ updates:
           - "phpunit/*"
           - "brain/*"
           - "antecedent/*"
+      static-analysis:
+        patterns:
+          - "phpstan/*"
+          - "szepeviktor/phpstan-wordpress"
       code-style:
         patterns:
           - "yoast/yoastcs"
