@@ -23,7 +23,7 @@
 	],
 	"main": "build/index.js",
 	"devDependencies": {
-		"@wordpress/scripts": "^27.4.0"
+		"@wordpress/scripts": "^27.5.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build",
