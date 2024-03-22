@@ -15,7 +15,7 @@
     },
     "require-dev": {
         "yoast/yoastcs": "^3.0",
-        "phpunit/phpunit": "^10.5.14",
+        "phpunit/phpunit": "^10.5.15",
         "brain/monkey": "^2.6",
         "yoast/wordpress-seo": "^22.3",
         "antecedent/patchwork": "^2.1.28",
