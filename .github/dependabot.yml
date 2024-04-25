@@ -32,4 +32,7 @@ updates:
       code-style:
         patterns:
           - "yoast/yoastcs"
+          - "phpcsstandards/*"
+          - "phpcompatibility/*"
+          - "squizlabs/*"
           
