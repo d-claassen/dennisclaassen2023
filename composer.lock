@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "001ae42f3e0539ab1d10f6470c478d82",
+    "content-hash": "87471b5a7e91943989fa28812f5359b3",
     "packages": [],
     "packages-dev": [
         {
@@ -3608,16 +3608,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "22.6",
+            "version": "23.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "a800ab7c084c1caab9624a62c06e44b3a9bcdb83"
+                "reference": "f2baf6b3ee1ef6f1a9c2383cc7ab0c1add2aee53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/a800ab7c084c1caab9624a62c06e44b3a9bcdb83",
-                "reference": "a800ab7c084c1caab9624a62c06e44b3a9bcdb83",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/f2baf6b3ee1ef6f1a9c2383cc7ab0c1add2aee53",
+                "reference": "f2baf6b3ee1ef6f1a9c2383cc7ab0c1add2aee53",
                 "shasum": ""
             },
             "require": {
@@ -3634,7 +3634,6 @@
                 "psr/log": "^1.0",
                 "symfony/config": "^3.4",
                 "symfony/dependency-injection": "^3.4",
-                "wordproof/wordpress-sdk": "1.3.5",
                 "yoast/wp-test-utils": "^1.2",
                 "yoast/yoastcs": "^3.1.0"
             },
@@ -3678,7 +3677,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2024-04-30T07:59:16+00:00"
+            "time": "2024-10-08T09:46:19+00:00"
         },
         {
             "name": "yoast/yoastcs",
