@@ -3,3 +3,5 @@ vendor
 build
 dennisclaassen2023.zip
 .phpunit.result.cache
+phpunit.xml
+phpunit-wp.xml
