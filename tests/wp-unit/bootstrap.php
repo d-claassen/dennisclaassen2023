@@ -136,8 +136,11 @@ namespace DC23 {
 	 * Manually load the plugin being tested.
 	 */
 	function _manually_load_plugin() {
+		echo 'Loading custom mu-plugins.' . PHP_EOL;
 		require dirname( dirname( __DIR__ ) ) . '/vendor/yoast/wordpress-seo/wp-seo.php';
+		echo 'Yoast SEO loaded.' . PHP_EOL;
 		require dirname( dirname( __DIR__ ) ) . '/functions.php';
+		echo 'Theme functions loaded.' . PHP_EOL;
 	}
 
 	// Add plugin to active mu-plugins - to make sure it gets loaded.
