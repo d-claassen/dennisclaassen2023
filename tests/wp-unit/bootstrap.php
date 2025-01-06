@@ -177,7 +177,7 @@ namespace DC23 {
 		// already verifies it exists.
 		echo 'Bootstrapping WP test suite now...' . PHP_EOL;
 		require_once $wp_test_path . 'includes/bootstrap.php';
-		echo '... bootstrap done, ready for tests.';
+		echo '... bootstrap done, ready for tests.' . PHP_EOL;
 
 		return;
 	}
