@@ -136,8 +136,11 @@ namespace DC23 {
 	 * Manually load the plugin being tested.
 	 */
 	function _manually_load_plugin() {
+		echo 'Loading custom mu-plugins.' . PHP_EOL;
 		require dirname( dirname( __DIR__ ) ) . '/vendor/yoast/wordpress-seo/wp-seo.php';
+		echo 'Yoast SEO loaded.' . PHP_EOL;
 		require dirname( dirname( __DIR__ ) ) . '/functions.php';
+		echo 'Theme functions loaded.' . PHP_EOL;
 	}
 
 	// Add plugin to active mu-plugins - to make sure it gets loaded.
@@ -172,7 +175,9 @@ namespace DC23 {
 	if ( $wp_test_path !== false ) {
 		// We can safely load the bootstrap file as the `get_path_to_wp_test_dir()` function
 		// already verifies it exists.
+		echo 'Bootstrapping WP test suite now...' . PHP_EOL;
 		require_once $wp_test_path . 'includes/bootstrap.php';
+		echo '... bootstrap done, ready for tests.' . PHP_EOL;
 
 		return;
 	}
