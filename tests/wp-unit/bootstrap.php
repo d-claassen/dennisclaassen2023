@@ -175,7 +175,9 @@ namespace DC23 {
 	if ( $wp_test_path !== false ) {
 		// We can safely load the bootstrap file as the `get_path_to_wp_test_dir()` function
 		// already verifies it exists.
+		echo 'Bootstrapping WP test suite now...' . PHP_EOL;
 		require_once $wp_test_path . 'includes/bootstrap.php';
+		echo '... bootstrap done, ready for tests.';
 
 		return;
 	}
