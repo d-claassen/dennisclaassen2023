@@ -64,7 +64,9 @@ jobs:
         run: 'npm run-script build'
 
       - name: 'Start WP env'
-        run: 'npx wp-env start --update'
+        run: |
+          npm install --save-dev @wordpress/env
+          node ./node_modules/.bin/wp-env start --update
 
       - name: 'Test PHP units'
         if: ${{ matrix.wp_version == 'latest' }}
