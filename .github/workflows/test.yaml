@@ -47,6 +47,8 @@ jobs:
 
       - name: 'NPM install'
         run: npm install
+      - name: 'NPM install wp-env'
+        run: npm install --save-dev @wordpress/env
 
       - name: 'Composer install'
         uses: ramsey/composer-install@v3
@@ -61,13 +63,15 @@ jobs:
         run: 'npm run-script build'
 
       - name: 'Start WP env'
-        run: |
-          npm install --save-dev @wordpress/env
-          node ./node_modules/.bin/wp-env start --update
+        run: node ./node_modules/.bin/wp-env start --update
+
+      - name: 'Tests in env'
+        run: "node ./node_modules/.bin/wp-env run --env-cwd='wp-content/plugins/gutenberg' tests-wordpress vendor/bin/phpunit -c phpunit.xml.dist --verbose"
 
       - name: 'Test PHP units'
         if: ${{ matrix.wp_version == 'latest' }}
         run: 'composer test -- --coverage-text --testdox'
 
       - name: 'Test PHP WP units'
+        if: ${{ matrix.wp_version == 'latest' }}
         run: 'composer test-wp -- --coverage-text --display-errors --display-warnings'
