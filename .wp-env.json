@@ -1,5 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/wp-env.json",
 	"core": "WordPress/WordPress",
-	"themes": [ "." ]
+	"themes": [ "." ],
+	"plugins": [ "wordpress-seo" ]
 }
