@@ -27,15 +27,6 @@ jobs:
     # Allow builds to fail on as-of-yet unreleased WordPress versions.
     continue-on-error: ${{ matrix.wp_version == 'trunk' }}
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
-
     steps:
       - name: Install subversion
         run: sudo apt-get install -y subversion
@@ -72,12 +63,8 @@ jobs:
       - name: 'build the theme'
         run: 'npm run-script build'
 
-      - name: 'execute rights'
-        run: 'chmod +x .github/workflows/install-wp-tests.sh'
-
-      - name: 'Install WordPress'
-        shell: bash
-        run: '.github/workflows/install-wp-tests.sh wordpress_test root "" 127.0.0.1:3306 ${{ matrix.wp_version }}'
+      - name: 'Start WP env'
+        run: 'npx wp-env start --update'
 
       - name: 'Test PHP units'
         if: ${{ matrix.wp_version == 'latest' }}
