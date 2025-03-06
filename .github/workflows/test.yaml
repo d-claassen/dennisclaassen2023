@@ -76,6 +76,7 @@ jobs:
           npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress ./vendor/bin/phpunit -- --version
           npm run wp-env run -- tests-wordpress locale -a
           npm run wp-env run -- tests-cli wp core version
+          npm run wp-env run -- tests-cli wp user list
 
       - name: 'Test PHP units'
         if: ${{ matrix.wp_version == 'latest' }}
