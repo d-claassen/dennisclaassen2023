@@ -47,8 +47,6 @@ jobs:
 
       - name: 'NPM install'
         run: npm install
-      - name: 'NPM install wp-env'
-        run: npm install --save-dev @wordpress/env
 
       - name: 'Composer install'
         uses: ramsey/composer-install@v3
