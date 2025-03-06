@@ -61,10 +61,21 @@ jobs:
         run: 'npm run-script build'
 
       - name: 'Start WP env'
-        run: node ./node_modules/.bin/wp-env start --update
+        run: npm run wp-env start -- --update
 
       - name: 'Tests in env'
-        run: "node ./node_modules/.bin/wp-env run --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist"
+        run: "npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist"
+
+      - name: 'Debug wp-env'
+        run: |
+          docker ps -a
+          npm run wp-env run -- tests-mysql mysql -- --version
+          npm run wp-env run -- tests-wordpress php -- --version
+          npm run wp-env run -- tests-wordpress php -m
+          npm run wp-env run -- tests-wordpress php -i
+          npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress ./vendor/bin/phpunit -- --version
+          npm run wp-env run -- tests-wordpress locale -a
+          npm run wp-env run -- tests-cli wp core version
 
       - name: 'Test PHP units'
         if: ${{ matrix.wp_version == 'latest' }}
