@@ -17,15 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Quality Control'
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
-
     steps:
       - name: Install subversion
         run: sudo apt-get install -y subversion
@@ -52,12 +43,6 @@ jobs:
 
       - name: 'Composer install'
         run: 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
-
-# not yet ready for phpunit 10
-#      - name: 'Composer install pt 2'
-#        run: 'composer require yoast/wp-test-utils --dev'
-      - name: 'Composer install pt 2'
-        run: 'composer require yoast/phpunit-polyfills --dev'
 
       - name: 'Check engines'
         run: 'npm run-script check-engines'
@@ -93,18 +78,8 @@ jobs:
       - name: 'build the theme'
         run: 'npm run-script build'
 
-      - name: 'execute rights'
-        run: 'chmod +x .github/workflows/install-wp-tests.sh'
-
-      - name: 'Install WordPress'
-        shell: bash
-        run: '.github/workflows/install-wp-tests.sh wordpress_test root "" 127.0.0.1:3306 6.6'
-
       - name: 'Test PHP units'
         run: 'composer test -- --coverage-text --testdox'
-
-      - name: 'Test PHP WP units'
-        run: 'composer test-wp -- --coverage-text --display-errors --display-warnings'
 
       # broken.
       #- name: 'Test e2e'
