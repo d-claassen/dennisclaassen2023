@@ -19,17 +19,18 @@ jobs:
     strategy:
       matrix:
         php_version: ["8.1", "8.2"]
-        wp_version: ["6.6", "trunk"]
+        wp_version: ["6.6", "master"]
         dependencies_version: ["lowest", "highest"]
 
     name: "WP Test: PHP ${{ matrix.php_version }} / WP ${{ matrix.wp_version }} / Composer ${{ matrix.dependencies_version }}"
 
     # Allow builds to fail on as-of-yet unreleased WordPress versions.
-    continue-on-error: ${{ matrix.wp_version == 'trunk' }}
+    continue-on-error: ${{ matrix.wp_version == 'master' }}
 
     env:
       WP_ENV_PHP_VERSION: ${{ matrix.php_version }}
-         
+      WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
+
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v4
