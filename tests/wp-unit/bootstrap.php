@@ -135,13 +135,13 @@ namespace DC23 {
 	/**
 	 * Manually load the plugin being tested.
 	 */
-	// function _manually_load_plugin() {
-		// require dirname( dirname( __DIR__ ) ) . '/vendor/yoast/wordpress-seo/wp-seo.php';
-		// require dirname( dirname( __DIR__ ) ) . '/functions.php';
-	// }
+	function _manually_load_plugin() {
+		require dirname( dirname( __DIR__ ) ) . '/vendor/yoast/wordpress-seo/wp-seo.php';
+		require dirname( dirname( __DIR__ ) ) . '/functions.php';
+	}
 
 	// Add plugin to active mu-plugins - to make sure it gets loaded.
-	// tests_add_filter( 'muplugins_loaded', '\DC23\_manually_load_plugin' );
+	 tests_add_filter( 'muplugins_loaded', '\DC23\_manually_load_plugin' );
 
 	// Overwrite the plugin URL to not include the full path.
 	//tests_add_filter( 'plugins_url', '_plugins_url', 10, 3 );
