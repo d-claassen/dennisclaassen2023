@@ -2,5 +2,12 @@
 	"$schema": "https://schemas.wp.org/trunk/wp-env.json",
 	"core": "WordPress/WordPress#6.5",
 	"themes": [ "." ],
-	"plugins": [ "./vendor/yoast/wordpress-seo" ]
+	"plugins": [ "./vendor/yoast/wordpress-seo" ],
+    "env": {
+		"tests": {
+			"config": {
+                "WP_SITEURL": "http://example.org"
+            }
+		}
+	}
 }
