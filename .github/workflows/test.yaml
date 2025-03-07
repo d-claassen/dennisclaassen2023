@@ -74,6 +74,10 @@ jobs:
           npm run wp-env run -- tests-wordpress locale -a
           npm run wp-env run -- tests-cli wp core version
           npm run wp-env run -- tests-cli wp user list
+
+      - name: 'Activate theme'
+        run: |
+          npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
           npm run wp-env run -- tests-cli wp theme list
 
       - name: 'Tests in env'
