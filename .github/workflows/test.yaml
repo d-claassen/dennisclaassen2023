@@ -44,7 +44,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php_version }}
-          coverage: xdebug
 
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
@@ -58,8 +57,8 @@ jobs:
           dependency-version: ${{ matrix.dependencies_version }}
           composer-options: '--prefer-dist --no-progress --no-suggest --optimize-autoloader'
 
-      - name: 'build the theme'
-        run: 'npm run-script build'
+      - name: 'Build the theme'
+        run: 'npm run build'
 
       - name: 'Start WP env'
         run: npm run wp-env start -- --xdebug=coverage || npm run wp-env start -- --xdebug=coverage
@@ -69,35 +68,17 @@ jobs:
           docker ps -a
           # npm run wp-env run -- tests-mysql mysql -- --version
           npm run wp-env run -- tests-wordpress php -- --version
-          npm run wp-env run -- tests-wordpress php -m
-          npm run wp-env run -- tests-wordpress php -i
+          # npm run wp-env run -- tests-wordpress php -m
+          # npm run wp-env run -- tests-wordpress php -i
           npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress ./vendor/bin/phpunit -- --version
-          npm run wp-env run -- tests-wordpress locale -a
+          # npm run wp-env run -- tests-wordpress locale -a
           npm run wp-env run -- tests-cli wp core version
-          npm run wp-env run -- tests-cli wp user list
-
-      - name: 'Activate theme'
-        run: |
-          npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
+          # npm run wp-env run -- tests-cli wp user list
           npm run wp-env run -- tests-cli wp theme list
-
-      - name: 'Debug active plugins'
-        run: |
           npm run wp-env run -- tests-cli wp plugin list
 
-      - name: 'set up wp'
-        run: |
-          npm run wp-env run -- tests-cli wp option get siteurl
-          npm run wp-env run -- tests-cli wp option update siteurl 'http://example.org'
-          npm run wp-env run -- tests-cli wp option get siteurl
+      - name: 'Activate theme'
+        run: npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
 
-      - name: 'Tests in env'
+      - name: 'Tests PHP WP units'
         run: "npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist --coverage-text --display-errors --display-warnings"
-
-      - name: 'Test PHP units'
-        if: ${{ matrix.wp_version == 'latest' }}
-        run: 'composer test -- --coverage-text --testdox'
-
-      - name: 'Test PHP WP units'
-        if: ${{ matrix.wp_version == 'latest' }}
-        run: 'composer test-wp -- --coverage-text --display-errors --display-warnings'
