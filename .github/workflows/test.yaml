@@ -80,5 +80,5 @@ jobs:
       - name: 'Activate theme'
         run: npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
 
-      - name: 'Tests PHP WP units'
+      - name: 'Test PHP WP units'
         run: "npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist --coverage-text --display-errors --display-warnings"
