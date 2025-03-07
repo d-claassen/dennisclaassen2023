@@ -58,7 +58,7 @@ jobs:
         run: 'npm run-script build'
 
       - name: 'Start WP env'
-        run: npm run wp-env start
+        run: npm run wp-env start || npm run wp-env start
 
       - name: 'Debug wp-env'
         run: |
