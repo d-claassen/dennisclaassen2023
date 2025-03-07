@@ -54,9 +54,6 @@ jobs:
           dependency-version: ${{ matrix.dependencies_version }}
           composer-options: '--prefer-dist --no-progress --no-suggest --optimize-autoloader'
 
-      - name: 'Composer install pt 2'
-        run: 'composer require yoast/phpunit-polyfills --dev'
-
       - name: 'build the theme'
         run: 'npm run-script build'
 
