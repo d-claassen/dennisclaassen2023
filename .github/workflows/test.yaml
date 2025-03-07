@@ -62,7 +62,7 @@ jobs:
         run: 'npm run-script build'
 
       - name: 'Start WP env'
-        run: npm run wp-env start || npm run wp-env start
+        run: npm run wp-env start -- --xdebug=coverage || npm run wp-env start -- --xdebug=coverage
 
       - name: 'Debug wp-env'
         run: |
