@@ -199,7 +199,7 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		);
 	}
 
-	private function get_schema_output( bool $debug_wpseo_head = false ): string {
+	private function get_schema_output( bool $debug_wpseo_head = true ): string {
 
 		ob_start();
 		do_action( 'wpseo_head' );
