@@ -27,6 +27,9 @@ jobs:
     # Allow builds to fail on as-of-yet unreleased WordPress versions.
     continue-on-error: ${{ matrix.wp_version == 'trunk' }}
 
+    env:
+      WP_ENV_PHP_VERSION: ${{ matrix.php_version }}
+         
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v4
