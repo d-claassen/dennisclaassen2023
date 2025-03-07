@@ -80,10 +80,13 @@ jobs:
           npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
           npm run wp-env run -- tests-cli wp theme list
 
-      - name: 'Activate plugins'
+      - name: 'Debug active plugins'
         run: |
-          # npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
           npm run wp-env run -- tests-cli wp plugin list
+
+      - name: 'set up wp'
+        run: |
+          npm run wp-env run -- tests-cli wp option get siteurl
 
       - name: 'Tests in env'
         run: "npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist"
