@@ -87,6 +87,8 @@ jobs:
       - name: 'set up wp'
         run: |
           npm run wp-env run -- tests-cli wp option get siteurl
+          npm run wp-env run -- tests-cli wp option update siteurl 'http://example.org'
+          npm run wp-env run -- tests-cli wp option get siteurl
 
       - name: 'Tests in env'
         run: "npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist"
