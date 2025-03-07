@@ -6,7 +6,7 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 
 	public function set_up(): void {
 		parent::set_up();
-        
+
 		// Author who's the main Yoast user.
 		$this->author_id = self::factory()
 			->user
@@ -24,7 +24,7 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 	// override wordpress function thats incompatible
 	// with phpunit 10.
 	public function expectDeprecated(){}
-    
+
 	public function test_frontpage_has_enriched_language_nodes(): void {
 		$post_id = self::factory()->post->create(
 			array(
@@ -58,39 +58,39 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		$language_data = $this->get_piece_by_type( $schema_data['@graph'], 'Language' );
 
 		$this->assertSame(
-			// [ '@id' => 'http://example.org/#/schema/language/en-us'],
-			[ '@id' => 'http://example.org/#/language/en-US'],
+			// [ '@id' => 'http://localhost/#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/#/language/en-US'],
 			$webpage_data['inLanguage'],
 			'WebPage/inLanguage is incorrect'
 		);
-		
+
 		$this->assertSame(
-			// [ '@id' => 'http://example.org/#/schema/language/en-us'],
-			[ '@id' => 'http://example.org/#/language/en-US'],
+			// [ '@id' => 'http://localhost/#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/#/language/en-US'],
 			$website_data['inLanguage'],
 			'WebSite/inLanguage is incorrect'
 		);
-		
+
 		/*
 		$this->assertSame(
-			[ '@id' => 'http://example.org/#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/#/schema/language/en-us'],
 			$image_data['inLanguage'],
 			'ImageObject/inLanguage is incorrect'
 		);
 
 		$this->assertSame(
-			[ '@id' => 'http://example.org/#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/#/schema/language/en-us'],
 			$person_data['image']['inLanguage'],
 			'Person/image/inLanguage is incorrect'
 		);
 		*/
 		$this->assertSame(
-			'http://example.org/#/language/en-US',
+			'http://localhost/#/language/en-US',
 			$language_data['@id'],
 			'Language piece has incorrect @id'
 		);
 	}
-	
+
 	public function test_taxonomy_has_enriched_language_nodes(): void {
 		$post_id = self::factory()->post->create(
 			array(
@@ -122,20 +122,20 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		$language_data = $this->get_piece_by_type( $schema_data['@graph'], 'Language' );
 
 		$this->assertSame(
-			[ '@id' => 'http://example.org/?cat=2#/language/en-US'],
+			[ '@id' => 'http://localhost/?cat=2#/language/en-US'],
 			$webpage_piece['inLanguage'],
 			'WebPage should be in language'
 		);
-		
+
 		$this->assertSame(
-			// [ '@id' => 'http://example.org/?cat=2#/schema/language/en-us'],
-			[ '@id' => 'http://example.org/?cat=2#/language/en-US'],
+			// [ '@id' => 'http://localhost/?cat=2#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/?cat=2#/language/en-US'],
 			$website_data['inLanguage'],
 			'WebSite/inLanguage is incorrect'
 		);
-		
+
 		$this->assertSame(
-			'http://example.org/?cat=2#/language/en-US',
+			'http://localhost/?cat=2#/language/en-US',
 			$language_data['@id'],
 			'Language piece has incorrect @id'
 		);
@@ -166,34 +166,34 @@ final class SiteLanguageTest extends \WP_UnitTestCase {
 		$language_data = $this->get_piece_by_type( $schema_data['@graph'], 'Language' );
 
 		$this->assertSame(
-			// [ '@id' => 'http://example.org/?p=4#/schema/language/en-us'],
-			[ '@id' => 'http://example.org/?p=4#/language/en-US'],
+			// [ '@id' => 'http://localhost/?p=4#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/?p=4#/language/en-US'],
 			$webpage_data['inLanguage'],
 			'WebPage/inLanguage is incorrect'
 		);
-		
+
 		$this->assertSame(
-			// [ '@id' => 'http://example.org/?p=4#/schema/language/en-us'],
-			[ '@id' => 'http://example.org/?p=4#/language/en-US'],
+			// [ '@id' => 'http://localhost/?p=4#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/?p=4#/language/en-US'],
 			$website_data['inLanguage'],
 			'WebSite/inLanguage is incorrect'
 		);
-		
+
 		/*
 		$this->assertSame(
-			[ '@id' => 'http://example.org/?p=4#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/?p=4#/schema/language/en-us'],
 			$image_data['inLanguage'],
 			'ImageObject/inLanguage is incorrect'
 		);
 
 		$this->assertSame(
-			[ '@id' => 'http://example.org/?p=4#/schema/language/en-us'],
+			[ '@id' => 'http://localhost/?p=4#/schema/language/en-us'],
 			$person_data['image']['inLanguage'],
 			'Person/image/inLanguage is incorrect'
 		);
 		*/
 		$this->assertSame(
-			'http://example.org/?p=4#/language/en-US',
+			'http://localhost/?p=4#/language/en-US',
 			$language_data['@id'],
 			'Language piece has incorrect @id'
 		);

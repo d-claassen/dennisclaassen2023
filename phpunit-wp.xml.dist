@@ -8,6 +8,7 @@
 	colors="true"
 	resolveDependencies="true"
 	executionOrder="random"
+	processIsolation="true"
 >
 	<php>
 		<ini name="display_errors" value="1" />

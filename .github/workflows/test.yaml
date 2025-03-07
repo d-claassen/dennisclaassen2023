@@ -19,27 +19,19 @@ jobs:
     strategy:
       matrix:
         php_version: ["8.1", "8.2"]
-        wp_version: ["6.6", "trunk"]
+        wp_version: ["6.6", "6.7", "master"]
         dependencies_version: ["lowest", "highest"]
 
     name: "WP Test: PHP ${{ matrix.php_version }} / WP ${{ matrix.wp_version }} / Composer ${{ matrix.dependencies_version }}"
 
     # Allow builds to fail on as-of-yet unreleased WordPress versions.
-    continue-on-error: ${{ matrix.wp_version == 'trunk' }}
+    continue-on-error: ${{ matrix.wp_version == 'master' }}
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=10s --health-retries=10
+    env:
+      WP_ENV_PHP_VERSION: ${{ matrix.php_version }}
+      WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
 
     steps:
-      - name: Install subversion
-        run: sudo apt-get install -y subversion
-
       - name: 'Checkout'
         uses: actions/checkout@v4
 
@@ -52,7 +44,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php_version }}
-          coverage: xdebug
 
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
@@ -66,22 +57,28 @@ jobs:
           dependency-version: ${{ matrix.dependencies_version }}
           composer-options: '--prefer-dist --no-progress --no-suggest --optimize-autoloader'
 
-      - name: 'Composer install pt 2'
-        run: 'composer require yoast/phpunit-polyfills --dev'
+      - name: 'Build the theme'
+        run: 'npm run build'
 
-      - name: 'build the theme'
-        run: 'npm run-script build'
+      - name: 'Start WP env'
+        run: npm run wp-env start -- --xdebug=coverage || npm run wp-env start -- --xdebug=coverage
 
-      - name: 'execute rights'
-        run: 'chmod +x .github/workflows/install-wp-tests.sh'
+      - name: 'Debug wp-env'
+        run: |
+          docker ps -a
+          # npm run wp-env run -- tests-mysql mysql -- --version
+          npm run wp-env run -- tests-wordpress php -- --version
+          # npm run wp-env run -- tests-wordpress php -m
+          # npm run wp-env run -- tests-wordpress php -i
+          npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress ./vendor/bin/phpunit -- --version
+          # npm run wp-env run -- tests-wordpress locale -a
+          npm run wp-env run -- tests-cli wp core version
+          # npm run wp-env run -- tests-cli wp user list
+          npm run wp-env run -- tests-cli wp theme list
+          npm run wp-env run -- tests-cli wp plugin list
 
-      - name: 'Install WordPress'
-        shell: bash
-        run: '.github/workflows/install-wp-tests.sh wordpress_test root "" 127.0.0.1:3306 ${{ matrix.wp_version }}'
-
-      - name: 'Test PHP units'
-        if: ${{ matrix.wp_version == 'latest' }}
-        run: 'composer test -- --coverage-text --testdox'
+      - name: 'Activate theme'
+        run: npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
 
       - name: 'Test PHP WP units'
-        run: 'composer test-wp -- --coverage-text --display-errors --display-warnings'
+        run: "npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress vendor/bin/phpunit -c phpunit-wp.xml.dist --coverage-text --display-errors --display-warnings"

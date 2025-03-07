@@ -1,0 +1,11 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/wp-env.json",
+	"core": null,
+	"themes": [ "." ],
+	"plugins": [ "./vendor/yoast/wordpress-seo" ],
+    "env": {
+        "tests": {
+            "port": 80
+        }
+    }
+}
