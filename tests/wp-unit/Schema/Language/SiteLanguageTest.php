@@ -1,6 +1,6 @@
 <?php
 
-namespace DC23\WP_Tests\Schema\Blog;
+namespace DC23\WP_Tests\Schema\Language;
 
 final class SiteLanguageTest extends \WP_UnitTestCase {
 
