@@ -22,7 +22,7 @@ namespace PHPUnit\Framework\Error {
 //class_alias( 'PHPUnit\Framework\Error\Notice', 'PHPUnit_Framework_Error_Notice' );
 //class_alias( 'PHPUnit\Framework\Error\Warning', 'PHPUnit_Framework_Error_Warning' );
 
-namespace DC23 {
+namespace DC23\WP_Tests {
 
 	/* *****[ Wire in the integration ]***** */
 
