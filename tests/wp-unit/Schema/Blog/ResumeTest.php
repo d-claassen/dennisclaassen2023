@@ -1,5 +1,7 @@
 <?php
 
+namespace DC23\WP_Tests\Schema\Blog;
+
 /**
  * Class ResumeTest.
  *
