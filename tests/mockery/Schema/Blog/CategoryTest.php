@@ -1,5 +1,7 @@
 <?php
 
+namespace DC23\Tests\Schema\Blog;
+
 use Brain\Faker\Providers as BrainFaker;
 use Faker\Generator as FakerGenerator;
 use DC23\Schema\Blog\Category;
