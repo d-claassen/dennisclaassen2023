@@ -1,5 +1,7 @@
 <?php
 
+namespace DC23\WP_Tests\Schema\Blog;
+
 final class SiteLanguageTest extends \WP_UnitTestCase {
 
 	private $author_id;
