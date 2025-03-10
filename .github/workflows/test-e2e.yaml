@@ -1,0 +1,46 @@
+name: End-to-End Tests
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+# Cancels all previous workflow runs for pull requests that have not completed.
+concurrency:
+    # The concurrency group contains the workflow name and the branch name for pull requests
+    # or the commit hash for any other events.
+    group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
+    cancel-in-progress: true
+
+jobs:
+    e2e-playwright:
+        name: Playwright - ${{ matrix.part }}
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                wp_version: ["6.7"]
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Setup Node.js and install dependencies
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: '.nvmrc'
+
+            - name: Npm build
+              run: npm run build
+
+            #- name: Install Playwright dependencies
+            #  run: npx playwright install chromium firefox webkit --with-deps
+
+            - name: Install WordPress and start the server
+              run: |
+                  npm run wp-env start
+
+            - name: Run the tests
+              #env:
+              #    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+              run: npm run test:e2e
