@@ -25,12 +25,15 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            - name: Setup Node.js and install dependencies
+            - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
                   node-version-file: '.nvmrc'
 
-            - name: Npm build
+            - name: NPM install
+              run: npm install
+
+            - name: NPM build
               run: npm run build
 
             #- name: Install Playwright dependencies
