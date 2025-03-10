@@ -53,10 +53,9 @@ jobs:
               run: npx playwright install chromium firefox webkit --with-deps
 
             - name: Install WordPress and start the server
-              run: |
-                  npm run wp-env start
+              run: WP_ENV_TESTS_PORT=8889 npm run wp-env start
 
             - name: Run the tests
               env:
                   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-              run: npm run test:e2e -- --shard=1/2
+              run: npm run test:e2e
