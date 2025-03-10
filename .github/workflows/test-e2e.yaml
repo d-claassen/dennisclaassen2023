@@ -33,9 +33,23 @@ jobs:
             - name: NPM install
               run: npm install
 
-            - name: NPM build
-              run: npm run build
+            - name: 'Setup PHP'
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php_version }}
 
+            - name: 'Validate composer.json and composer.lock'
+              run: 'composer validate --no-check-publish'
+
+            - name: 'NPM install'
+              run: npm install
+
+            - name: 'Composer install'
+              uses: ramsey/composer-install@v3
+              with:
+                  dependency-version: ${{ matrix.dependencies_version }}
+                  composer-options: '--prefer-dist --no-progress --no-suggest --optimize-autoloader'
+ 
             #- name: Install Playwright dependencies
             #  run: npx playwright install chromium firefox webkit --with-deps
 
