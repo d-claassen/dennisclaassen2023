@@ -59,4 +59,4 @@ jobs:
             - name: Run the tests
               env:
                   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-              run: npm run test:e2e
+              run: npm run test:e2e -- --shard=1/2
