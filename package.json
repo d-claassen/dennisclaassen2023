@@ -39,7 +39,7 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "wp-scripts start",
 		"test:unit": "wp-scripts test-unit-js",
-		"test:e2e": "wp-scripts test-e2e",
+		"test:e2e": "wp-scripts test-playwright",
 		"wp-env": "wp-env"
 	}
 }
