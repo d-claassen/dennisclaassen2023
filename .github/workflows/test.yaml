@@ -91,6 +91,9 @@ jobs:
       matrix:
         wp_version: ["6.7", "6.8"]
 
+    env:
+      WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -102,7 +105,7 @@ jobs:
       - name: 'Setup PHP'
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php_version }}
+          php-version: "8.2"
 
       - name: 'Validate composer.json and composer.lock'
         run: 'composer validate --no-check-publish'
@@ -121,8 +124,25 @@ jobs:
       - name: Install Playwright dependencies
         run: npx playwright install chromium firefox webkit --with-deps
 
-      - name: Install WordPress and start the server
-        run: WP_ENV_TESTS_PORT=8889 npm run wp-env start
+      - name: 'Start WP env'
+        run: WP_ENV_TESTS_PORT=8889 npm run wp-env start || npm run wp-env start
+
+      - name: 'Debug wp-env'
+        run: |
+          docker ps -a
+          # npm run wp-env run -- tests-mysql mysql -- --version
+          npm run wp-env run -- tests-wordpress php -- --version
+          # npm run wp-env run -- tests-wordpress php -m
+          # npm run wp-env run -- tests-wordpress php -i
+          npm run wp-env run -- --env-cwd='wp-content/themes/dennisclaassen2023' tests-wordpress ./vendor/bin/phpunit -- --version
+          # npm run wp-env run -- tests-wordpress locale -a
+          npm run wp-env run -- tests-cli wp core version
+          # npm run wp-env run -- tests-cli wp user list
+          npm run wp-env run -- tests-cli wp theme list
+          npm run wp-env run -- tests-cli wp plugin list
+
+      - name: 'Activate theme'
+        run: npm run wp-env run -- tests-cli wp theme activate dennisclaassen2023
 
       - name: Run the tests
         env:
