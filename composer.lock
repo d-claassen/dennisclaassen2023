@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0935b1570155249b7dd00a6a35139e3",
+    "content-hash": "8c5713c373808f5c2b593be7f0b9d1db",
     "packages": [],
     "packages-dev": [
         {
@@ -3674,16 +3674,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "24.8.1",
+            "version": "24.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "9dc2f9b658453daea8d600b5ffd2964f1d075ecc"
+                "reference": "f62cf475954092df2a2f4f2b3010dee853b3f456"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/9dc2f9b658453daea8d600b5ffd2964f1d075ecc",
-                "reference": "9dc2f9b658453daea8d600b5ffd2964f1d075ecc",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/f62cf475954092df2a2f4f2b3010dee853b3f456",
+                "reference": "f62cf475954092df2a2f4f2b3010dee853b3f456",
                 "shasum": ""
             },
             "require": {
@@ -3702,7 +3702,7 @@
                 "symfony/dependency-injection": "^3.4",
                 "wpackagist-plugin/google-site-kit": "dev-trunk",
                 "yoast/wp-test-utils": "^1.2",
-                "yoast/yoastcs": "^3.1.0"
+                "yoast/yoastcs": "^3.2.0"
             },
             "suggest": {
                 "ext-bcmath": "For more accurate calculations",
@@ -3751,7 +3751,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2025-04-02T10:16:02+00:00"
+            "time": "2025-04-15T08:15:26+00:00"
         },
         {
             "name": "yoast/yoastcs",
