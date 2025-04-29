@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c5713c373808f5c2b593be7f0b9d1db",
+    "content-hash": "6646b7d9559f96bc7636e42ee66f2e24",
     "packages": [],
     "packages-dev": [
         {
@@ -3624,76 +3624,23 @@
             "time": "2025-02-09T18:25:29+00:00"
         },
         {
-            "name": "yoast/whip",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Yoast/whip.git",
-                "reference": "5cfd9c3b433774548ec231fe896d5e85d17ed0d1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Yoast/whip/zipball/5cfd9c3b433774548ec231fe896d5e85d17ed0d1",
-                "reference": "5cfd9c3b433774548ec231fe896d5e85d17ed0d1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "php-parallel-lint/php-console-highlighter": "^1.0.0",
-                "php-parallel-lint/php-parallel-lint": "^1.3.2",
-                "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
-                "roave/security-advisories": "dev-master",
-                "yoast/yoastcs": "^3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Facades/wordpress.php"
-                ],
-                "psr-4": {
-                    "Yoast\\WHIPv2\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Team Yoast",
-                    "email": "support@yoast.com"
-                }
-            ],
-            "description": "A WordPress package to nudge users to upgrade their software versions (starting with PHP)",
-            "homepage": "https://github.com/Yoast/whip",
-            "support": {
-                "issues": "https://github.com/Yoast/whip/issues",
-                "security": "https://yoast.com/security-program/",
-                "source": "https://github.com/Yoast/whip"
-            },
-            "time": "2023-12-27T11:39:30+00:00"
-        },
-        {
             "name": "yoast/wordpress-seo",
-            "version": "24.9",
+            "version": "25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "f62cf475954092df2a2f4f2b3010dee853b3f456"
+                "reference": "8e7978886bd776e58dff88ce62abdfacc63662fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/f62cf475954092df2a2f4f2b3010dee853b3f456",
-                "reference": "f62cf475954092df2a2f4f2b3010dee853b3f456",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/8e7978886bd776e58dff88ce62abdfacc63662fe",
+                "reference": "8e7978886bd776e58dff88ce62abdfacc63662fe",
                 "shasum": ""
             },
             "require": {
                 "composer/installers": "^1.12 || ^2.0",
                 "ext-filter": "*",
-                "php": "^7.2.5 || ^8.0",
-                "yoast/whip": "^2.0"
+                "php": "^7.4| ^8.0"
             },
             "require-dev": {
                 "guzzlehttp/guzzle": "7.8.1",
@@ -3754,7 +3701,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2025-04-15T08:15:26+00:00"
+            "time": "2025-04-29T08:04:54+00:00"
         },
         {
             "name": "yoast/yoastcs",
