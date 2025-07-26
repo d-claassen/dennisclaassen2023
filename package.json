@@ -40,6 +40,7 @@
 		"start": "wp-scripts start",
 		"test:unit": "wp-scripts test-unit-js",
 		"test:e2e": "wp-scripts test-playwright",
+		"version": "node ./scripts/update-version.js $npm_package_version && git add style.css",
 		"wp-env": "wp-env"
 	}
 }
