@@ -13,17 +13,12 @@ if ( ! newVersion ) {
 
 // Determine the parent directory (plugin folder name)
 const parentDir = path.resolve( __dirname, '..' );
-const pluginFile = `${ path.basename( parentDir ) }.php`;
 
 // Define files to update with their respective patterns
 const files = [
 	{
-		path: path.join( parentDir, pluginFile ),
-		pattern: /^( \* Version:\s*)(\d+\..+)$/m,
-	},
-	{
-		path: path.join( parentDir, 'readme.txt' ),
-		pattern: /^(Stable tag:\s*)(\d+\..+)$/m,
+		path: path.join( parentDir, 'style.css' ),
+		pattern: /^(Version:\s*)(\d+\..+)$/m,
 	},
 ];
 
