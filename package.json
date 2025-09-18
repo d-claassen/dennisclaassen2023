@@ -23,7 +23,7 @@
 	],
 	"main": "build/index.js",
 	"devDependencies": {
-		"@wordpress/env": "^10.30.0",
+		"@wordpress/env": "^10.31.0",
 		"@wordpress/scripts": "^30.23.0"
 	},
 	"scripts": {
