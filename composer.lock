@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0d4c35c9272c7d7935e4888d54eaa3c",
+    "content-hash": "7deeffc8292499b20f5e2b403455b76e",
     "packages": [],
     "packages-dev": [
         {
@@ -3685,16 +3685,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "25.9",
+            "version": "26.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "fe0ee2dedd8180b5c5f12a025743eb2cb9f949e2"
+                "reference": "6dbc74a7db42aa4658fe04b141830f7393dc70f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/fe0ee2dedd8180b5c5f12a025743eb2cb9f949e2",
-                "reference": "fe0ee2dedd8180b5c5f12a025743eb2cb9f949e2",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/6dbc74a7db42aa4658fe04b141830f7393dc70f6",
+                "reference": "6dbc74a7db42aa4658fe04b141830f7393dc70f6",
                 "shasum": ""
             },
             "require": {
@@ -3761,7 +3761,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2025-09-09T08:43:16+00:00"
+            "time": "2025-10-08T10:01:59+00:00"
         },
         {
             "name": "yoast/yoastcs",
