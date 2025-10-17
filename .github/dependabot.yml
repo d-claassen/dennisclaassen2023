@@ -22,6 +22,7 @@ updates:
       unit-tests:
         patterns:
           - "phpunit/*"
+          - "sebastian/*"
           - "brain/*"
           - "antecedent/*"
           - "mockery/*"
