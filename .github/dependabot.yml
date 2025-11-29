@@ -35,6 +35,7 @@ updates:
           - "yoast/yoastcs"
           - "phpcsstandards/*"
           - "phpcompatibility/*"
+          - "wp-coding-standards/*"
           - "squizlabs/*"
           - "slevomat/*"
           - "dealerdirect/phpcodesniffer-composer-installer"
