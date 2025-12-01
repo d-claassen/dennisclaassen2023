@@ -18,9 +18,12 @@ jobs:
 
     strategy:
       matrix:
-        php_version: ["8.1", "8.3"]
-        wp_version: ["6.7", "6.8.3", "master"]
+        php_version: ["8.3"]
+        wp_version: ["6.8.3", "master"]
         dependencies_version: ["lowest", "highest"]
+        include:
+          - php_version: "8.1"
+            wp_version: "6.7"
 
     name: "WP Test: PHP ${{ matrix.php_version }} / WP ${{ matrix.wp_version }} / Composer ${{ matrix.dependencies_version }}"
 
