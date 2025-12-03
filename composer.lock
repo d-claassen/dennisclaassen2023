@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4665e80df4d8d1bddc29418c802320d1",
+    "content-hash": "a15ad2002d3874b9017197eca176393d",
     "packages": [],
     "packages-dev": [
         {
@@ -3696,16 +3696,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "26.4",
+            "version": "26.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "ebe93710202897f916fbfb4825b0b3c1002ea1ea"
+                "reference": "2f1ba2dd6e15acc71fa1bdec6ef47404ab6d1f1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/ebe93710202897f916fbfb4825b0b3c1002ea1ea",
-                "reference": "ebe93710202897f916fbfb4825b0b3c1002ea1ea",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/2f1ba2dd6e15acc71fa1bdec6ef47404ab6d1f1d",
+                "reference": "2f1ba2dd6e15acc71fa1bdec6ef47404ab6d1f1d",
                 "shasum": ""
             },
             "require": {
@@ -3717,10 +3717,10 @@
                 "guzzlehttp/guzzle": "7.8.1",
                 "humbug/php-scoper": "^0.13.4",
                 "league/oauth2-client": "2.7.0",
-                "psr/container": "1.0.0",
+                "psr/container": "1.1.1",
                 "psr/log": "^1.0",
-                "symfony/config": "^3.4",
-                "symfony/dependency-injection": "^3.4",
+                "symfony/config": "^5.4.46",
+                "symfony/dependency-injection": "^5.4.48",
                 "wpackagist-plugin/google-site-kit": "dev-trunk",
                 "yoast/wp-test-utils": "^1.2",
                 "yoast/yoastcs": "^3.2.0"
@@ -3772,7 +3772,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2025-11-18T09:25:20+00:00"
+            "time": "2025-12-02T10:29:49+00:00"
         },
         {
             "name": "yoast/yoastcs",
