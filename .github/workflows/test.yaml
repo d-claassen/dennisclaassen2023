@@ -27,8 +27,8 @@ jobs:
           - php_version: "8.2"
             wp_version: "6.7"
             dependencies_version: "lowest"
-          # Unstable latest PHP and WP
-          - php_version: "8.6"
+          # Latest PHP and WP
+          - php_version: "8.5"
             wp_version: "master"
             dependencies_version: "highest"
 
@@ -100,7 +100,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        wp_version: ["6.7", "6.8"]
+        wp_version: ["6.7", "6.8", "6.9", "master"]
 
     env:
       WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
