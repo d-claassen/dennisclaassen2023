@@ -1,6 +1,6 @@
 <?php
 
-namespace DC23\WP_Tests\Schema\Blog;
+namespace DC23\WP_Tests\Schema\Profile;
 
 /**
  * Class ResumeTest.
