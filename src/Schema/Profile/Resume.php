@@ -77,6 +77,11 @@ final class Resume {
 			'sameAs'         => 'https://en.wikipedia.org/wiki/Netherlands',
 		];
 
+		$webpage_type = (array) $context->schema_page_type;
+		if ( ! \in_array( 'ProfilePage', $webpage_type, true ) ) {
+			return $person_data;
+		}
+
 		$person_data['knowsLanguage'] = [
 			[
 				'@type'          => 'http://schema.org/Language',
