@@ -242,6 +242,11 @@ final class Resume {
 
 		\assert( $context instanceof Meta_Tags_Context );
 
+		$webpage_type = (array) $context->schema_page_type;
+		if ( ! \in_array( 'ProfilePage', $webpage_type, true ) ) {
+			return $pieces;
+		}
+
 		\array_push(
 			$pieces,
 			new class([
