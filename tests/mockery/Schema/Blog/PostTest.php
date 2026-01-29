@@ -258,7 +258,7 @@ class PostTest extends TestCase {
 			$schema['publisher']
 		);
 		self::assertSame(
-			['@id'=>'https://example.com/#/language/en-US'],
+			'en-US',
 			$schema['inLanguage']
 		);
 		self::assertSame(

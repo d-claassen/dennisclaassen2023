@@ -118,9 +118,7 @@ final class Category {
 					'publisher'         => [
 						'@id'  => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
 					],
-					'inLanguage'        => [
-						'@id'  => $canonical . '#/language/' . \get_bloginfo( 'language' ),
-					],
+					'inLanguage'        => \get_bloginfo( 'language' ),
 					'url'               => $id,
 				],
 				$id
@@ -136,9 +134,7 @@ final class Category {
 				'publisher'   => [
 					'@id' => \YoastSEO()->helpers->schema->id->get_user_schema_id( $context->site_user_id, $context ),
 				],
-				'inLanguage'  => [
-					'@id' => $canonical . '#/language/' . \get_bloginfo( 'language' ),
-				],
+				'inLanguage'  => \get_bloginfo( 'language' ),
 				'blogPost'    => $post_ids,
 			]
 		);
