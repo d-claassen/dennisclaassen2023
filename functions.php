@@ -15,6 +15,7 @@ if ( ! function_exists( 'dc23_setup' ) ) :
 		register_block_type( __DIR__ . '/build/assets/github-tree', [ 'render_callback' => \DC23\Blocks\GitHubTree\Tree::render( ... ) ] );
 		register_block_type( __DIR__ . '/build/assets/github-breadcrumbs', [ 'render_callback' => \DC23\Blocks\GitHubBreadcrumbs\Breadcrumbs::render( ... ) ] );
 
+		( new \DC23\Schema\Language\SiteLanguage() )->register();
 		( new \DC23\Schema\Profile\Resume() )->register();
 		( new \DC23\Schema\Blog\Category() )->register();
 		( new \DC23\Schema\Blog\Post() )->register();
