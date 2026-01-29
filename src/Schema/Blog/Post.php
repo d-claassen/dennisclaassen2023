@@ -67,9 +67,7 @@ final class Post {
 				'name'             => $category->name,
 				'description'      => \wp_trim_excerpt( $category->description ),
 				'publisher'        => $context->site_represents_reference,
-				'inLanguage'       => [
-					'@id' => $canonical . '#/language/' . \get_bloginfo( 'language' ),
-				],
+				'inLanguage'       => \get_bloginfo( 'language' ),
 				'blogPost'         => [ $post_id ],
 			]
 		);
