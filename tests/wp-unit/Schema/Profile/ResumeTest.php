@@ -162,6 +162,59 @@ class ResumeTest extends \WP_UnitTestCase {
 		$this->assertCount( 5, $person_data['knowsAbout'] );
 	}
 
+	/**
+	 * @testdox Should enhance site publisher Person with some resume data
+	 */
+	public function test_frontpage_with_linited_resume(): void {
+		$post_id = self::factory()->post->create(
+			array(
+				'post_content' => 'Custom homepage',
+				'post_author'  => $this->author_id,
+				'post_type'    => 'page',
+			)
+		);
+
+		// Configure the custom homepage as "CollectionPage".
+		\YoastSEO()->helpers->meta->set_value( 'schema_page_type', 'CollectionPage', $post_id );
+
+		// Update object to persist meta value to indexable.
+		self::factory()->post->update_object( $post_id, [] );
+
+		// Configure the page to be the custom frontpage.
+		\update_option( 'show_on_front', 'page' );
+		\update_option( 'page_on_front', $post_id );
+
+		$this->go_to( get_home_url() );
+
+		$schema_output = $this->get_schema_output();
+		$this->assertJson( $schema_output );
+
+		$schema_data = json_decode( $schema_output, JSON_OBJECT_AS_ARRAY );
+
+		$this->assertSame(['WebPage', 'CollectionPage'], $schema_data['@graph'][0]['@type'],'First graph piece should be ProfilePage');
+		$this->assertSame(['Person', 'Organization'], $schema_data['@graph'][3]['@type'],'Fourth graph piece should be Person');
+
+		$person_data = $schema_data['@graph'][3];
+
+		//hardcoded
+		$this->assertSame('Lead developer', $person_data['jobTitle']);
+		$this->assertSame('http://schema.org/Male', $person_data['gender']);
+		$this->assertSame(
+			[
+				'@type' => 'Country',
+				'name' => 'Netherlands',
+				'alternateName' => 'NL',
+				'sameAs' => 'https://en.wikipedia.org/wiki/Netherlands',
+			],
+			$person_data['nationality'],
+		);
+
+		$this->assertArrayKeyNotExist( 'worksFor', $person_data );
+		$this->assertArrayKeyNotExist( 'alumniOf', $person_data );
+		$this->assertArrayKeyNotExist( 'knowsAbout', $person_data );
+		$this->assertArrayKeyNotExist( 'knowsLanguage', $person_data );
+	}
+
 	private function get_schema_output( bool $debug_wpseo_head = false ): string {
 
 		ob_start();
