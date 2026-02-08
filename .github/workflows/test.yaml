@@ -100,7 +100,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        wp_version: ["6.7", "6.8", "6.9", "master"]
+        wp_version: ["6.8", "6.9", "master"]
 
     env:
       WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
