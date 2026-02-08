@@ -100,7 +100,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        wp_version: ["6.7", "6.8", "6.9", "master"]
+        wp_version: ["6.8", "6.9", "master"]
+        dependencies_version: ["locked"]
+        include:
+          # Lowest WP, and deps
+          - wp_version: "6.7"
+            dependencies_version: "lowest"
 
     env:
       WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
@@ -128,6 +133,7 @@ jobs:
       - name: 'Composer install'
         uses: ramsey/composer-install@v3
         with:
+          dependency-versions: ${{ matrix.dependencies_version }}
           composer-options: '--prefer-dist --no-progress --no-suggest --optimize-autoloader'
  
       - name: NPM build
