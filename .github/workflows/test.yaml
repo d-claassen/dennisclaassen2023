@@ -106,6 +106,7 @@ jobs:
           # Lowest WP, and deps
           - wp_version: "6.7"
             dependencies_version: "lowest"
+
     env:
       WP_ENV_CORE: ${{ format( 'WordPress/WordPress#{0}', matrix.wp_version ) }}
 
