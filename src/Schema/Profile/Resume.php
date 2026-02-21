@@ -18,10 +18,6 @@ final class Resume {
 		\add_filter( 'wpseo_schema_graph_pieces', $this->add_resume_to_schema( ... ), 11, 2 );
 	}
 
-	private function should_add_resume_data(): bool {
-		return \is_front_page();
-	}
-
 	/**
 	 * Enhance the WebPage with a mainEntity reference to the Person.
 	 *
@@ -33,8 +29,7 @@ final class Resume {
 	 * @return T|(T&array{mainEntity: array{"@id": string}}) The original or enhanced WebPage piece.
 	 */
 	private function make_person_main_entity( $webpage_data, $context ) {
-
-		if ( ! $this->should_add_resume_data() || $context->site_represents !== 'person' ) {
+		if ( $context->site_represents !== 'person' ) {
 			return $webpage_data;
 		}
 
