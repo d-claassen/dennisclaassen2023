@@ -71,7 +71,7 @@ final class Category {
 						'include_children' => false,
 					],
 				],
-			]
+			],
 		);
 
 		return $posts->get_posts();
@@ -121,7 +121,7 @@ final class Category {
 					'inLanguage'        => \get_bloginfo( 'language' ),
 					'url'               => $id,
 				],
-				$id
+				$id,
 			);
 		}
 
@@ -136,13 +136,13 @@ final class Category {
 				],
 				'inLanguage'  => \get_bloginfo( 'language' ),
 				'blogPost'    => $post_ids,
-			]
+			],
 		);
 
 		\array_push(
 			$pieces,
 			$blog,
-			...$posts
+			...$posts,
 		);
 
 		return $pieces;
