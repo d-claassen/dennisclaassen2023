@@ -176,7 +176,7 @@ class Tree {
 						'include_children' => false,
 					],
 				],
-			]
+			],
 		);
 
 		return $posts->get_posts();
