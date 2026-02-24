@@ -69,7 +69,7 @@ final class Post {
 				'publisher'        => $context->site_represents_reference,
 				'inLanguage'       => \get_bloginfo( 'language' ),
 				'blogPost'         => [ $post_id ],
-			]
+			],
 		);
 
 		\array_push(

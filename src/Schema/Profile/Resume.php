@@ -310,7 +310,7 @@ final class Resume {
 				'name'         => 'Soft skills',
 				'description'  => 'Communication, coaching, prioritizing, proactive.',
 				'sameAs'       => 'https://en.wikipedia.org/wiki/Soft_skills',
-			]) extends Piece {}
+			]) extends Piece {},
 		);
 		return $pieces;
 	}

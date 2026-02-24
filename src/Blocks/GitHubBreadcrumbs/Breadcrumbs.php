@@ -74,7 +74,7 @@ final class Breadcrumbs {
 			'<%1$s>%2$s %3$s</%1$s>',
 			'li',
 			$post->post_title,
-			''
+			'',
 		);
 
 		$categories       = \wp_get_post_categories( $post->ID, [ 'fields' => 'all' ] );
@@ -87,7 +87,7 @@ final class Breadcrumbs {
 				'<%1$s>%2$s%3$s</%1$s>',
 				'li',
 				$this->get_category_as_link( $category_id ),
-				$separator
+				$separator,
 			) . $breadcrumb_list;
 			$category        = \get_category( $category_id );
 		}
@@ -104,7 +104,7 @@ final class Breadcrumbs {
 			'<%1$s>%2$s %3$s</%1$s>',
 			'li',
 			$category->name,
-			''
+			'',
 		);
 
 		do {
@@ -113,7 +113,7 @@ final class Breadcrumbs {
 				'<%1$s>%2$s%3$s</%1$s>',
 				'li',
 				$this->get_category_as_link( $parent_id ),
-				$separator
+				$separator,
 			) . $breadcrumb_list;
 			$category        = \get_category( $parent_id );
 		}
