@@ -23,6 +23,9 @@
 	],
 	"main": "build/index.js",
 	"devDependencies": {
+		"@wordpress/blocks": "dev-wp-6.9",
+		"@wordpress/block-editor": "dev-wp-6.9",
+		"@wordpress/components": "dev-wp-6.9",
 		"@wordpress/env": "^10.39.0",
 		"@wordpress/scripts": "^31.5.0"
 	},
