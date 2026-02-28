@@ -23,8 +23,12 @@
 	],
 	"main": "build/index.js",
 	"devDependencies": {
+		"@wordpress/block-editor": "wp-6.9",
+		"@wordpress/blocks": "wp-6.9",
+		"@wordpress/components": "wp-6.9",
+		"@wordpress/e2e-test-utils-playwright": "wp-6.9",
 		"@wordpress/env": "^10.39.0",
-		"@wordpress/scripts": "^31.1.0"
+		"@wordpress/scripts": "^31.5.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build",
