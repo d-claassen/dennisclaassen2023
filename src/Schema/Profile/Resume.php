@@ -267,6 +267,7 @@ final class Resume {
 				'@type'               => 'https://schema.org/Corporation',
 				'name'                => 'Hippo HR',
 				'parentOrganization'  => [
+					'@id'                 => 'https://www.dennisclaassen.nl/#/schema/role/hippo-hr-parent-youungcapital',
 					'@type'               => 'http://schema.org/OrganizationRole',
 					'parentOrganization'  => [
 						'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/youngcapital',
