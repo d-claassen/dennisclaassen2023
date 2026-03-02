@@ -102,6 +102,7 @@ final class Resume {
 
 		$person_data['worksFor'] = [
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/lead-developer-yoast',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/yoast',
@@ -110,6 +111,7 @@ final class Resume {
 				'startDate'  => '2021-10-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/senior-developer-yoast',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/yoast',
@@ -119,6 +121,7 @@ final class Resume {
 				'endDate'    => '2021-10-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/senior-developer-youngcapital',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/youngcapital',
@@ -128,6 +131,7 @@ final class Resume {
 				'endDate'    => '2021-02-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/developer-youngcapital',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/youngcapital',
@@ -137,6 +141,7 @@ final class Resume {
 				'endDate'    => '2019-12-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/developer-youngcapital-2',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/youngcapital',
@@ -146,6 +151,7 @@ final class Resume {
 				'endDate'    => '2018-12-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/developer-hippo-hr',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/hippo-hr',
@@ -155,6 +161,7 @@ final class Resume {
 				'endDate'    => '2016-12-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/graduate-hippo-hr',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/hippo-hr',
@@ -164,6 +171,7 @@ final class Resume {
 				'endDate'    => '2012-07-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/developer-hippo-hr-2',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/hippo-hr',
@@ -173,6 +181,7 @@ final class Resume {
 				'endDate'    => '2012-01-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/student-assistant-han',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/han',
@@ -182,6 +191,7 @@ final class Resume {
 				'endDate'    => '2012-01-01',
 			],
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/intern-square-concepts',
 				'@type'      => 'http://schema.org/EmployeeRole',
 				'worksFor'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/square-concepts',
@@ -194,6 +204,7 @@ final class Resume {
 
 		$person_data['alumniOf'] = [
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/student-han',
 				'@type'      => 'http://schema.org/Role',
 				'alumniOf'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/han',
@@ -256,6 +267,7 @@ final class Resume {
 				'@type'               => 'https://schema.org/Corporation',
 				'name'                => 'Hippo HR',
 				'parentOrganization'  => [
+					'@id'                 => 'https://www.dennisclaassen.nl/#/schema/role/hippo-hr-parent-youungcapital',
 					'@type'               => 'http://schema.org/OrganizationRole',
 					'parentOrganization'  => [
 						'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/youngcapital',
