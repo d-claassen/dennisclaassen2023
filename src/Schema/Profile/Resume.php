@@ -204,6 +204,7 @@ final class Resume {
 
 		$person_data['alumniOf'] = [
 			[
+				'@id'        => 'https://www.dennisclaassen.nl/#/schema/role/student-han',
 				'@type'      => 'http://schema.org/Role',
 				'alumniOf'   => [
 					'@id'  => 'https://www.dennisclaassen.nl/#/schema/Organization/han',
