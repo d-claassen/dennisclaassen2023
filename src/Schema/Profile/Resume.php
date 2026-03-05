@@ -18,10 +18,6 @@ final class Resume {
 		\add_filter( 'wpseo_schema_graph_pieces', $this->add_resume_to_schema( ... ), 11, 2 );
 	}
 
-	private function should_add_resume_data(): bool {
-		return \is_front_page();
-	}
-
 	/**
 	 * Enhance the WebPage with a mainEntity reference to the Person.
 	 *
@@ -34,7 +30,7 @@ final class Resume {
 	 */
 	private function make_person_main_entity( $webpage_data, $context ) {
 
-		if ( ! $this->should_add_resume_data() || $context->site_represents !== 'person' ) {
+		if ( $context->site_represents !== 'person' ) {
 			return $webpage_data;
 		}
 
@@ -76,6 +72,11 @@ final class Resume {
 			'alternateName'  => 'NL',
 			'sameAs'         => 'https://en.wikipedia.org/wiki/Netherlands',
 		];
+
+		$webpage_type = (array) $context->schema_page_type;
+		if ( ! \in_array( 'ProfilePage', $webpage_type, true ) ) {
+			return $person_data;
+		}
 
 		$person_data['knowsLanguage'] = [
 			[
@@ -247,6 +248,11 @@ final class Resume {
 	private function add_resume_to_schema( $pieces, $context ) {
 
 		\assert( $context instanceof Meta_Tags_Context );
+		$webpage_type = (array) $context->schema_page_type;
+
+		if ( ! \in_array( 'ProfilePage', $webpage_type, true ) ) {
+			return $pieces;
+		}
 
 		\array_push(
 			$pieces,
