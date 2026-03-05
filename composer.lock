@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21e1e180cf5e245b6a46b4353174c059",
+    "content-hash": "d7360add453c4e25c07f0a715f1aa2fc",
     "packages": [],
     "packages-dev": [
         {
@@ -3697,16 +3697,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "27.0",
+            "version": "27.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "3593931491eb0d7b9fbe4c4dea5c60168fcef706"
+                "reference": "71b23b6338451d59de8600431e09e4640cf36b26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/3593931491eb0d7b9fbe4c4dea5c60168fcef706",
-                "reference": "3593931491eb0d7b9fbe4c4dea5c60168fcef706",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/71b23b6338451d59de8600431e09e4640cf36b26",
+                "reference": "71b23b6338451d59de8600431e09e4640cf36b26",
                 "shasum": ""
             },
             "require": {
@@ -3722,9 +3722,11 @@
                 "psr/log": "^1.0",
                 "symfony/config": "^5.4.46",
                 "symfony/dependency-injection": "^5.4.48",
+                "wpackagist-plugin/easy-digital-downloads": "dev-trunk",
                 "wpackagist-plugin/google-site-kit": "dev-trunk",
-                "yoast/wp-test-utils": "^1.2",
-                "yoast/yoastcs": "^3.2.0"
+                "wpackagist-plugin/woocommerce": "dev-trunk",
+                "yoast/wp-test-utils": "^1.2.1",
+                "yoast/yoastcs": "^3.3.0"
             },
             "suggest": {
                 "ext-bcmath": "For more accurate calculations",
@@ -3736,7 +3738,9 @@
             "extra": {
                 "installer-paths": {
                     "vendor/{$name}": [
-                        "wpackagist-plugin/google-site-kit"
+                        "wpackagist-plugin/easy-digital-downloads",
+                        "wpackagist-plugin/google-site-kit",
+                        "wpackagist-plugin/woocommerce"
                     ]
                 }
             },
@@ -3773,7 +3777,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2026-02-17T09:41:05+00:00"
+            "time": "2026-03-03T14:06:55+00:00"
         },
         {
             "name": "yoast/yoastcs",
@@ -3849,5 +3853,5 @@
     "platform-overrides": {
         "php": "8.2.14"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
