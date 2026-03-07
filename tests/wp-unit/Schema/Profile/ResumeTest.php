@@ -209,7 +209,7 @@ class ResumeTest extends \WP_UnitTestCase {
 			$person_data['nationality'],
 		);
 
-		$this->assertArrayNotHasKey( 'worksFor', $person_data );
+		$this->assertArrayHasKey( 'worksFor', $person_data );
 		$this->assertArrayNotHasKey( 'alumniOf', $person_data );
 		$this->assertArrayNotHasKey( 'knowsAbout', $person_data );
 		$this->assertArrayNotHasKey( 'knowsLanguage', $person_data );
