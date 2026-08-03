@@ -52,4 +52,5 @@ updates:
           - "wp-coding-standards/*"
           - "squizlabs/*"
           - "slevomat/*"
+          - "automattic/vipwpcs"
           - "dealerdirect/phpcodesniffer-composer-installer"
