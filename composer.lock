@@ -3703,16 +3703,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "28.2",
+            "version": "28.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "ecd5435b1cfeebe46f6bf94a792eb73e349cabea"
+                "reference": "a9d8c43f31025d93c014af7923e917ca032705f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/ecd5435b1cfeebe46f6bf94a792eb73e349cabea",
-                "reference": "ecd5435b1cfeebe46f6bf94a792eb73e349cabea",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/a9d8c43f31025d93c014af7923e917ca032705f9",
+                "reference": "a9d8c43f31025d93c014af7923e917ca032705f9",
                 "shasum": ""
             },
             "require": {
@@ -3721,7 +3721,7 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "guzzlehttp/guzzle": "7.15.1",
+                "guzzlehttp/guzzle": "7.15.2",
                 "humbug/php-scoper": "^0.13.4",
                 "league/oauth2-client": "2.9.0",
                 "psr/container": "1.1.1",
@@ -3732,7 +3732,7 @@
                 "wpackagist-plugin/google-site-kit": "dev-trunk",
                 "wpackagist-plugin/woocommerce": "dev-trunk",
                 "yoast/wp-test-utils": "^1.2.1",
-                "yoast/yoastcs": "^3.4.0"
+                "yoast/yoastcs": "^3.4.2"
             },
             "suggest": {
                 "ext-bcmath": "For more accurate calculations",
@@ -3783,7 +3783,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2026-08-04T05:29:30+00:00"
+            "time": "2026-08-18T04:58:49+00:00"
         },
         {
             "name": "yoast/yoastcs",
