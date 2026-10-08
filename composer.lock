@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1953955ca29bff94ccbc95a884e0f7f8",
+    "content-hash": "e152aaa6d043f64960389826ece973aa",
     "packages": [],
     "packages-dev": [
         {
@@ -3703,16 +3703,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "28.2",
+            "version": "28.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "ecd5435b1cfeebe46f6bf94a792eb73e349cabea"
+                "reference": "ea7e7d8bc8f1649012fdd1c4ed5e1258c1d92d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/ecd5435b1cfeebe46f6bf94a792eb73e349cabea",
-                "reference": "ecd5435b1cfeebe46f6bf94a792eb73e349cabea",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/ea7e7d8bc8f1649012fdd1c4ed5e1258c1d92d18",
+                "reference": "ea7e7d8bc8f1649012fdd1c4ed5e1258c1d92d18",
                 "shasum": ""
             },
             "require": {
@@ -3721,7 +3721,7 @@
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "guzzlehttp/guzzle": "7.15.1",
+                "guzzlehttp/guzzle": "7.15.2",
                 "humbug/php-scoper": "^0.13.4",
                 "league/oauth2-client": "2.9.0",
                 "psr/container": "1.1.1",
@@ -3732,7 +3732,7 @@
                 "wpackagist-plugin/google-site-kit": "dev-trunk",
                 "wpackagist-plugin/woocommerce": "dev-trunk",
                 "yoast/wp-test-utils": "^1.2.1",
-                "yoast/yoastcs": "^3.4.0"
+                "yoast/yoastcs": "^3.4.3"
             },
             "suggest": {
                 "ext-bcmath": "For more accurate calculations",
@@ -3783,7 +3783,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2026-08-04T05:29:30+00:00"
+            "time": "2026-09-29T05:36:45+00:00"
         },
         {
             "name": "yoast/yoastcs",
