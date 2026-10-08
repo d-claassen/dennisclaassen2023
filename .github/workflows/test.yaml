@@ -100,11 +100,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        wp_version: ["6.8", "6.9", "master"]
+        wp_version: ["6.9", "7.0", "7.1", "master"]
         dependencies_version: ["locked"]
         include:
           # Lowest WP, and deps
           - wp_version: "6.7"
+            dependencies_version: "lowest"
+          - wp_version: "6.8"
             dependencies_version: "lowest"
 
     env:
