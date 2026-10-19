@@ -23,6 +23,7 @@
 	],
 	"main": "build/index.js",
 	"devDependencies": {
+		"@vitest/coverage-v8": "^5",
 		"@wordpress/env": "^11.17.0",
 		"@wordpress/scripts": "^36.1.0",
 		"vite": "^8",
